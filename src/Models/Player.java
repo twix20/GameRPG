@@ -15,7 +15,14 @@ public class Player implements Serializable{
 	protected StatisticsBag statistics;
 	protected Equipment equipment;
 	
-	
+	public Player(String nickname, String password, int currentHp, int maxHp, StatisticsBag statistics,Equipment equipment) {
+		this.setCurrentHp(currentHp);
+		this.setNickname(nickname);
+		this.setPassword(password);
+		this.setMaxHp(maxHp);
+		this.statistics  = statistics;
+		this.equipment = equipment;
+	}
 	public int getId() {
 		return id;
 	}

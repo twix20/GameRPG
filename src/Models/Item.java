@@ -9,7 +9,13 @@ public class Item implements Serializable {
 	protected String name;  
 	protected int price;  
 	protected StatisticsBag statistics;
-
+   
+	public Item(int id, String name, int price, StatisticsBag statistics){
+		this.setId(id);
+		this.setName(name);
+		this.setPrice(price);
+		this.setStatistics(statistics);
+	}
 	public int getId() {
 		return id;
 	}
