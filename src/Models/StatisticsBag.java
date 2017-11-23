@@ -3,27 +3,27 @@ package Models;
 import java.util.HashMap;
 
 public class StatisticsBag {
-	private HashMap<StatisticType, Statistic> allStatistics = new HashMap<>();
+	private HashMap<StatisticTypeEnum, Statistic> allStatistics = new HashMap<>();
 	
 	public void addStatistic(Statistic stat) {
-		if(allStatistics.containsKey(stat.getStatisticType())) {
+		if(allStatistics.containsKey(stat.getStatisticType().getTypeEnum())) {
 			
-			Statistic existingStat = allStatistics.get(stat.getStatisticType());
+			Statistic existingStat = allStatistics.get(stat.getStatisticType().getTypeEnum());
 			int newValue = existingStat.getValue() + stat.getValue();
 			
 			existingStat.setValue(newValue);
 			return;
 		}
 		
-		allStatistics.put(stat.getStatisticType(), stat);
+		allStatistics.put(stat.getStatisticType().getTypeEnum(), stat);
 	}
 	
-	public int getStatisticValue(StatisticType statType) {
+	public int getStatisticValue(StatisticTypeEnum statType) {
 		return allStatistics.containsKey(statType) ? 
 				allStatistics.get(statType).getValue(): 0;
 	}
 	
-	public void removeStatistic(StatisticType statType, int valueToRemove) {
+	public void removeStatistic(StatisticTypeEnum statType, int valueToRemove) {
 		if(!allStatistics.containsKey(statType)) return;
 		
 		Statistic existingStat = allStatistics.get(statType);

@@ -31,6 +31,10 @@ public class StatisticType
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	public StatisticTypeEnum getTypeEnum() {
+		return StatisticTypeEnum.values()[this.id];
+	}
 }
 
 
