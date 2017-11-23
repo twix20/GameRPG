@@ -1,5 +1,7 @@
 package Models;
 
+import DataAccessLayer.DataBase;
+
 public class Admin {
 	 private DataBase dataBase;
 	public Item addItem(Item it) {

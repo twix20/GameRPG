@@ -1,6 +1,6 @@
 package Menu_uzytkownka;
 
-import Models.DataBase;
+import DataAccessLayer.DataBase;
 
 public class LoginScreen {
 	private DataBase dataBase;

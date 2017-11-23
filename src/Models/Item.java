@@ -3,7 +3,7 @@ package Models;
 import java.io.Serializable;
 
 public class Item implements Serializable {
-	private static final long serialVersionUID = 2941677815273042223L;
+	public static final long serialVersionUID = 2941677815273042223L;
 	
 	protected int id;
 	protected String name;  

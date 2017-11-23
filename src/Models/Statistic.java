@@ -2,28 +2,41 @@ package Models;
 
 import java.io.Serializable;
 
+
+import javax.persistence.*;
+
+
+@Entity
+@Table(name = "Statistic")
 public class Statistic implements Serializable{
 	private static final long serialVersionUID = -1643972581721255276L;
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "Id", unique = true, nullable = false)
+	private int id;
+	
+	@ManyToOne
+    @JoinColumn(name="StatisticType_Id",foreignKey=@ForeignKey(name="Statistic_StatisticType"))
 	private StatisticType statisticType;
-	private String name;
+	
+	@Column(name = "Value")
 	private int value;
 	
-	public Statistic(StatisticType type, int value) {
+	public Statistic() {}
+	
+	public Statistic(int id, StatisticType type, int value) {
+		this.id = id;
 		this.statisticType = type;
 		this.setValue(value);
 	}
 
+	public int getId() {
+		return id;
+	}
+	
 	public StatisticType getStatisticType() {
 		return statisticType;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public int getValue() {
@@ -33,5 +46,4 @@ public class Statistic implements Serializable{
 	public void setValue(int value) {
 		this.value = value;
 	}
-
 }
