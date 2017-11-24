@@ -1,19 +1,20 @@
 package DataAccessLayer;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+
 public class RepositoryFactory {
 	
-	
-
-	public PlayerRepository CreateAccountRepository() {
-		return null;
+	public PlayerRepository CreateAccountRepository(SessionFactory sessionFactory) {
+		return new PlayerRepository(sessionFactory);
 	}
-	public ItemRepository CreateItemRepository() {
-		return null;
+	public ItemRepository CreateItemRepository(SessionFactory sessionFactory) {
+		return new ItemRepository(sessionFactory);
 	}
-	public BattleFieldHistoryRepository CreateBattleFieldHistoryRepository() {
-		return null;
+	public BattleFieldHistoryRepository CreateBattleFieldHistoryRepository(SessionFactory sessionFactory) {
+		return new BattleFieldHistoryRepository(sessionFactory);
 	}
-	public StatisticRepository CreateStatisticRepository() {
-		return null;
+	public StatisticRepository CreateStatisticRepository(SessionFactory sessionFactory) {
+		return new StatisticRepository(sessionFactory);
 	}
 }
