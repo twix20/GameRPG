@@ -9,7 +9,6 @@ public class BattleFieldHistory implements Serializable{
 	private int id;
 	private Date fightStartDate;
 	private Date fightEndDate;
-	private int whoseTurn_Player_Id;
 	private int player1_Id;
 	private int player2_IdL;
 	
@@ -31,12 +30,7 @@ public class BattleFieldHistory implements Serializable{
 	public void setFightEndDate(Date fightEndDate) {
 		this.fightEndDate = fightEndDate;
 	}
-	public int getWhoseTurn_Player_Id() {
-		return whoseTurn_Player_Id;
-	}
-	public void setWhoseTurn_Player_Id(int whoseTurn_Player_Id) {
-		this.whoseTurn_Player_Id = whoseTurn_Player_Id;
-	}
+
 	public int getPlayer1_Id() {
 		return player1_Id;
 	}

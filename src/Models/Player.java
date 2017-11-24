@@ -2,6 +2,9 @@ package Models;
 
 import java.io.Serializable;
 
+import Pole_walki.Battlefield;
+import Sklep.Shop;
+
 public class Player implements Serializable{
 	private static final long serialVersionUID = 3629527181951999234L;
 
@@ -14,7 +17,12 @@ public class Player implements Serializable{
 	
 	protected StatisticsBag statistics;
 	protected Equipment equipment;
-	
+	public Battlefield battle(Player player) {
+		return null;
+	}
+	public Shop shopping() {
+		return null;
+	}
 	public Player(String nickname, String password, int currentHp, int maxHp, StatisticsBag statistics,Equipment equipment) {
 		this.setCurrentHp(currentHp);
 		this.setNickname(nickname);
