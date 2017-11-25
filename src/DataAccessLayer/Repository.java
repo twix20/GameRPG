@@ -1,22 +1,13 @@
 package DataAccessLayer;
 
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
-
-import javax.persistence.Query;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-import Models.Statistic;
-
-public abstract class Repository <T extends Serializable> {
+public abstract class Repository <T> {
 	private SessionFactory sessionFactory;
 	private Class<T> type;
 	

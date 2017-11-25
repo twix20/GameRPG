@@ -1,6 +1,5 @@
 package DataAccessLayer;
 
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import Models.Player;

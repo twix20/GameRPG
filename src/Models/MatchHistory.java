@@ -42,4 +42,10 @@ public class MatchHistory {
 	public void setGoldEarndByPlayers(ArrayList<Integer> goldEarndByPlayers) {
 		this.goldEarndByPlayers = goldEarndByPlayers;
 	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 }

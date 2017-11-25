@@ -1,11 +1,8 @@
 package Models;
 
-import java.io.Serializable;
 import java.util.Date;
 
-public class BattleFieldHistory implements Serializable{
-	private static final long serialVersionUID = -8374455912011446418L;
-	
+public class BattleFieldHistory {
 	private int id;
 	private Date fightStartDate;
 	private Date fightEndDate;

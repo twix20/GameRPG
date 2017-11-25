@@ -1,28 +1,35 @@
 package Models;
 
-import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 
 import Pole_walki.Battlefield;
 import Sklep.Shop;
 
-public class Player implements Serializable{
-	private static final long serialVersionUID = 3629527181951999234L;
-
-	protected int id;
-	protected String nickname;
-	protected String password;
+@Entity
+@DiscriminatorValue("PLAYER")
+public class Player extends AppUser{
 	
+	@Column(name = "CurrentHp")
 	protected int currentHp;
+	
+	@Column(name = "MaxHp")
 	protected int maxHp;
 	
+	//TODO
 	protected StatisticsBag statistics;
 	protected Equipment equipment;
+	
 	public Battlefield battle(Player player) {
 		return null;
 	}
 	public Shop shopping() {
 		return null;
 	}
+	
+	public Player() {}
+	
 	public Player(String nickname, String password, int currentHp, int maxHp, StatisticsBag statistics,Equipment equipment) {
 		this.setCurrentHp(currentHp);
 		this.setNickname(nickname);
@@ -31,24 +38,7 @@ public class Player implements Serializable{
 		this.statistics  = statistics;
 		this.equipment = equipment;
 	}
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getNickname() {
-		return nickname;
-	}
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
+	
 	public int getCurrentHp() {
 		return currentHp;
 	}

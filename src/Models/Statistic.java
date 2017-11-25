@@ -1,16 +1,10 @@
 package Models;
 
-import java.io.Serializable;
-
-
 import javax.persistence.*;
-
 
 @Entity
 @Table(name = "Statistic")
-public class Statistic implements Serializable{
-	private static final long serialVersionUID = -1643972581721255276L;
-	
+public class Statistic {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "Id", unique = true, nullable = false)

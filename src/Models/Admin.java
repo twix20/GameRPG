@@ -1,9 +1,14 @@
 package Models;
 
+import javax.persistence.*;
+
 import DataAccessLayer.DataBase;
 
-public class Admin {
-	 private DataBase dataBase;
+@Entity
+@DiscriminatorValue("ADMIN")
+public class Admin extends Player {
+	private DataBase dataBase;
+	
 	public Item addItem(Item it) {
 		return null;
 	}
