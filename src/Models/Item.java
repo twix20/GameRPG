@@ -1,11 +1,21 @@
 package Models;
 
-
+@Entity
+@Table(name = "Item")
 public class Item {
-
+        
+        @Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+        @DiscriminatorColumn(name="Type", discriminatorType=DiscriminatorType.STRING)
+	@Column(name = "Id", unique = true, nullable = false)
 	protected int id;
-	protected String name;  
-	protected int price;  
+        
+        @Column(name = "Name")
+	protected String name;
+        
+        @Column(name = "Price")
+	protected int price;
+        
 	protected StatisticsBag statistics;
    
 	public Item(int id, String name, int price, StatisticsBag statistics){

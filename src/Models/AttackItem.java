@@ -2,10 +2,16 @@ package Models;
 
 import java.util.ArrayList;
 
-public abstract class AttackItem {
+@Entity
+@DiscriminatorValue("AttackItem")
+public abstract class AttackItem extends Item{
 
+        @Column("Durability")
 	private int durability;
-	private int damage;
+
+        @Column("Damage")
+        private int damage;
+        
 	private String name;
 	private ArrayList<Statistic> statistics;
 	

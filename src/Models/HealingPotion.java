@@ -1,7 +1,11 @@
 package Models;
 
-public class HealingPotion extends Useabletem {
-	private int healing; 
+@Entity
+@DiscriminatorValue("HealingPotion")
+public class HealingPotion extends Item {//extends Useabletem {
+    @Column(name = "HealValue")
+    private int healing; 
+    
 	public HealingPotion(int id, String name, int price, StatisticsBag statistics) {
 		super(id, name, price, statistics);
 	}

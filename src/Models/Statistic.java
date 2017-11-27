@@ -11,7 +11,7 @@ public class Statistic {
 	private int id;
 	
 	@ManyToOne
-    @JoinColumn(name="StatisticType_Id",foreignKey=@ForeignKey(name="Statistic_StatisticType"))
+        @JoinColumn(name="StatisticType_Id",foreignKey=@ForeignKey(name="Statistic_StatisticType"))
 	private StatisticType statisticType;
 	
 	@Column(name = "Value")
