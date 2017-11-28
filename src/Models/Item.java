@@ -14,10 +14,16 @@ public class Item {
         
     @Column(name = "Name")
 	protected String name;
-        
-    @Column(name = "Price")
+    
+    @Column(name = "MaxDurability")
+    protected int maxDurability;
+       
+	@Column(name = "Price")
 	protected int price;
-        
+	
+	@Column(name = "Type")
+	protected String type;
+	
 	protected StatisticsBag statistics;
    
 	public Item() {}
@@ -43,6 +49,14 @@ public class Item {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+    public int getMaxDurability() {
+		return maxDurability;
+	}
+
+	public void setMaxDurability(int maxDurability) {
+		this.maxDurability = maxDurability;
+	}
 
 	public int getPrice() {
 		return price;
@@ -52,7 +66,7 @@ public class Item {
 		this.price = price;
 	}
 
-	public Object getStatistics() {
+	public StatisticsBag getStatistics() {
 		return statistics;
 	}
 

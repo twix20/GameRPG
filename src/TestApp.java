@@ -1,6 +1,7 @@
 import java.util.List;
 
 import DataAccessLayer.DataBase;
+import DataAccessLayer.ItemRepository;
 import DataAccessLayer.RepositoryFactory;
 import DataAccessLayer.StatisticRepository;
 import Models.*;
@@ -11,9 +12,9 @@ public class TestApp {
 
     DataBase db = new DataBase(new RepositoryFactory());
     
-    StatisticRepository sr = db.getStatisticRepository();
+    ItemRepository repo = db.getItemRepository();
     
-    List<Statistic> all = sr.GetAll();
+    List<Item> all = repo.GetAll();
     
    
     db.Dispose();

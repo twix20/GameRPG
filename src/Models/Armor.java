@@ -1,5 +1,8 @@
 package Models;
 
+import javax.persistence.DiscriminatorValue;
+
+@DiscriminatorValue("ARMOR")
 public class Armor extends DefensiveItem {
 
 	public Armor() {}

@@ -1,6 +1,8 @@
 package Models;
 
+import javax.persistence.*;
 
+@DiscriminatorValue("SWORD")
 public class Sword extends AttackItem {
 
 	public Sword() {}
