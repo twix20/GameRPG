@@ -1,38 +1,39 @@
 package Models;
 
+import java.util.*;
 import javax.persistence.*;
 
 @Entity
 @Table(name = "Item")
 @DiscriminatorColumn(name="Type", discriminatorType=DiscriminatorType.STRING)
-public class Item {
-        
-    @Id
+public abstract class Item
+{
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "Id", unique = true, nullable = false)
-	protected int id;
+	private int id;
         
     @Column(name = "Name")
-	protected String name;
+    private String name;
     
-    @Column(name = "MaxDurability")
-    protected int maxDurability;
-       
 	@Column(name = "Price")
-	protected int price;
+	private int price;
 	
-	@Column(name = "Type")
-	protected String type;
+	@ManyToMany(cascade = { CascadeType.ALL })
+	@JoinTable(
+			name = "Item_Statistic_XREF", 
+			joinColumns = { @JoinColumn(name = "Item_Id") }, 
+			inverseJoinColumns = { @JoinColumn(name = "Statistic_Id") }
+			)
+	private Set<Statistic> statistics = new HashSet<Statistic>();
 	
-	protected StatisticsBag statistics;
-   
 	public Item() {}
 	
 	public Item(int id, String name, int price, StatisticsBag statistics){
 		this.setId(id);
 		this.setName(name);
 		this.setPrice(price);
-		this.setStatistics(statistics);
+		//this.setStatistics(statistics);
 	}
 	public int getId() {
 		return id;
@@ -42,21 +43,14 @@ public class Item {
 		this.id = id;
 	}
 
+	
 	public String getName() {
 		return name;
 	}
 
 	public void setName(String name) {
 		this.name = name;
-	}
-	
-    public int getMaxDurability() {
-		return maxDurability;
-	}
-
-	public void setMaxDurability(int maxDurability) {
-		this.maxDurability = maxDurability;
-	}
+	}	
 
 	public int getPrice() {
 		return price;
@@ -65,12 +59,12 @@ public class Item {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-
+	
 	public StatisticsBag getStatistics() {
-		return statistics;
+		return new StatisticsBag(statistics);
 	}
 
-	public void setStatistics(StatisticsBag statistics) {
+	public void setStatistics(Set<Statistic> statistics) {
 		this.statistics = statistics;
 	}
 }

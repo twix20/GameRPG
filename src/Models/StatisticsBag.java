@@ -1,9 +1,23 @@
 package Models;
 
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.Map;
 
 public class StatisticsBag {
-	private HashMap<StatisticTypeEnum, Statistic> allStatistics = new HashMap<>();
+	private Map<StatisticTypeEnum, Statistic> allStatistics;
+	
+	public StatisticsBag() {
+		allStatistics = new HashMap<>();
+	}
+	
+	public StatisticsBag(Collection<Statistic> statistics) {
+		this();
+		
+		for(Statistic s: statistics)
+			allStatistics.put(s.getStatisticType().getTypeEnum(), s);
+	}
+	
 	
 	public void addStatistic(Statistic stat) {
 		if(allStatistics.containsKey(stat.getStatisticType().getTypeEnum())) {
@@ -17,12 +31,10 @@ public class StatisticsBag {
 		
 		allStatistics.put(stat.getStatisticType().getTypeEnum(), stat);
 	}
-	
 	public int getStatisticValue(StatisticTypeEnum statType) {
 		return allStatistics.containsKey(statType) ? 
 				allStatistics.get(statType).getValue(): 0;
 	}
-	
 	public void removeStatistic(StatisticTypeEnum statType, int valueToRemove) {
 		if(!allStatistics.containsKey(statType)) return;
 		
@@ -34,5 +46,9 @@ public class StatisticsBag {
 		existingStat.setValue(newValue);
 		
 		allStatistics.put(statType, existingStat);
+	}
+	
+	public Collection<Statistic> values(){
+		return this.allStatistics.values();
 	}
 }

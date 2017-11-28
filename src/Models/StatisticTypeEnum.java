@@ -1,5 +1,7 @@
 package Models;
 
 public enum StatisticTypeEnum {
-	Hp
+	Hp,
+	Mp,
+	DealDmg
 }

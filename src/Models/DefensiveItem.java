@@ -1,8 +1,6 @@
 package Models;
 
 
-import java.util.ArrayList;
-
 import javax.persistence.*;
 
 @Entity

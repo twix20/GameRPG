@@ -11,7 +11,7 @@ public class Statistic {
 	private int id;
 	
 	@ManyToOne
-        @JoinColumn(name="StatisticType_Id",foreignKey=@ForeignKey(name="Statistic_StatisticType"))
+    @JoinColumn(name="StatisticType_Id", foreignKey=@ForeignKey(name="Statistic_StatisticType"))
 	private StatisticType statisticType;
 	
 	@Column(name = "Value")
@@ -40,4 +40,19 @@ public class Statistic {
 	public void setValue(int value) {
 		this.value = value;
 	}
+	
+	
+	/* Chcemy znac wszystkie itemy ktore maja dana statystyke? chyba nie
+    @ManyToMany(mappedBy = "statistics")
+    private Set<Item> items = new HashSet<>();
+
+	public Set<Item> getItems() {
+		return items;
+	}
+
+	public void setItems(Set<Item> items) {
+		this.items = items;
+	}
+	*/
+	
 }

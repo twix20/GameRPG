@@ -1,5 +1,10 @@
 package Models;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
+@Entity
+@DiscriminatorValue(value = "AMMUNITION")
 public class Ammunition extends AttackItem {
 
 	public Ammunition() {}

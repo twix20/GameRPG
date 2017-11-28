@@ -1,53 +1,39 @@
 package Models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 @Entity
-public abstract class AttackItem extends Item{
+public abstract class AttackItem extends Item {
 
-    @Column(name = "Durability")
-	private int durability;
+    @Column(name = "MaxDurability")
+	private int maxDurability;
 
     @Column(name = "Damage")
     private int damage;
-        
-	private String name;
-	private StatisticsBag statistics;
-	
+
 	 public AttackItem() {}
 	
-	 public AttackItem(int id, String name, int price, StatisticsBag statistics, int durability, int damage) {
+	 public AttackItem(int id, String name, int price, StatisticsBag statistics, int maxDurability, int damage) {
 		super(id, name, price, statistics);
 		 
 		this.setDamage(damage);
-		this.setDurability(durability);
+		this.setMaxDurability(maxDurability);
 	}
+	 
 	 public int DealDamage() {
 		 return 0;
 	 }
+	 
 	public int getDamage() {
 		return damage;
 	}
 	public void setDamage(int damage) {
 		this.damage = damage;
 	}
-	public int getDurability() {
-		return durability;
+	public int getMaxDurability() {
+		return maxDurability;
 	}
-	public void setDurability(int durability) {
-		this.durability = durability;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public StatisticsBag getStatistics() {
-		return statistics;
-	}
-	public void setStatistics(StatisticsBag statistics) {
-		this.statistics = statistics;
+	public void setMaxDurability(int durability) {
+		this.maxDurability = durability;
 	}
 }

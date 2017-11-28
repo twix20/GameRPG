@@ -2,6 +2,7 @@ package Models;
 
 import javax.persistence.*;
 
+@Entity
 @DiscriminatorValue("SWORD")
 public class Sword extends AttackItem {
 

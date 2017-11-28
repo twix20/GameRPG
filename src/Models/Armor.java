@@ -1,7 +1,8 @@
 package Models;
 
-import javax.persistence.DiscriminatorValue;
+import javax.persistence.*;
 
+@Entity
 @DiscriminatorValue("ARMOR")
 public class Armor extends DefensiveItem {
 

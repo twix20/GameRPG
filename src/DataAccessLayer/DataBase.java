@@ -7,8 +7,7 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
-import Models.Statistic;
-import Models.StatisticType;
+import Models.*;
 
 public class DataBase {
 	private PlayerRepository accountRepository;
@@ -25,13 +24,32 @@ public class DataBase {
 	    if (sessionFactory == null) {
 	      try {
 	    	  registry = new StandardServiceRegistryBuilder()
-	  	            .configure()
+	  	            .configure("hibernate.cfg.xml")
 	  	            .build();
 	  	
 	        // Create MetadataSources
 	  	    MetadataSources sources = new MetadataSources(registry)
+	  	    		
 	  	    		.addAnnotatedClass(Statistic.class)
-	  	    		.addAnnotatedClass(StatisticType.class);
+	  	    		.addAnnotatedClass(StatisticType.class)
+	  	    	
+	  	    		.addAnnotatedClass(Item.class)
+	  	    		
+	  	    		.addAnnotatedClass(AttackItem.class)
+	  	    		
+	  	    		.addAnnotatedClass(Sword.class)
+	  	    		.addAnnotatedClass(Wand.class)
+	  	    		.addAnnotatedClass(Bow.class)
+	  	    		.addAnnotatedClass(Ammunition.class)
+	  	    		
+	  	    		.addAnnotatedClass(DefensiveItem.class)
+	  	    		.addAnnotatedClass(Shield.class)
+	    			.addAnnotatedClass(Armor.class)
+	    			
+	  	    		.addAnnotatedClass(Useabletem.class)
+	  	    		.addAnnotatedClass(HealingPotion.class);
+	  	    		
+	  	    		
 	  	
 	  	    // Create Metadata
 	  	    Metadata metadata = sources.getMetadataBuilder().build();
@@ -60,10 +78,9 @@ public class DataBase {
 	  }
 	
     public DataBase(RepositoryFactory repoFactory) {
-    	
     	SessionFactory sessionFactory = getSessionFactory();
-    	session = sessionFactory.openSession();
-    
+		session = sessionFactory.openSession();
+    		
     	this.accountRepository = repoFactory.CreateAccountRepository(sessionFactory);
     	this.itemRepository = repoFactory.CreateItemRepository(sessionFactory);
     	this.battleFieldHistoryRepository = repoFactory.CreateBattleFieldHistoryRepository(sessionFactory);

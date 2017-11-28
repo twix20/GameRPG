@@ -12,7 +12,7 @@ public class ItemRepository extends Repository<Item>{
 		// TODO Auto-generated constructor stub
 	}
 
-	ArrayList<Item> GetAllForPlayer(int playerId){
+	ArrayList<Item> GetAllForPlayer(String playerId){
 		
 		throw new UnsupportedOperationException ("TODO");
 	}

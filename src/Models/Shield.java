@@ -1,6 +1,10 @@
 package Models;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 
+@Entity
+@DiscriminatorValue(value = "SHIELD")
 public class Shield extends DefensiveItem {
 
 	public Shield() {}
