@@ -6,7 +6,7 @@ import DataAccessLayer.DataBase;
 
 @Entity
 @DiscriminatorValue("ADMIN")
-public class Admin extends Player {
+public class Admin extends AppUser {
 	private DataBase dataBase;
 	
 	public Item addItem(Item it) {

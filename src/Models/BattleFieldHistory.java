@@ -2,12 +2,28 @@ package Models;
 
 import java.util.Date;
 
+@Entity
+@Table(name = "Battlefield")
 public class BattleFieldHistory {
-	private int id;
+	
+        @Id
+        @Column(name ="Id")
+        private int id;
+        
+        @Column(name ="FightStartDate")
 	private Date fightStartDate;
+        
+        @Column(name ="FightEndDate")
 	private Date fightEndDate;
-	private int player1_Id;
-	private int player2_IdL;
+        
+        @Column(name ="WhoWon_Player_Id")
+        private String whoWonPlayerId;
+        
+        @Column(name ="Player1_Id")
+	private String player1_Id;
+	
+        @Column(name ="Player2_Id")
+        private String player2_IdL;
 	
    public int getId() {
 		return id;
@@ -28,16 +44,24 @@ public class BattleFieldHistory {
 		this.fightEndDate = fightEndDate;
 	}
 
-	public int getPlayer1_Id() {
+	public String getPlayer1_Id() {
 		return player1_Id;
 	}
-	public void setPlayer1_Id(int player1_Id) {
+	public void setPlayer1_Id(String player1_Id) {
 		this.player1_Id = player1_Id;
 	}
-	public int getPlayer2_IdL() {
+	public String getPlayer2_IdL() {
 		return player2_IdL;
 	}
-	public void setPlayer2_IdL(int player2_IdL) {
+	public void setPlayer2_IdL(String player2_IdL) {
 		this.player2_IdL = player2_IdL;
 	}
+               
+    public String getWhoWonPlayerId() {
+        return whoWonPlayerId;
+    }
+
+    public void setWhoWonPlayerId(String whoWonPlayerId) {
+        this.whoWonPlayerId = whoWonPlayerId;
+    }
 }

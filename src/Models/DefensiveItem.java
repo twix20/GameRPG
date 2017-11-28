@@ -4,7 +4,6 @@ package Models;
 import java.util.ArrayList;
 
 @Entity
-@DiscriminatorValue("DefensiveItem")
 public abstract class DefensiveItem extends Item {
     
     @Column("DefDamage")

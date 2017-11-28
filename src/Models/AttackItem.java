@@ -3,7 +3,6 @@ package Models;
 import java.util.ArrayList;
 
 @Entity
-@DiscriminatorValue("AttackItem")
 public abstract class AttackItem extends Item{
 
         @Column("Durability")
