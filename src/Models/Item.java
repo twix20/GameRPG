@@ -33,7 +33,7 @@ public abstract class Item
 		this.setId(id);
 		this.setName(name);
 		this.setPrice(price);
-		//this.setStatistics(statistics);
+		this.setStatistics(new HashSet<Statistic>(statistics.values()));
 	}
 	public int getId() {
 		return id;
