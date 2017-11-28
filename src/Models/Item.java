@@ -1,23 +1,27 @@
 package Models;
 
+import javax.persistence.*;
+
 @Entity
 @Table(name = "Item")
+@DiscriminatorColumn(name="Type", discriminatorType=DiscriminatorType.STRING)
 public class Item {
         
-        @Id
+    @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-        @DiscriminatorColumn(name="Type", discriminatorType=DiscriminatorType.STRING)
 	@Column(name = "Id", unique = true, nullable = false)
 	protected int id;
         
-        @Column(name = "Name")
+    @Column(name = "Name")
 	protected String name;
         
-        @Column(name = "Price")
+    @Column(name = "Price")
 	protected int price;
         
 	protected StatisticsBag statistics;
    
+	public Item() {}
+	
 	public Item(int id, String name, int price, StatisticsBag statistics){
 		this.setId(id);
 		this.setName(name);

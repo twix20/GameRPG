@@ -1,5 +1,7 @@
 package Models;
 
+import javax.persistence.*;
+
 @Entity
 @DiscriminatorValue("HealingPotion")
 public class HealingPotion extends Item {//extends Useabletem {

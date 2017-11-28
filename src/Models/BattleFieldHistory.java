@@ -2,6 +2,8 @@ package Models;
 
 import java.util.Date;
 
+import javax.persistence.*;
+
 @Entity
 @Table(name = "Battlefield")
 public class BattleFieldHistory {

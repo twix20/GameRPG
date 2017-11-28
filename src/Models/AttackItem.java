@@ -1,24 +1,27 @@
 package Models;
 
-import java.util.ArrayList;
+import javax.persistence.Column;
+import javax.persistence.Entity;
 
 @Entity
 public abstract class AttackItem extends Item{
 
-        @Column("Durability")
+    @Column(name = "Durability")
 	private int durability;
 
-        @Column("Damage")
-        private int damage;
+    @Column(name = "Damage")
+    private int damage;
         
 	private String name;
-	private ArrayList<Statistic> statistics;
+	private StatisticsBag statistics;
 	
-	 public AttackItem(String name, int durability, int damage, ArrayList<Statistic> statistics) {
+	 public AttackItem() {}
+	
+	 public AttackItem(int id, String name, int price, StatisticsBag statistics, int durability, int damage) {
+		super(id, name, price, statistics);
+		 
 		this.setDamage(damage);
 		this.setDurability(durability);
-		this.setName(name);
-		this.setStatistics(statistics);
 	}
 	 public int DealDamage() {
 		 return 0;
@@ -41,10 +44,10 @@ public abstract class AttackItem extends Item{
 	public void setName(String name) {
 		this.name = name;
 	}
-	public ArrayList<Statistic> getStatistics() {
+	public StatisticsBag getStatistics() {
 		return statistics;
 	}
-	public void setStatistics(ArrayList<Statistic> statistics) {
+	public void setStatistics(StatisticsBag statistics) {
 		this.statistics = statistics;
 	}
 }

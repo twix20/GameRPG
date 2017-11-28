@@ -1,12 +1,13 @@
 package Models;
 
-import java.util.ArrayList;
-
 public class Wand extends AttackItem {
+	
+	public Wand() {}
 
-	public Wand(String name, int durability, int damage, ArrayList<Statistic> statistics) {
-		super(name, durability, damage, statistics);
+	public Wand(int id, String name, int price, StatisticsBag statistics, int durability, int damage) {
+		super(id, name, price, statistics, durability, damage);
 	}
+	
     public int DealDamage() {
     	return 0;
     }
