@@ -58,7 +58,7 @@ public class DataBase {
 	  	    sessionFactory = metadata.getSessionFactoryBuilder().build();
 
 	      } catch (Exception e) {
-	        System.out.println("SessionFactory creation failed");
+	        System.out.println("SessionFactory creation failed " + e.getMessage());
 	        if (registry != null) {
 	          StandardServiceRegistryBuilder.destroy(registry);
 	        }
