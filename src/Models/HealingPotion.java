@@ -8,6 +8,8 @@ public class HealingPotion extends Item {//extends Useabletem {
     @Column(name = "HealValue")
     private int healing; 
     
+    public HealingPotion() {}
+    
 	public HealingPotion(int id, String name, int price, StatisticsBag statistics) {
 		super(id, name, price, statistics);
 	}
