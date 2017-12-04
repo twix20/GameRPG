@@ -13,7 +13,4 @@ public class Wand extends AttackItem {
 		super(id, name, price, statistics, durability, damage);
 	}
 	
-    public int DealDamage() {
-    	return 0;
-    }
 }

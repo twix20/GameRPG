@@ -10,7 +10,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import Models.*;
 
 public class DataBase {
-	private PlayerRepository accountRepository;
+	private AccountRepository accountRepository;
 	private ItemRepository itemRepository;
 	private BattleFieldHistoryRepository battleFieldHistoryRepository;
 	private StatisticRepository statisticRepository;
@@ -47,7 +47,17 @@ public class DataBase {
 	    			.addAnnotatedClass(Armor.class)
 	    			
 	  	    		.addAnnotatedClass(Useabletem.class)
-	  	    		.addAnnotatedClass(HealingPotion.class);
+	  	    		.addAnnotatedClass(HealingPotion.class)
+	  	    		
+	  	    		.addAnnotatedClass(AppUser.class)
+	  	    		.addAnnotatedClass(Player.class)
+	  	    		.addAnnotatedClass(Admin.class)
+	  	    		.addAnnotatedClass(Mage.class)
+	  	    		.addAnnotatedClass(Wojownik.class)
+	  	    		
+	  	    		
+	  	    		.addAnnotatedClass(BattlefieldActionsHistory.class)
+	  	    		.addAnnotatedClass(BattlefieldHistory.class);
 	  	    		
 	  	    		
 	  	
@@ -87,7 +97,7 @@ public class DataBase {
     	this.statisticRepository = repoFactory.CreateStatisticRepository(sessionFactory);
     }
     
-	public PlayerRepository getAccountRepository() {
+	public AccountRepository getAccountRepository() {
 		return accountRepository;
 	}
 	public ItemRepository getItemRepository() {

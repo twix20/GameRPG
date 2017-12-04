@@ -7,7 +7,11 @@ import DataAccessLayer.DataBase;
 @Entity
 @DiscriminatorValue("ADMIN")
 public class Admin extends AppUser {
+	
+	@Transient
 	private DataBase dataBase;
+	
+	public Admin() {}
 	
 	public Item addItem(Item it) {
 		return null;

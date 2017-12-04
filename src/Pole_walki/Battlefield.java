@@ -2,14 +2,14 @@ package Pole_walki;
 
 import java.util.ArrayList;
 
-import Models.BattleFieldHistory;
+import Models.BattlefieldHistory;
 import Models.Item;
 import Models.Player;
 
 public class Battlefield {
     private ArrayList<Player> players;
     private Player whoseTurn;
-    private BattleFieldHistory history;
+    private BattlefieldHistory history;
 	public Battlefield(ArrayList<Player> players) {
 		this.setPlayers(players);
 	}
@@ -46,10 +46,10 @@ public class Battlefield {
 	public void setWhoseTurn(Player whoseTurn) {
 		this.whoseTurn = whoseTurn;
 	}
-	public BattleFieldHistory getHistory() {
+	public BattlefieldHistory getHistory() {
 		return history;
 	}
-	public void setHistory(BattleFieldHistory history) {
+	public void setHistory(BattlefieldHistory history) {
 		this.history = history;
 	}
 	

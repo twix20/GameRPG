@@ -3,17 +3,17 @@ import java.util.ArrayList;
 
 import org.hibernate.SessionFactory;
 
-import Models.BattleFieldHistory;
+import Models.BattlefieldHistory;
 
 
-public class BattleFieldHistoryRepository extends Repository<BattleFieldHistory>{
+public class BattleFieldHistoryRepository extends Repository<BattlefieldHistory>{
 	
 	public BattleFieldHistoryRepository(SessionFactory sessionFactory) {
-		super(BattleFieldHistory.class, sessionFactory);
+		super(BattlefieldHistory.class, sessionFactory);
 		// TODO Auto-generated constructor stub
 	}
 
-	ArrayList<BattleFieldHistory> GetByBattleFieldId(){
+	ArrayList<BattlefieldHistory> GetByBattleFieldId(){
 		throw new UnsupportedOperationException ("TODO");
 	}
 	

@@ -1,5 +1,5 @@
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2017-11-28 15:46:03.378
+-- Last modification date: 2017-12-04 13:41:51.442
 
 -- tables
 -- Table: BattlefieldActionsHistory
@@ -31,7 +31,7 @@ CREATE TABLE Item (
     MaxDurability integer  NOT NULL CHECK (MaxDurability >= 0),
     Price integer  NOT NULL,
     Type varchar2(200)  NOT NULL,
-    DefDamage integer  NOT NULL,
+    DefDamage integer  NULL,
     Damage integer  NOT NULL,
     HealValue integer  NOT NULL,
     CONSTRAINT Item_pk PRIMARY KEY (Id)
