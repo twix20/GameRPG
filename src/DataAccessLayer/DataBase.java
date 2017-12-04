@@ -53,7 +53,7 @@ public class DataBase {
 	  	    		.addAnnotatedClass(Player.class)
 	  	    		.addAnnotatedClass(Admin.class)
 	  	    		.addAnnotatedClass(Mage.class)
-	  	    		.addAnnotatedClass(Wojownik.class)
+	  	    		.addAnnotatedClass(Warrior.class)
 	  	    		
 	  	    		
 	  	    		.addAnnotatedClass(BattlefieldActionsHistory.class)

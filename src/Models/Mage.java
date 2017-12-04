@@ -10,16 +10,14 @@ public class Mage extends Player {
 
 	@Column(name = "CurrentMana")
 	private int currentMana;
-	
+
 	@Column(name = "MaxMana")
 	private int maxMana;
 
 	public Mage() {}
 
-	public Mage(String nickname, String password, int currentHp, int maxHp, StatisticsBag statistics,
-			Equipment equipment) {
-		super(nickname, password, currentHp, maxHp, statistics, equipment);
-
+	public Mage(String nickname, String password, int currentHp, int maxHp, Equipment equipment) {
+		super(nickname, password, currentHp, maxHp, equipment);
 	}
 
 	public ArrayList<Item> Battle(Player player) {

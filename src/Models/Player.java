@@ -15,8 +15,6 @@ public class Player extends AppUser {
 
 	// TODO
 	@Transient
-	protected StatisticsBag statistics;
-	@Transient
 	protected Equipment equipment;
 
 	public Battlefield battle(Player player) {
@@ -25,13 +23,11 @@ public class Player extends AppUser {
 
 	public Player() { }
 
-	public Player(String nickname, String password, int currentHp, int maxHp, StatisticsBag statistics,
-			Equipment equipment) {
+	public Player(String nickname, String password, int currentHp, int maxHp, Equipment equipment) {
 		this.setCurrentHp(currentHp);
 		this.setNickname(nickname);
 		this.setPassword(password);
 		this.setMaxHp(maxHp);
-		this.statistics = statistics;
 		this.equipment = equipment;
 	}
 
@@ -49,10 +45,6 @@ public class Player extends AppUser {
 
 	public void setMaxHp(int maxHp) {
 		this.maxHp = maxHp;
-	}
-
-	public StatisticsBag getStatistics() {
-		return statistics;
 	}
 
 	public Equipment getEquipment() {

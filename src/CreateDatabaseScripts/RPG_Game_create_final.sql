@@ -1,5 +1,5 @@
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2017-12-04 13:41:51.442
+-- Last modification date: 2017-12-04 14:29:30.355
 
 -- tables
 -- Table: BattlefieldActionsHistory
@@ -67,12 +67,6 @@ CREATE TABLE Player_Item_XREF (
     CurrentDurability integer  NOT NULL
 ) ;
 
--- Table: Player_Statistic_XREF
-CREATE TABLE Player_Statistic_XREF (
-    Player_Id varchar2(32)  NOT NULL,
-    Statistic_Id integer  NOT NULL
-) ;
-
 -- Table: Statistic
 CREATE TABLE Statistic (
     Id integer  NOT NULL,
@@ -133,16 +127,6 @@ ALTER TABLE Player_Item_XREF ADD CONSTRAINT Player_Item_XREF_Item
 ALTER TABLE Player_Item_XREF ADD CONSTRAINT Player_Item_XREF_Player
     FOREIGN KEY (Player_Id)
     REFERENCES Player (Id);
-
--- Reference: Player_StatType_XREF_Player (table: Player_Statistic_XREF)
-ALTER TABLE Player_Statistic_XREF ADD CONSTRAINT Player_StatType_XREF_Player
-    FOREIGN KEY (Player_Id)
-    REFERENCES Player (Id);
-
--- Reference: Player_Stat_XREF_Stat (table: Player_Statistic_XREF)
-ALTER TABLE Player_Statistic_XREF ADD CONSTRAINT Player_Stat_XREF_Stat
-    FOREIGN KEY (Statistic_Id)
-    REFERENCES Statistic (Id);
 
 -- Reference: Statistic_StatisticType (table: Statistic)
 ALTER TABLE Statistic ADD CONSTRAINT Statistic_StatisticType
