@@ -33,7 +33,7 @@ public class StatisticType
 	}
 	
 	public StatisticTypeEnum getTypeEnum() {
-		return StatisticTypeEnum.values()[this.id];
+		return StatisticTypeEnum.valueOf(this.id);
 	}
 }
 
