@@ -1,3 +1,0 @@
-insert into Item (Id, Name, MaxDurability, Price, Type, DefDamage, Damage, HealValue) values (1, 'Miecz Pelni Ksiezyca', 100, 25, 'SWORD', 0, 10, 0);
-insert into Item (Id, Name, MaxDurability, Price, Type, DefDamage, Damage, HealValue) values (2, 'Miecz Grabarza ksiezyca', 100, 35, 'SWORD', 0, 8, 0);
-insert into Item (Id, Name, MaxDurability, Price, Type, DefDamage, Damage, HealValue) values (3, 'Armor Spiocha', 100, 45, 'ARMOR', 11, 0, 0);

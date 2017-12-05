@@ -30,10 +30,12 @@ public class BattlefieldHistory {
 	@ManyToOne
 	@JoinColumn(name = "Player2_Id", foreignKey = @ForeignKey(name = "Bf_Player2"))
 	private Player player2;
-	
-	
+
 	@OneToMany(mappedBy = "battlefieldHistory")
 	private List<BattlefieldActionsHistory> actions;
+	
+
+	public BattlefieldHistory() {}
 
 	public int getId() {
 		return id;
@@ -81,5 +83,13 @@ public class BattlefieldHistory {
 
 	public void setPlayer2(Player player2) {
 		this.player2 = player2;
+	}
+	
+	public List<BattlefieldActionsHistory> getActions() {
+		return actions;
+	}
+	
+	public void setActions(List<BattlefieldActionsHistory> actions) {
+		this.actions = actions;
 	}
 }

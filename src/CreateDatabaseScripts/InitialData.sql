@@ -29,9 +29,9 @@ insert into Item_Statistic_XREF (Item_Id, Statistic_Id)
 select i.Id, floor(dbms_random.value(1,9)) from Item i;
 
 -- Player
-insert into Player(Id, Nickname, Password, CurrentHp, MaxHp, CurrentMana, MaxMana, CreatedAt, Gold, Type) values(1, 'FakeMag1', '123', 50, 100, 10, 40, '11/02/2016', 34, 'MAG');
-insert into Player(Id, Nickname, Password, CurrentHp, MaxHp, CurrentMana, MaxMana, CreatedAt, Gold, Type) values(2, 'FakeWarrior1', '123', 50, 100, 10, 40, '11/02/2016', 34, 'WARRIOR');
-insert into Player(Id, Nickname, Password, CurrentHp, MaxHp, CurrentMana, MaxMana, CreatedAt, Gold, Type) values(3, 'FakeAdmin1', '123', 50, 100, 10, 40, '11/02/2016', 34, 'ADMIN');
+insert into Player(Id, Nickname, Password, CurrentHp, MaxHp, CurrentMana, MaxMana, CreatedAt, Gold, Type) values(1, 'FakeMag1', '123', 50, 100, 10, 40, CURRENT_TIMESTAMP, 34, 'MAG');
+insert into Player(Id, Nickname, Password, CurrentHp, MaxHp, CurrentMana, MaxMana, CreatedAt, Gold, Type) values(2, 'FakeWarrior1', '123', 50, 100, 10, 40, CURRENT_TIMESTAMP, 34, 'WARRIOR');
+insert into Player(Id, Nickname, Password, CurrentHp, MaxHp, CurrentMana, MaxMana, CreatedAt, Gold, Type) values(3, 'FakeAdmin1', '123', 50, 100, 10, 40, CURRENT_TIMESTAMP, 34, 'ADMIN');
 
 -- BattlefieldHistory
 insert into BattlefieldHistory(Id, FightStartDate, FightEndDate, WhoWon_Player_Id, Player1_Id, Player2_Id) values (1, to_date('11/02/2016', 'dd/mm/yyyy'), to_date('12/02/2016', 'dd/mm/yyyy'), 1, 1, 2);
