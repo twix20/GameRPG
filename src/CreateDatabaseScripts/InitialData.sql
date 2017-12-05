@@ -33,6 +33,12 @@ insert into Player(Id, Nickname, Password, CurrentHp, MaxHp, CurrentMana, MaxMan
 insert into Player(Id, Nickname, Password, CurrentHp, MaxHp, CurrentMana, MaxMana, CreatedAt, Gold, Type) values(2, 'FakeWarrior1', '123', 50, 100, 10, 40, CURRENT_TIMESTAMP, 34, 'WARRIOR');
 insert into Player(Id, Nickname, Password, CurrentHp, MaxHp, CurrentMana, MaxMana, CreatedAt, Gold, Type) values(3, 'FakeAdmin1', '123', 50, 100, 10, 40, CURRENT_TIMESTAMP, 34, 'ADMIN');
 
+-- Player_Item_XREF
+insert into Player_Item_XREF(Player_Id, Item_Id, CustomItemName, IsEquiped, CurrentDurability) values (1, 1, 'Ziemniak', 1, 31);
+insert into Player_Item_XREF(Player_Id, Item_Id, CustomItemName, IsEquiped, CurrentDurability) values (1, 2, NULL, 0, 32);
+insert into Player_Item_XREF(Player_Id, Item_Id, CustomItemName, IsEquiped, CurrentDurability) values (1, 3, NULL, 0, NULL);
+insert into Player_Item_XREF(Player_Id, Item_Id, CustomItemName, IsEquiped, CurrentDurability) values (2, 2 NULL, 0, 34);
+
 -- BattlefieldHistory
 insert into BattlefieldHistory(Id, FightStartDate, FightEndDate, WhoWon_Player_Id, Player1_Id, Player2_Id) values (1, to_date('11/02/2016', 'dd/mm/yyyy'), to_date('12/02/2016', 'dd/mm/yyyy'), 1, 1, 2);
 insert into BattlefieldHistory(Id, FightStartDate, FightEndDate, WhoWon_Player_Id, Player1_Id, Player2_Id) values (2, to_date('11/02/2017', 'dd/mm/yyyy'), to_date('12/02/2017', 'dd/mm/yyyy'), 2, 2, 1);
