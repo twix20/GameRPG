@@ -1,5 +1,7 @@
 package Models;
 
+import java.util.*;
+
 import javax.persistence.*;
 
 import Pole_walki.Battlefield;
@@ -16,6 +18,25 @@ public class Player extends AppUser {
 	// TODO
 	@Transient
 	protected Equipment equipment;
+	
+	
+	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "pk.player")
+	private Set<PlayerItem> playerItems = new HashSet<>();
+	
+	public Set<PlayerItem> getPlayerItems() {
+		return playerItems;
+	}
+
+	public void setPlayerItems(Set<PlayerItem> playerItems) {
+		this.playerItems = playerItems;
+	}
+	
+	
+	
+	
+	
+	
 
 	public Battlefield battle(Player player) {
 		return null;

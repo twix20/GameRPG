@@ -33,7 +33,9 @@ public class DataBase {
 	  	    		.addAnnotatedClass(Statistic.class)
 	  	    		.addAnnotatedClass(StatisticType.class)
 	  	    	
+	  	    		.addAnnotatedClass(PlayerItem.class)
 	  	    		.addAnnotatedClass(Item.class)
+	  	    		
 	  	    		
 	  	    		.addAnnotatedClass(AttackItem.class)
 	  	    		
