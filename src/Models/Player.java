@@ -15,33 +15,9 @@ public class Player extends AppUser {
 	@Column(name = "MaxHp")
 	protected int maxHp;
 
-	// TODO
-	@Transient
+	@Embedded
 	protected Equipment equipment;
 	
-	
-	
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "pk.player")
-	private Set<PlayerItem> playerItems = new HashSet<>();
-	
-	public Set<PlayerItem> getPlayerItems() {
-		return playerItems;
-	}
-
-	public void setPlayerItems(Set<PlayerItem> playerItems) {
-		this.playerItems = playerItems;
-	}
-	
-	
-	
-	
-	
-	
-
-	public Battlefield battle(Player player) {
-		return null;
-	}
-
 	public Player() { }
 
 	public Player(String nickname, String password, int currentHp, int maxHp, Equipment equipment) {
@@ -51,6 +27,11 @@ public class Player extends AppUser {
 		this.setMaxHp(maxHp);
 		this.equipment = equipment;
 	}
+	
+	public Battlefield battle(Player player) {
+		return null;
+	}
+	
 
 	public int getCurrentHp() {
 		return currentHp;

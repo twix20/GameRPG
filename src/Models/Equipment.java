@@ -1,14 +1,22 @@
 package Models;
 
-import java.util.ArrayList;
+
+import java.util.*;
+
+import javax.persistence.*;
+
 
 public class Equipment {
-	private int gold;
-	private ArrayList<Item> items;
 	
-	public Equipment() {
-		this.items = new ArrayList<Item>();
-	}
+	@Column(name = "Gold")
+	private int gold;
+	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "pk.player")
+	private Set<PlayerItem> playerItems = new HashSet<>();
+	
+	
+	
+	public Equipment() {}
 	
 	
 	public int getGold() {
@@ -18,14 +26,12 @@ public class Equipment {
 		this.gold = gold;
 	}
 	
-	public ArrayList<Item> getItems() {
-		return items;
+	public Set<PlayerItem> getPlayerItems() {
+		return this.playerItems;
 	}
-	public void addItem(Item item) {
-		this.items.add(item);
+	public void setPlayerItems(Set<PlayerItem> playerItems) {
+		this.playerItems = playerItems;
 	}
-	public void removeItem(int itemId) {
-		this.items.removeIf(i -> i.getId() == itemId);
-	}
+	
 
 }
