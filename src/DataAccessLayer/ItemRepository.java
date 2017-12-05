@@ -6,7 +6,7 @@ import org.hibernate.SessionFactory;
 
 import Models.Item;
 
-public class ItemRepository extends Repository<Item>{
+public class ItemRepository extends Repository<Item, Integer>{
 	public ItemRepository(SessionFactory sessionFactory) {
 		super(Item.class, sessionFactory);
 		// TODO Auto-generated constructor stub

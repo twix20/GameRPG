@@ -4,7 +4,7 @@ import org.hibernate.SessionFactory;
 
 import Models.Statistic;
 
-public class StatisticRepository extends Repository<Statistic>{
+public class StatisticRepository extends Repository<Statistic, Integer>{
 
 	public StatisticRepository(SessionFactory sessionFactory) {
 		super(Statistic.class, sessionFactory);

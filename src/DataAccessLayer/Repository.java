@@ -1,53 +1,89 @@
 package DataAccessLayer;
 
+import java.io.Serializable;
 import java.util.List;
+import java.util.function.Consumer;
 
 import javax.persistence.Query;
 import javax.persistence.criteria.*;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
+import org.hibernate.*;
 
-public abstract class Repository<T> {
+public abstract class Repository<T, ID extends Serializable> {
 	private SessionFactory sessionFactory;
 	private Class<T> type;
+	
+	
+	private List<T> allFetched = null;
+	private T entity = null;
+	
 
 	public Repository(Class<T> type, SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 		this.type = type;
 	}
 
-	public boolean Add(T model) {
-		throw new UnsupportedOperationException("TODO");
+	public void Add(T model) {
+		
+		runInSession(session -> {
+			session.saveOrUpdate(model);
+		});
+		
 	}
 
-	public boolean Remove(T model) {
-		throw new UnsupportedOperationException("TODO");
+	public void Remove(T model) {
+		
+		runInSession(session -> {
+			session.delete(model);
+		});
+
 	}
 
 	public boolean Update(T model) {
 		throw new UnsupportedOperationException("TODO");
 	}
 
-	public T GetById(T model) {
-		throw new UnsupportedOperationException("TODO");
+	public T GetById(ID id) {
+		
+		runInSession(session -> {
+			entity = (T) session.get(type, id);
+		});
+		
+		return entity;
 	}
 
 	public List<T> GetAll() {
-		Session session = sessionFactory.getCurrentSession();
-
-		Transaction tx = session.beginTransaction();
-
-		CriteriaBuilder builder = session.getCriteriaBuilder();
-		CriteriaQuery<T> query = builder.createQuery(this.type);
-
-		Root<T> root = query.from(this.type);
-		query.select(root);
-		Query q = session.createQuery(query);
-		List<T> allFetched = q.getResultList();
-
-		tx.commit();
+		
+		runInSession(session -> {
+			CriteriaBuilder builder = session.getCriteriaBuilder();
+			CriteriaQuery<T> query = builder.createQuery(this.type);
+			
+			Root<T> root = query.from(this.type);
+			query.select(root);
+			Query q = session.createQuery(query);
+			
+			allFetched = q.getResultList();
+		});
+		
 		return allFetched;
+	}
+	
+	private void runInSession(Consumer<Session> action) {
+		
+		Session session = this.sessionFactory.openSession();
+		Transaction tx = null;
+		
+		try {
+			tx = session.beginTransaction();
+			
+			action.accept(session);
+			
+			tx.commit();
+		} catch (RuntimeException e) {
+			tx.rollback();
+			throw e;
+		} finally {
+			session.close();
+		}		
 	}
 }

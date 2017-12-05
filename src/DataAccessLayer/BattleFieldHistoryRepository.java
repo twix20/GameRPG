@@ -6,7 +6,7 @@ import org.hibernate.SessionFactory;
 import Models.BattlefieldHistory;
 
 
-public class BattleFieldHistoryRepository extends Repository<BattlefieldHistory>{
+public class BattleFieldHistoryRepository extends Repository<BattlefieldHistory, Integer>{
 	
 	public BattleFieldHistoryRepository(SessionFactory sessionFactory) {
 		super(BattlefieldHistory.class, sessionFactory);
