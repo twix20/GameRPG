@@ -64,7 +64,7 @@ CREATE TABLE Player_Item_XREF (
     Item_Id integer  NOT NULL,
     CustomItemName varchar2(200)  NULL,
     IsEquiped smallint  NOT NULL,
-    CurrentDurability integer  NOT NULL
+    CurrentDurability integer NULL
 ) ;
 
 -- Table: Statistic

@@ -37,7 +37,7 @@ insert into Player(Id, Nickname, Password, CurrentHp, MaxHp, CurrentMana, MaxMan
 insert into Player_Item_XREF(Player_Id, Item_Id, CustomItemName, IsEquiped, CurrentDurability) values (1, 1, 'Ziemniak', 1, 31);
 insert into Player_Item_XREF(Player_Id, Item_Id, CustomItemName, IsEquiped, CurrentDurability) values (1, 2, NULL, 0, 32);
 insert into Player_Item_XREF(Player_Id, Item_Id, CustomItemName, IsEquiped, CurrentDurability) values (1, 3, NULL, 0, NULL);
-insert into Player_Item_XREF(Player_Id, Item_Id, CustomItemName, IsEquiped, CurrentDurability) values (2, 2 NULL, 0, 34);
+insert into Player_Item_XREF(Player_Id, Item_Id, CustomItemName, IsEquiped, CurrentDurability) values (2, 2, NULL, 0, 34);
 
 -- BattlefieldHistory
 insert into BattlefieldHistory(Id, FightStartDate, FightEndDate, WhoWon_Player_Id, Player1_Id, Player2_Id) values (1, to_date('11/02/2016', 'dd/mm/yyyy'), to_date('12/02/2016', 'dd/mm/yyyy'), 1, 1, 2);
