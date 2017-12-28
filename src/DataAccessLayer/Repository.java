@@ -81,6 +81,7 @@ public abstract class Repository<T, ID extends Serializable> {
 			tx.commit();
 		} catch (RuntimeException e) {
 			tx.rollback();
+			e.printStackTrace();
 			throw e;
 		} finally {
 			session.close();

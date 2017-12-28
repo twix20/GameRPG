@@ -17,6 +17,9 @@ public class BattlefieldActionsHistory {
 
 	@Column(name = "ActionDescription")
 	private String ActionDescription;
+	
+	@Column(name="Value")
+	private int Value;
 
 	@ManyToOne
 	@JoinColumn(name = "Battlefield_Id", foreignKey = @ForeignKey(name = "BfActionsHistory_Bf"))
@@ -49,6 +52,14 @@ public class BattlefieldActionsHistory {
 
 	public void setActionDescription(String actionDescription) {
 		ActionDescription = actionDescription;
+	}
+	
+	public int getValue() {
+		return Value;
+	}
+
+	public void setValue(int value) {
+		Value = value;
 	}
 
 	public BattlefieldHistory getBattlefield() {

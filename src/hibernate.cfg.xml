@@ -5,11 +5,11 @@
 <hibernate-configuration>
    <session-factory>
    
-      <property name = "hibernate.dialect">org.hibernate.dialect.Oracle8iDialect</property>
-	  <property name = "hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
-      <property name = "hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:xe</property>
-      <property name = "hibernate.connection.username">DBUSER</property>
-      <property name = "hibernate.connection.password">oracle</property>
+      <property name = "hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+	  <property name = "hibernate.connection.driver_class">org.postgresql.Driver</property>
+      <property name = "hibernate.connection.url">jdbc:postgresql://horton.elephantsql.com:5432/vrkuuldw</property>
+      <property name = "hibernate.connection.username">vrkuuldw</property>
+      <property name = "hibernate.connection.password">	HZ0bx8MdMu-oDu4LnraFgbe16xGMKUaF</property>
       
       <property name = "hibernate.current_session_context_class">thread</property>
       <property name="hibernate.enable_lazy_load_no_trans">true</property>
