@@ -38,7 +38,7 @@ public class DataBase {
 						.addAnnotatedClass(DefensiveItem.class).addAnnotatedClass(Shield.class)
 						.addAnnotatedClass(Armor.class)
 
-						.addAnnotatedClass(Useabletem.class).addAnnotatedClass(HealingPotion.class)
+						.addAnnotatedClass(UseableItem.class).addAnnotatedClass(HealingPotion.class)
 
 						.addAnnotatedClass(AppUser.class).addAnnotatedClass(Player.class).addAnnotatedClass(Admin.class)
 						.addAnnotatedClass(Mage.class).addAnnotatedClass(Warrior.class)

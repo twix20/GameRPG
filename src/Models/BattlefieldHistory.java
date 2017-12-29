@@ -1,5 +1,6 @@
 package Models;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -35,7 +36,14 @@ public class BattlefieldHistory {
 	private List<BattlefieldActionsHistory> actions;
 	
 
-	public BattlefieldHistory() {}
+	public BattlefieldHistory(){}
+	
+	public BattlefieldHistory(Player pl1, Player pl2) {
+		this.setFightStartDate(new Date());
+		this.setPlayer1(pl1);
+		this.setPlayer2(pl2);
+		this.actions = new ArrayList<>();
+	}
 
 	public int getId() {
 		return id;

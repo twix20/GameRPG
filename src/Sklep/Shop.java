@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import Models.Item;
 import Models.Player;
+import Models.PlayerItem;
 
 public class Shop {
     private ArrayList<Item> depot;
@@ -11,16 +12,42 @@ public class Shop {
 	public Shop(ArrayList<Item> depot) {
 		this.setDepot(depot);
 	}
-	public ArrayList<Item> buy(Player player, int index){
-		return null;
+	public Item buy(Player player, int index){
+		Item item = depot.get(index);
+		if(player.getEquipment().getGold() - item.getPrice() >= 0)
+		{
+			player.getEquipment().setGold(player.getEquipment().getGold() - item.getPrice());
+			depot.remove(item);
+			player.getEquipment().getPlayerItems().add(new PlayerItem(item, player));	
+	
+	    } else {
+	    	//gui msg ze nie posiada wystarczajaco monet
+	    	
+	    }
+		return item;
 	}
 	public Item sell(Player player, int index){
-		return null;
+		PlayerItem it = null;
+			for(int i = 0; i < index; i++)
+				it = player.getEquipment().getPlayerItems().iterator().next();
+			player.getEquipment().getPlayerItems().remove(it);
+			player.getEquipment().setGold(player.getEquipment().getGold() + (it.getItem().getPrice()/2));
+			return it.getItem();
 	}
 	public Item repair(Player player, int index){
-		return null;
+		PlayerItem it = null;
+		for(int i = 0; i < index; i++)
+			it = player.getEquipment().getPlayerItems().iterator().next();
+		int cost = it.getItem().getDurability() - it.getCurrentDurability();
+		if(player.getEquipment().getGold() - cost >= 0) {
+		player.getEquipment().setGold(player.getEquipment().getGold() - cost );
+		it.setCurrentDurability(it.getItem().getDurability());
+		player.getEquipment().getPlayerItems().add(it);
+		}
+		return it.getItem();
 	}
 	public void showDepod() {
+		//gui
 		
 	}
 	public ArrayList<Item> getDepot() {

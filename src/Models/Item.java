@@ -19,6 +19,8 @@ public abstract class Item
 	@Column(name = "Price")
 	private int price;
 	
+	private int durability;
+	
 	@ManyToMany(cascade = { CascadeType.ALL })
 	@JoinTable(
 			name = "Item_Statistic_XREF", 
@@ -66,5 +68,13 @@ public abstract class Item
 
 	public void setStatistics(Set<Statistic> statistics) {
 		this.statistics = statistics;
+	}
+
+	public int getDurability() {
+		return durability;
+	}
+
+	public void setDurability(int durability) {
+		this.durability = durability;
 	}
 }

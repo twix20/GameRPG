@@ -15,7 +15,10 @@ public class PlayerItemId implements Serializable {
 	private Item item;
 
 	
-	
+	public PlayerItemId(Player player, Item item){
+		this.setItem(item);
+		this.setPlayer(player);
+	}
 	
 	public Player getPlayer() {
 		return player;

@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.persistence.*;
 
+import Pole_walki.Battlefield;
+
 @Entity
 @Table(name = "BattlefieldActionsHistory")
 public class BattlefieldActionsHistory {
@@ -29,7 +31,13 @@ public class BattlefieldActionsHistory {
 	@JoinColumn(name = "ActionBy_Player_Id", foreignKey = @ForeignKey(name = "BfActionsHistory_Player"))
 	private Player ActionByPlayer;
 	
-
+	public BattlefieldActionsHistory(String description, Player player, int value){
+		this.setActionByPlayer(player);
+		this.setActionDate(new Date());
+		this.setActionDescription(description);
+		//this.setBattlefield(battlefield); dlaczego Actions maja w sobie history?
+		this.setValue(value);
+	}
 	public int getId() {
 		return Id;
 	}

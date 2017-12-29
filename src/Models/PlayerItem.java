@@ -12,7 +12,7 @@ import javax.persistence.*;
 public class PlayerItem {
 	
 	@EmbeddedId
-	private PlayerItemId pk = new PlayerItemId();
+	private PlayerItemId pk;
 	
 	@Column(name = "CustomItemName")
 	private String customItemName;
@@ -40,7 +40,14 @@ public class PlayerItem {
 	public void setItem(Player player) {
 		getPk().setPlayer(player);
 	}
-	
+	public PlayerItem(Item item, Player player) {
+		this.setCurrentDurability(item.getDurability());
+		this.setCustomItemName(item.getName());
+		this.setEquiped(false);
+		this.setItem(item);
+		this.setPk(new PlayerItemId(player, item)); 
+		this.setItem(player);
+	}
 	public String getCustomItemName() {
 		return customItemName;
 	}

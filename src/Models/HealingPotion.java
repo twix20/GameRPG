@@ -16,6 +16,9 @@ public class HealingPotion extends Item {//extends Useabletem {
 	public void Use() {
 		
 	}
+	public String toString() {
+		return "HealingPotion";
+	}
 	public int getHealing() {
 		return healing;
 	}
