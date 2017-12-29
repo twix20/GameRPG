@@ -50,6 +50,9 @@ public class Shop {
 		//gui
 		
 	}
+	public void leaveShop() {
+		//TODO zapisac zmiany depot do bazy
+	}
 	public ArrayList<Item> getDepot() {
 		return depot;
 	}

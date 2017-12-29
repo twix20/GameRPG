@@ -14,6 +14,6 @@ public class Bow extends AttackItem {
 	}
 	
 	public int DealDamage() {
-		return 0;
+		return getDamage();
     }
 }

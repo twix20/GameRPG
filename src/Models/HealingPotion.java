@@ -6,23 +6,17 @@ import javax.persistence.*;
 @DiscriminatorValue("HealingPotion")
 public class HealingPotion extends Item {//extends Useabletem {
     @Column(name = "HealValue")
-    private int healing; 
+    private int value; 
     
     public HealingPotion() {}
     
 	public HealingPotion(int id, String name, int price, StatisticsBag statistics) {
 		super(id, name, price, statistics);
 	}
-	public void Use() {
-		
+	public int Use() {
+		return value;
 	}
-	public String toString() {
-		return "HealingPotion";
-	}
-	public int getHealing() {
-		return healing;
-	}
-	public void setHealing(int healing) {
-		this.healing = healing;
+	public void setValue(int value) {
+		this.value = value;
 	}
 }

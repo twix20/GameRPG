@@ -13,6 +13,6 @@ public class Shield extends DefensiveItem {
 		super(id, name, price, statistics, defDamage);
 	}
     public int Defend() {
-    	return 0;
+    	return getDefDamage();
     }
 }

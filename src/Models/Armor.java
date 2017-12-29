@@ -13,6 +13,6 @@ public class Armor extends DefensiveItem {
 	}
 	
 	public int Defend() {
-		return 0;
+		return getDefDamage();
 	}
 }

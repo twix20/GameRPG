@@ -14,7 +14,7 @@ public class PlayerItemId implements Serializable {
 	@ManyToOne
 	private Item item;
 
-	
+	public PlayerItemId() {}
 	public PlayerItemId(Player player, Item item){
 		this.setItem(item);
 		this.setPlayer(player);

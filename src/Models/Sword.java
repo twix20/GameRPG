@@ -13,6 +13,6 @@ public class Sword extends AttackItem {
 	}
 	
     public int DealDamage() {
-    	return 0;
+    	return getDamage();
     }
 }

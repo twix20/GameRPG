@@ -14,16 +14,31 @@ public class Mage extends Player {
 	@Column(name = "MaxMana")
 	private int maxMana;
 
+	private AttackItem weapon;
+
+	private DefensiveItem def;
+
 	public Mage() {}
 
 	public Mage(String nickname, String password, int currentHp, int maxHp, Equipment equipment) {
 		super(nickname, password, currentHp, maxHp, equipment);
 	}
 
-	public ArrayList<Item> Battle(Player player) {
-		return null;
+	public DefensiveItem getDef() {
+		return def;
 	}
 
+	public void setDef(DefensiveItem def) {
+		this.def = def;
+	}
+
+	public AttackItem getWeapon() {
+		return weapon;
+	}
+
+	public void setWeapon(AttackItem weapon) {
+		this.weapon = weapon;
+	}
 	public int getMaxMana() {
 		return maxMana;
 	}

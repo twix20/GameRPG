@@ -17,6 +17,10 @@ public class Player extends AppUser {
 
 	@Embedded
 	protected Equipment equipment;
+
+	private DefensiveItem def;
+
+	private AttackItem weapon;
 	
 	public Player() { }
 
@@ -28,8 +32,20 @@ public class Player extends AppUser {
 		this.equipment = equipment;
 	}
 	
-	public Battlefield battle(Player player) {
-		return null;
+	public DefensiveItem getDef() {
+		return def;
+	}
+
+	public void setDef(DefensiveItem def) {
+		this.def = def;
+	}
+
+	public AttackItem getWeapon() {
+		return weapon;
+	}
+
+	public void setWeapon(AttackItem weapon) {
+		this.weapon = weapon;
 	}
 	
 

@@ -11,6 +11,7 @@ import Models.Item;
 import Models.Player;
 import Models.StatisticTypeEnum;
 import Models.UseableItem;
+import Models.Warrior;
 
 public class Battlefield {
     private ArrayList<Player> players;
@@ -22,45 +23,56 @@ public class Battlefield {
 		this.setWhoseTurn(rand.nextInt(100) < 50 ? players.get(0) : players.get(1));
 		history = new BattlefieldHistory(players.get(0), players.get(1));
 	}
-	public void Attack() {
-		//this.getWhoseTurn().getEquipment().getPlayerItems().
-		// pytanie z OOP
-		// w jaki sposob dostac sie do metod Wojownika/Maga jezeli posiadamy
-		// tylko playerow?
-		
-		//bo potrzebuje parametrow zbroji
+	public boolean Attack() {
+		boolean stillAlive = true;
+	if(new Warrior().getClass().equals(this.getWhoseTurn().getClass())) {
+		 stillAlive = ((Warrior)this.getWhoseTurn()).battle(getAnotherPlayer());
+	     if(stillAlive) {
+	    	 this.changeHP(this.getAnotherPlayer(), - ((Warrior)this.getWhoseTurn()).getWeapon().DealDamage());
+	    	 this.getHistory().getActions().add(new BattlefieldActionsHistory("attack", this.getWhoseTurn(), ((Warrior)this.getWhoseTurn()).getWeapon().DealDamage()));
+	    	 this.changeTurn();
+	     } else {
+	    	 this.endBattle();
+	     }
+	}
+	  return stillAlive;
 	}
 	
 	public void Use(UseableItem item) {
-	switch(item.toString()) {
-	case "HealingPotion" :
-		
-	//	final int dbId = 1;
-		//StatisticTypeEnum Hp = new StatisticTypeEnum(dbId);
-		//this.regHP(item.getStatistics().getStatisticValue(new StatisticTypeEnum )
-		// jak dostac value przedmiotu np. ilosc regenerowanego hp?
-		// nie uzywalem wczsniej enumow, a w internecia sa jakis slabe przyklady
+		if(new HealingPotion().getClass().equals(item.getClass())){
+			this.changeHP(this.getWhoseTurn(), item.Use());
+			this.getHistory().getActions().add(new BattlefieldActionsHistory("potion", this.getWhoseTurn(), item.Use()));
+			this.changeTurn();	
+		}		
 	}
-			
-	}
+	
 	public void Rest() {
 		this.changeHP(this.getWhoseTurn(),20);
 		this.getHistory().getActions().add(new BattlefieldActionsHistory("rest", this.getWhoseTurn(), 20));
 		this.changeTurn();	
 	}
+	
 	public void changeHP(Player player, int howMany) {	
 		player.setCurrentHp(this.getWhoseTurn().getCurrentHp() + howMany);
 	}
+	
 	public void endBattle() {
 		this.getHistory().setFightEndDate(new Date());
 		this.getHistory().setWhoWonPlayerId(this.getWhoseTurn());
+		//TODO zapisac zmiany do bazy
 	}
+	
 	public void changeTurn() {
-		this.setWhoseTurn(this.getPlayers().get(0).equals(this.getWhoseTurn()) ? this.getPlayers().get(1) : this.getPlayers().get(0));	
+		this.setWhoseTurn(getAnotherPlayer());	
 	}
+	public Player getAnotherPlayer() {
+		return this.getPlayers().get(0).equals(this.getWhoseTurn()) ? this.getPlayers().get(1) : this.getPlayers().get(0);	
+	}
+	
 	public ArrayList<Player> getPlayers() {
 		return players;
 	}
+	
 	public void setPlayers(ArrayList<Player> players) {
 		this.players = players;
 	}

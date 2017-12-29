@@ -14,6 +14,6 @@ public class Ammunition extends AttackItem {
 	
 	}
   public int DealDamage() {
-	  return 0;
+		return getDamage();
   }
 }
