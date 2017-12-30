@@ -1,86 +1,86 @@
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2017-12-28 17:17:46.076
+-- Last modification date: 2017-12-28 17:43:44.445
 
 -- tables
 -- Table: BattlefieldActionsHistory
 CREATE TABLE BattlefieldActionsHistory (
-    Id integer  NOT NULL,
+    Id int  NOT NULL,
     ActionDate timestamp  NOT NULL,
     ActionDescription varchar(200)  NOT NULL,
-    Battlefield_Id integer  NOT NULL,
-    ActionBy_Player_Id varchar(32)  NOT NULL,
     Value int  NOT NULL,
+    Battlefield_Id int  NOT NULL,
+    ActionBy_Player_Id int  NOT NULL,
     CONSTRAINT BattlefieldActionsHistory_pk PRIMARY KEY (Id)
 );
 
 -- Table: BattlefieldHistory
 CREATE TABLE BattlefieldHistory (
-    Id integer  NOT NULL,
+    Id int  NOT NULL,
     FightStartDate timestamp  NOT NULL,
     FightEndDate timestamp  NULL,
-    WhoWon_Player_Id varchar(32)  NOT NULL,
-    Player1_Id varchar(32)  NOT NULL,
-    Player2_Id varchar(32)  NOT NULL,
-    CONSTRAINT WhoWon_Check CHECK (( WhoWon_Player_Id in ( Player1_Id , Player2_Id ) )) NOT DEFERRABLE INITIALLY IMMEDIATE,
+    WhoWon_Player_Id int  NOT NULL,
+    Player1_Id int  NOT NULL,
+    Player2_Id int  NOT NULL,
+    CONSTRAINT WhoWon_Check CHECK (( ( WhoWon_Player_Id in ( Player1_Id , Player2_Id ) ) )) NOT DEFERRABLE INITIALLY IMMEDIATE,
     CONSTRAINT BattlefieldHistory_pk PRIMARY KEY (Id)
 );
 
 -- Table: Item
 CREATE TABLE Item (
-    Id integer  NOT NULL,
+    Id int  NOT NULL,
     Name varchar(200)  NOT NULL,
-    MaxDurability integer  NOT NULL,
-    Price integer  NOT NULL,
+    MaxDurability int  NOT NULL,
+    Price int  NOT NULL,
     Type varchar(200)  NOT NULL,
-    DefDamage integer  NULL,
-    Damage integer  NOT NULL,
-    HealValue integer  NOT NULL,
-    CONSTRAINT CHECK_0 CHECK (( MaxDurability >= 0 )) NOT DEFERRABLE INITIALLY IMMEDIATE,
+    DefDamage int  NULL,
+    Damage int  NULL,
+    HealValue int  NULL,
+    CONSTRAINT CHECK_0 CHECK (( ( MaxDurability >= 0 ) )) NOT DEFERRABLE INITIALLY IMMEDIATE,
     CONSTRAINT Item_pk PRIMARY KEY (Id)
 );
 
 -- Table: Item_Statistic_XREF
 CREATE TABLE Item_Statistic_XREF (
-    Item_Id integer  NOT NULL,
-    Statistic_Id integer  NOT NULL
+    Item_Id int  NOT NULL,
+    Statistic_Id int  NOT NULL
 );
 
 -- Table: Player
 CREATE TABLE Player (
-    Id varchar(32)  NOT NULL,
+    Id int  NOT NULL,
     Nickname varchar(200)  NOT NULL,
     Password varchar(200)  NOT NULL,
-    CurrentHp integer  NOT NULL,
-    MaxHp integer  NOT NULL,
-    CurrentMana integer  NOT NULL,
-    MaxMana integer  NOT NULL,
+    CurrentHp int  NOT NULL,
+    MaxHp int  NOT NULL,
+    CurrentMana int  NOT NULL,
+    MaxMana int  NOT NULL,
     CreatedAt timestamp  NOT NULL,
-    Gold integer  NOT NULL,
+    Gold int  NOT NULL,
     Type varchar(200)  NOT NULL,
-    CONSTRAINT CHECK_1 CHECK (( Gold >= 0 )) NOT DEFERRABLE INITIALLY IMMEDIATE,
+    CONSTRAINT CHECK_0 CHECK (( ( Gold >= 0 ) )) NOT DEFERRABLE INITIALLY IMMEDIATE,
     CONSTRAINT Player_pk PRIMARY KEY (Id)
 );
 
 -- Table: Player_Item_XREF
 CREATE TABLE Player_Item_XREF (
-    Player_Id varchar(32)  NOT NULL,
-    Item_Id integer  NOT NULL,
+    Player_Id int  NOT NULL,
+    Item_Id int  NOT NULL,
     CustomItemName varchar(200)  NULL,
     IsEquiped boolean  NOT NULL,
-    CurrentDurability integer  NULL
+    CurrentDurability int  NULL
 );
 
 -- Table: Statistic
 CREATE TABLE Statistic (
-    Id integer  NOT NULL,
-    StatisticType_Id integer  NOT NULL,
-    Value integer  NOT NULL,
+    Id int  NOT NULL,
+    StatisticType_Id int  NOT NULL,
+    Value int  NOT NULL,
     CONSTRAINT Statistic_pk PRIMARY KEY (Id)
 );
 
 -- Table: StatisticType
 CREATE TABLE StatisticType (
-    Id integer  NOT NULL,
+    Id int  NOT NULL,
     Name varchar(200)  NOT NULL,
     CONSTRAINT StatisticType_pk PRIMARY KEY (Id)
 );

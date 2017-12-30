@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @DiscriminatorValue("HealingPotion")
-public class HealingPotion extends Item {//extends Useabletem {
+public class HealingPotion extends UseableItem {
     @Column(name = "HealValue")
     private int healing; 
     
@@ -13,8 +13,8 @@ public class HealingPotion extends Item {//extends Useabletem {
 	public HealingPotion(int id, String name, int price, StatisticsBag statistics) {
 		super(id, name, price, statistics);
 	}
-	public void Use() {
-		
+	public int Use() {
+		return this.getHealing();
 	}
 	public int getHealing() {
 		return healing;

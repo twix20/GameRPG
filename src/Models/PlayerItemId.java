@@ -13,10 +13,11 @@ public class PlayerItemId implements Serializable {
 	
 	@ManyToOne
 	private Item item;
-
-	
-	
-	
+    public PlayerItemId() {}
+    public PlayerItemId(Item item, Player player) {
+    	this.setItem(item);
+    	this.setPlayer(player);
+    }
 	public Player getPlayer() {
 		return player;
 	}

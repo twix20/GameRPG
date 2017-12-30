@@ -28,8 +28,8 @@ public class Player extends AppUser {
 		this.equipment = equipment;
 	}
 	
-	public Battlefield battle(Player player) {
-		return null;
+	public int battle(Player player) {
+		return 0;
 	}
 	
 

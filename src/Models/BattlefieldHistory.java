@@ -36,6 +36,11 @@ public class BattlefieldHistory {
 	
 
 	public BattlefieldHistory() {}
+	public BattlefieldHistory(Player player1, Player player2) {
+		this.setFightStartDate(new Date());
+		this.setPlayer1(player1);
+		this.setPlayer2(player2);
+	}
 
 	public int getId() {
 		return id;

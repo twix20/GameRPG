@@ -29,7 +29,13 @@ public class BattlefieldActionsHistory {
 	@JoinColumn(name = "ActionBy_Player_Id", foreignKey = @ForeignKey(name = "BfActionsHistory_Player"))
 	private Player ActionByPlayer;
 	
-
+	public  BattlefieldActionsHistory() {}
+	public  BattlefieldActionsHistory(Player player, String description, int value) {
+		this.setActionByPlayer(player);
+		this.setActionDate(new Date());
+		this.setActionDescription(description);
+		this.setValue(value);
+	}
 	public int getId() {
 		return Id;
 	}

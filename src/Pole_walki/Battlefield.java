@@ -1,10 +1,15 @@
 package Pole_walki;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Random;
 
+import Models.BattlefieldActionsHistory;
 import Models.BattlefieldHistory;
-import Models.Item;
+import Models.HealingPotion;
 import Models.Player;
+import Models.UseableItem;
+import Models.Warrior;
 
 public class Battlefield {
     private ArrayList<Player> players;
@@ -12,31 +17,61 @@ public class Battlefield {
     private BattlefieldHistory history;
 	public Battlefield(ArrayList<Player> players) {
 		this.setPlayers(players);
+		Random rand = new Random();
+		this.setWhoseTurn(rand.nextInt(100) < 50 ? players.get(0) : players.get(1));
+		history = new BattlefieldHistory(players.get(0), players.get(1));
 	}
-	public void Attack(int playerId) {
-		
+	public boolean Attack() {
+		boolean stillAlive = true;
+	if(this.getWhoseTurn() instanceof Warrior) {
+		int dmg = ((Warrior)this.getWhoseTurn()).battle(getAnotherPlayer());
+		 stillAlive = this.getAnotherPlayer().getCurrentHp() - dmg > 0;
+	     if(stillAlive) {
+	    	 this.changeHP(this.getAnotherPlayer(), - dmg);
+	    	 this.getHistory().getActions().add(new BattlefieldActionsHistory(this.getWhoseTurn(),"attack", dmg ));
+	    	 this.changeTurn();
+	     } else {
+	    	 this.endBattle();
+	     }
 	}
-	public void Block() {
-		
+	  return stillAlive;
 	}
-	public void Move() {
-		
+	
+	public void Use(UseableItem item) {
+		if(new HealingPotion().getClass().equals(item.getClass())){
+			this.changeHP(this.getWhoseTurn(), item.Use());
+			this.getHistory().getActions().add(new BattlefieldActionsHistory(this.getWhoseTurn(),"potion", item.Use()));
+			this.changeTurn();	
+		}		
 	}
-	public void Use(Item item) {
-		
-	}
+	
 	public void Rest() {
-		
+		this.changeHP(this.getWhoseTurn(),20);
+		this.getHistory().getActions().add(new BattlefieldActionsHistory(this.getWhoseTurn(),"rest", 20));
+		this.changeTurn();	
 	}
+	
+	public void changeHP(Player player, int howMany) {	
+		player.setCurrentHp(this.getWhoseTurn().getCurrentHp() + howMany);
+	}
+	
 	public void endBattle() {
-		
+		this.getHistory().setFightEndDate(new Date());
+		this.getHistory().setWhoWonPlayerId(this.getWhoseTurn());
+		//TODO zapisac zmiany do bazy
 	}
+	
 	public void changeTurn() {
-		
+		this.setWhoseTurn(getAnotherPlayer());	
 	}
+	public Player getAnotherPlayer() {
+		return this.getPlayers().get(0).equals(this.getWhoseTurn()) ? this.getPlayers().get(1) : this.getPlayers().get(0);	
+	}
+	
 	public ArrayList<Player> getPlayers() {
 		return players;
 	}
+	
 	public void setPlayers(ArrayList<Player> players) {
 		this.players = players;
 	}
