@@ -10,6 +10,7 @@ public class Warrior extends Player {
 
 	public Warrior() {
 	}
+
   private DefensiveItem def;
   private AttackItem weapon;
 	public Warrior(String nickname, String password, int currentHp, int maxHp, Equipment equipment) {

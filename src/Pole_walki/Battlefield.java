@@ -25,7 +25,7 @@ public class Battlefield {
 	}
 	public boolean Attack() {
 		boolean stillAlive = true;
-	if(new Warrior().getClass().equals(this.getWhoseTurn().getClass())) {
+	if(this.getWhoseTurn() instanceof Warrior) {
 		 stillAlive = ((Warrior)this.getWhoseTurn()).battle(getAnotherPlayer());
 	     if(stillAlive) {
 	    	 this.changeHP(this.getAnotherPlayer(), - ((Warrior)this.getWhoseTurn()).getWeapon().DealDamage());

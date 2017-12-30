@@ -11,6 +11,7 @@ public class Shop {
     private Player player;
 	public Shop(ArrayList<Item> depot) {
 		this.setDepot(depot);
+		// TODO pobrac depot z bazy
 	}
 	public Item buy(Player player, int index){
 		Item item = depot.get(index);
