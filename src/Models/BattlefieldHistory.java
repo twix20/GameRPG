@@ -36,13 +36,11 @@ public class BattlefieldHistory {
 	private List<BattlefieldActionsHistory> actions;
 	
 
-	public BattlefieldHistory(){}
-	
-	public BattlefieldHistory(Player pl1, Player pl2) {
+	public BattlefieldHistory() {}
+	public BattlefieldHistory(Player player1, Player player2) {
 		this.setFightStartDate(new Date());
-		this.setPlayer1(pl1);
-		this.setPlayer2(pl2);
-		this.actions = new ArrayList<>();
+		this.setPlayer1(player1);
+		this.setPlayer2(player2);
 	}
 
 	public int getId() {

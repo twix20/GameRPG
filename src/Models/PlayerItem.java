@@ -10,7 +10,17 @@ import javax.persistence.*;
 	@AssociationOverride(name = "pk.player",
 		joinColumns = @JoinColumn(name = "Player_Id")) })
 public class PlayerItem {
-	
+	public PlayerItem() {
+		
+	}
+ public PlayerItem(Item item, Player player) {
+		this.setCurrentDurability(100);
+		this.setCustomItemName(item.getName());
+		this.setEquiped(false);
+		this.setItem(item);
+		this.setItem(player);
+		this.setPk(new PlayerItemId(item, player));
+	}
 	@EmbeddedId
 	private PlayerItemId pk;
 	

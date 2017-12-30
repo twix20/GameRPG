@@ -39,10 +39,10 @@ public class Shop {
 		PlayerItem it = null;
 		for(int i = 0; i < index; i++)
 			it = player.getEquipment().getPlayerItems().iterator().next();
-		int cost = it.getItem().getDurability() - it.getCurrentDurability();
+		int cost = 100 - it.getCurrentDurability();
 		if(player.getEquipment().getGold() - cost >= 0) {
 		player.getEquipment().setGold(player.getEquipment().getGold() - cost );
-		it.setCurrentDurability(it.getItem().getDurability());
+		it.setCurrentDurability(100);
 		player.getEquipment().getPlayerItems().add(it);
 		}
 		return it.getItem();

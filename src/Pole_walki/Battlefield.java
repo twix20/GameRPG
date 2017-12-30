@@ -7,9 +7,7 @@ import java.util.Random;
 import Models.BattlefieldActionsHistory;
 import Models.BattlefieldHistory;
 import Models.HealingPotion;
-import Models.Item;
 import Models.Player;
-import Models.StatisticTypeEnum;
 import Models.UseableItem;
 import Models.Warrior;
 
@@ -26,10 +24,11 @@ public class Battlefield {
 	public boolean Attack() {
 		boolean stillAlive = true;
 	if(this.getWhoseTurn() instanceof Warrior) {
-		 stillAlive = ((Warrior)this.getWhoseTurn()).battle(getAnotherPlayer());
+		int dmg = ((Warrior)this.getWhoseTurn()).battle(getAnotherPlayer());
+		 stillAlive = this.getAnotherPlayer().getCurrentHp() - dmg > 0;
 	     if(stillAlive) {
-	    	 this.changeHP(this.getAnotherPlayer(), - ((Warrior)this.getWhoseTurn()).getWeapon().DealDamage());
-	    	 this.getHistory().getActions().add(new BattlefieldActionsHistory("attack", this.getWhoseTurn(), ((Warrior)this.getWhoseTurn()).getWeapon().DealDamage()));
+	    	 this.changeHP(this.getAnotherPlayer(), - dmg);
+	    	 this.getHistory().getActions().add(new BattlefieldActionsHistory(this.getWhoseTurn(),"attack", dmg ));
 	    	 this.changeTurn();
 	     } else {
 	    	 this.endBattle();
@@ -41,14 +40,14 @@ public class Battlefield {
 	public void Use(UseableItem item) {
 		if(new HealingPotion().getClass().equals(item.getClass())){
 			this.changeHP(this.getWhoseTurn(), item.Use());
-			this.getHistory().getActions().add(new BattlefieldActionsHistory("potion", this.getWhoseTurn(), item.Use()));
+			this.getHistory().getActions().add(new BattlefieldActionsHistory(this.getWhoseTurn(),"potion", item.Use()));
 			this.changeTurn();	
 		}		
 	}
 	
 	public void Rest() {
 		this.changeHP(this.getWhoseTurn(),20);
-		this.getHistory().getActions().add(new BattlefieldActionsHistory("rest", this.getWhoseTurn(), 20));
+		this.getHistory().getActions().add(new BattlefieldActionsHistory(this.getWhoseTurn(),"rest", 20));
 		this.changeTurn();	
 	}
 	

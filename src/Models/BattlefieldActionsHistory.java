@@ -30,12 +30,12 @@ public class BattlefieldActionsHistory {
 	@ManyToOne
 	@JoinColumn(name = "ActionBy_Player_Id", foreignKey = @ForeignKey(name = "BfActionsHistory_Player"))
 	private Player ActionByPlayer;
-	public BattlefieldActionsHistory() {}
-	public BattlefieldActionsHistory(String description, Player player, int value){
+	
+	public  BattlefieldActionsHistory() {}
+	public  BattlefieldActionsHistory(Player player, String description, int value) {
 		this.setActionByPlayer(player);
 		this.setActionDate(new Date());
 		this.setActionDescription(description);
-		//this.setBattlefield(battlefield); dlaczego Actions maja w sobie history?
 		this.setValue(value);
 	}
 	public int getId() {

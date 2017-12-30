@@ -3,7 +3,7 @@ package Models;
 import java.util.ArrayList;
 
 import javax.persistence.*;
-
+import Models.StatisticTypeEnum;
 @Entity
 @DiscriminatorValue("WARRIOR")
 public class Warrior extends Player {
@@ -18,27 +18,14 @@ public class Warrior extends Player {
 
 	}
 
-    public boolean battle (Player player) {
-    	boolean stillAlive = true;
-    	if(player.getCurrentHp() - this.getWeapon().getDamage() <= 0)
-    		stillAlive = false;
-		return stillAlive;
-    	
-    }
-	public DefensiveItem getDef() {
-		return def;
-	}
-
-	public void setDef(DefensiveItem def) {
-		this.def = def;
-	}
-
-	public AttackItem getWeapon() {
-		return weapon;
-	}
-
-	public void setWeapon(AttackItem weapon) {
-		this.weapon = weapon;
+	public int Battle(Player player) {
+		int dmg = 0;
+		for(PlayerItem item : this.getEquipment().getPlayerItems())
+			if(item.getItem() instanceof AttackItem && item.isEquiped() == true) {
+			dmg = 	item.getItem().getStatistics().getStatisticValue(StatisticTypeEnum.DealDmg);
+			break;
+			}
+		return dmg;
 	}
 
 }
