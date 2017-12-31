@@ -12,6 +12,7 @@ public class Shield extends DefensiveItem {
 	public Shield(int id, String name, int price, StatisticsBag statistics, int defDamage) {
 		super(id, name, price, statistics, defDamage);
 	}
+	
     public int Defend() {
     	return getDefDamage();
     }

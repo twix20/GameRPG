@@ -4,8 +4,6 @@ import java.util.Date;
 
 import javax.persistence.*;
 
-import Pole_walki.Battlefield;
-
 @Entity
 @Table(name = "BattlefieldActionsHistory")
 public class BattlefieldActionsHistory {

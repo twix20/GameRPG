@@ -1,9 +1,8 @@
 package Models;
 
-import java.util.ArrayList;
-
 import javax.persistence.*;
 import Models.StatisticTypeEnum;
+
 @Entity
 @DiscriminatorValue("WARRIOR")
 public class Warrior extends Player {
@@ -11,8 +10,6 @@ public class Warrior extends Player {
 	public Warrior() {
 	}
 
-  private DefensiveItem def;
-  private AttackItem weapon;
 	public Warrior(String nickname, String password, int currentHp, int maxHp, Equipment equipment) {
 		super(nickname, password, currentHp, maxHp, equipment);
 

@@ -1,10 +1,6 @@
 package Models;
 
-import java.util.*;
-
 import javax.persistence.*;
-
-import Pole_walki.Battlefield;
 
 @Entity
 public class Player extends AppUser {

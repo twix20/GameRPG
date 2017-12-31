@@ -4,7 +4,7 @@ package Models;
 import javax.persistence.*;
 
 @Entity
-public abstract class DefensiveItem extends Item {
+public class DefensiveItem extends Item {
     
     @Column(name = "DefDamage")
     private int defDamage;

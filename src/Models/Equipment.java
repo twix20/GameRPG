@@ -14,10 +14,7 @@ public class Equipment {
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "pk.player")
 	private Set<PlayerItem> playerItems = new HashSet<>();
 	
-	
-	
 	public Equipment() {}
-	
 	
 	public int getGold() {
 		return gold;
@@ -32,6 +29,5 @@ public class Equipment {
 	public void setPlayerItems(Set<PlayerItem> playerItems) {
 		this.playerItems = playerItems;
 	}
-	
 
 }

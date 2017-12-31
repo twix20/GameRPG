@@ -1,6 +1,5 @@
 package DataAccessLayer;
 
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
@@ -26,19 +25,24 @@ public class DataBase {
 				// Create MetadataSources
 				MetadataSources sources = new MetadataSources(registry)
 
-						.addAnnotatedClass(Statistic.class).addAnnotatedClass(StatisticType.class)
+						.addAnnotatedClass(Statistic.class)
+						.addAnnotatedClass(StatisticType.class)
 
-						.addAnnotatedClass(PlayerItem.class).addAnnotatedClass(Item.class)
+						.addAnnotatedClass(Item.class)
+						.addAnnotatedClass(PlayerItem.class)
 
 						.addAnnotatedClass(AttackItem.class)
-
-						.addAnnotatedClass(Sword.class).addAnnotatedClass(Wand.class).addAnnotatedClass(Bow.class)
+						.addAnnotatedClass(Sword.class)
+						.addAnnotatedClass(Wand.class)
 						.addAnnotatedClass(Ammunition.class)
+						.addAnnotatedClass(Bow.class)
 
-						.addAnnotatedClass(DefensiveItem.class).addAnnotatedClass(Shield.class)
+						.addAnnotatedClass(DefensiveItem.class)
+						.addAnnotatedClass(Shield.class)
 						.addAnnotatedClass(Armor.class)
 
-						.addAnnotatedClass(UseableItem.class).addAnnotatedClass(HealingPotion.class)
+						.addAnnotatedClass(UseableItem.class)
+						.addAnnotatedClass(HealingPotion.class)
 
 						.addAnnotatedClass(AppUser.class).addAnnotatedClass(Player.class).addAnnotatedClass(Admin.class)
 						.addAnnotatedClass(Mage.class).addAnnotatedClass(Warrior.class)
@@ -56,6 +60,7 @@ public class DataBase {
 				if (registry != null) {
 					StandardServiceRegistryBuilder.destroy(registry);
 				}
+				throw e;
 			}
 		}
 		return sessionFactory;

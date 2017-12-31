@@ -10,17 +10,17 @@ import javax.persistence.*;
 	@AssociationOverride(name = "pk.player",
 		joinColumns = @JoinColumn(name = "Player_Id")) })
 public class PlayerItem {
-	public PlayerItem() {
-		
-	}
- public PlayerItem(Item item, Player player) {
-		this.setCurrentDurability(100);
+	
+	public PlayerItem() {}
+	public PlayerItem(Item item, Player player) {
+		//this.setCurrentDurability(item.getDurability());
 		this.setCustomItemName(item.getName());
 		this.setEquiped(false);
 		this.setItem(item);
+		this.setPk(new PlayerItemId(item, player)); 
 		this.setItem(player);
-		this.setPk(new PlayerItemId(item, player));
 	}
+	
 	@EmbeddedId
 	private PlayerItemId pk;
 	
@@ -49,14 +49,6 @@ public class PlayerItem {
 	}
 	public void setItem(Player player) {
 		getPk().setPlayer(player);
-	}
-	public PlayerItem(Item item, Player player) {
-		this.setCurrentDurability(item.getDurability());
-		this.setCustomItemName(item.getName());
-		this.setEquiped(false);
-		this.setItem(item);
-		this.setPk(new PlayerItemId(player, item)); 
-		this.setItem(player);
 	}
 	public String getCustomItemName() {
 		return customItemName;
