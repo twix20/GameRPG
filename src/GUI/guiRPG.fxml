@@ -1,0 +1,661 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<SplitPane dividerPositions="0.3, 0.7" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="774.0" prefWidth="1274.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller">
+  <items>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+         <children>
+            <AnchorPane fx:id="LoginPanelL" layoutX="22.0" layoutY="14.0" prefHeight="772.0" prefWidth="378.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <TextField fx:id="AccountTextFieldL" layoutX="96.0" layoutY="287.0" promptText="Account Name" />
+                  <TextField fx:id="PasswordTextFieldL" layoutX="96.0" layoutY="351.0" promptText="Password" />
+                  <Label fx:id="LoginErrorLabelL" layoutX="59.0" layoutY="191.0" text="Zle wprowadzone dane" textFill="#ff0101" visible="false">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="LoginErrorLabelL1" layoutX="123.0" layoutY="156.0" text="Login Panel">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="33.0" layoutY="433.0" mnemonicParsing="false" onAction="#LoginBackToWelcomeL" prefHeight="43.0" prefWidth="126.0" text="Back" />
+                  <Button layoutX="220.0" layoutY="433.0" mnemonicParsing="false" onAction="#LogInL" prefHeight="43.0" prefWidth="126.0" text="Log In" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="AdminPanelL" prefHeight="772.0" prefWidth="378.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Button layoutX="132.0" layoutY="227.0" mnemonicParsing="false" onAction="#ToModifyL" prefHeight="31.0" prefWidth="114.0" text="Modify Item" />
+                  <Button layoutX="132.0" layoutY="287.0" mnemonicParsing="false" onAction="#ToAddL" prefHeight="31.0" prefWidth="114.0" text="Add Item" />
+                  <Button layoutX="132.0" layoutY="347.0" mnemonicParsing="false" onAction="#ToRemoveL" prefHeight="31.0" prefWidth="114.0" text="Remove Item" />
+                  <Button layoutX="132.0" layoutY="434.0" mnemonicParsing="false" onAction="#ToHistoryL" prefHeight="31.0" prefWidth="114.0" text="Show History" />
+                  <Label layoutX="116.0" layoutY="148.0" text="Admin Panel">
+                     <font>
+                        <Font name="System Bold Italic" size="24.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="132.0" layoutY="541.0" mnemonicParsing="false" onAction="#AdminBackToLoginL" text="Log out">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="ModifyPanelL" prefHeight="772.0" prefWidth="378.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <TreeView fx:id="TreeModifyL" layoutX="14.0" layoutY="14.0" prefHeight="439.0" prefWidth="349.0" AnchorPane.bottomAnchor="383.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="50.0" />
+                  <Label layoutX="117.0" layoutY="14.0" text="Modify item section">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="NameModifyTextFieldR" layoutX="142.0" layoutY="422.0" />
+                  <TextField fx:id="PriceModifyTextFieldL" layoutX="142.0" layoutY="475.0" />
+                  <TextField fx:id="BasicAttributeModifyTextFieldL" layoutX="142.0" layoutY="528.0" />
+                  <Label layoutX="55.0" layoutY="427.0" text="Name" />
+                  <Label layoutX="59.0" layoutY="480.0" text="Price" />
+                  <Label layoutX="27.0" layoutY="533.0" text="Basic Attribute" />
+                  <Button layoutX="32.0" layoutY="699.0" mnemonicParsing="false" onAction="#ModifyBackToAdminL" prefHeight="51.0" prefWidth="126.0" text="Back">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="211.0" layoutY="699.0" mnemonicParsing="false" onAction="#ModifyApplyL" prefHeight="51.0" prefWidth="126.0" text="Apply">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="37.0" layoutY="639.0" text="Value of SA" />
+                  <TextField fx:id="ValueOfSAModifyTextFieldL" layoutX="144.0" layoutY="634.0" />
+                  <Label layoutX="20.0" layoutY="586.0" text="Special Attribute" />
+                  <ChoiceBox fx:id="SpecialAttributeModifyChoiceBoxL" layoutX="150.0" layoutY="581.0" prefHeight="31.0" prefWidth="187.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="AddPanelL" prefHeight="772.0" prefWidth="378.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <TreeView fx:id="TreeAddL" layoutX="14.0" layoutY="14.0" prefHeight="439.0" prefWidth="349.0" AnchorPane.bottomAnchor="383.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="50.0" />
+                  <Label layoutX="117.0" layoutY="14.0" text="Add item section">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="NameAddTextFieldL" layoutX="142.0" layoutY="422.0" />
+                  <TextField fx:id="PriceAddTextFieldL" layoutX="142.0" layoutY="475.0" />
+                  <TextField fx:id="BasicAttributeAddTextFieldR" layoutX="142.0" layoutY="528.0" />
+                  <Label layoutX="55.0" layoutY="427.0" text="Name" />
+                  <Label layoutX="59.0" layoutY="480.0" text="Price" />
+                  <Label layoutX="27.0" layoutY="533.0" text="Basic Attribute" />
+                  <Button layoutX="32.0" layoutY="699.0" mnemonicParsing="false" onAction="#AddBackToAdminL" prefHeight="51.0" prefWidth="126.0" text="Back">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="211.0" layoutY="699.0" mnemonicParsing="false" onAction="#AddApplyL" prefHeight="51.0" prefWidth="126.0" text="Apply">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="37.0" layoutY="639.0" text="Value of SA" />
+                  <TextField fx:id="ValueOfSAAddTextFieldL" layoutX="144.0" layoutY="634.0" />
+                  <Label layoutX="20.0" layoutY="586.0" text="Special Attribute" />
+                  <ChoiceBox fx:id="SpecialAttributeAddChoiceBoxL" layoutX="144.0" layoutY="581.0" prefHeight="31.0" prefWidth="187.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="RemovePanelL" prefHeight="772.0" prefWidth="378.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <TreeView fx:id="TreeRemoveL" layoutX="14.0" layoutY="14.0" prefHeight="540.0" prefWidth="350.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="50.0" />
+                  <Label layoutX="100.0" layoutY="14.0" text="Remove item section">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="33.0" layoutY="643.0" mnemonicParsing="false" onAction="#RemoveBackToAdminL" prefHeight="51.0" prefWidth="126.0" text="Back">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="211.0" layoutY="643.0" mnemonicParsing="false" onAction="#RemoveApplyL" prefHeight="51.0" prefWidth="126.0" text="Apply">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="HistoryPanelL" prefHeight="772.0" prefWidth="378.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label layoutX="110.0" layoutY="14.0" text="History list section">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="32.0" layoutY="699.0" mnemonicParsing="false" onAction="#HistoryBackToAdminL" prefHeight="51.0" prefWidth="126.0" text="Back">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="195.0" layoutY="699.0" mnemonicParsing="false" onAction="#HistorySpecifyL" prefHeight="51.0" prefWidth="158.0" text="Specify Chosen">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <TableView fx:id="HistoryTableViewL" layoutX="14.0" layoutY="50.0" prefHeight="625.0" prefWidth="350.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="50.0">
+                    <columns>
+                      <TableColumn prefWidth="117.0" text="Player1 name" />
+                      <TableColumn minWidth="0.0" prefWidth="111.0" text="Player2 name" />
+                        <TableColumn minWidth="0.0" prefWidth="121.0" text="Who win" />
+                    </columns>
+                  </TableView>
+                  <TableView fx:id="SpecifyHistoryTableViewL" prefHeight="625.0" prefWidth="350.0" visible="false" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="50.0">
+                    <columns>
+                      <TableColumn prefWidth="137.0" text="Who" />
+                      <TableColumn prefWidth="139.0" text="Action" />
+                        <TableColumn prefWidth="73.0" text="Value" />
+                    </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="PlayerPanelL" layoutX="10.0" layoutY="10.0" prefHeight="772.0" prefWidth="378.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Button layoutX="132.0" layoutY="227.0" mnemonicParsing="false" onAction="#ToEQL" prefHeight="31.0" prefWidth="114.0" text="EQ" />
+                  <Button layoutX="132.0" layoutY="287.0" mnemonicParsing="false" onAction="#ToShopL" prefHeight="31.0" prefWidth="114.0" text="Shop" />
+                  <Button layoutX="204.0" layoutY="346.0" mnemonicParsing="false" onAction="#ToBattlefield" prefHeight="31.0" prefWidth="114.0" text="Battle" />
+                  <Label layoutX="118.0" layoutY="148.0" text="Player Panel">
+                     <font>
+                        <Font name="System Bold Italic" size="24.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="132.0" layoutY="434.0" mnemonicParsing="false" onAction="#PlayerBackToLoginL" text="Log out">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
+                  <ToggleButton fx:id="ReadyButtonL" layoutX="61.0" layoutY="346.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="114.0" text="Ready" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="EQPanelL" prefHeight="772.0" prefWidth="378.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label layoutX="145.0" layoutY="14.0" text="EQ section">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="32.0" layoutY="699.0" mnemonicParsing="false" onAction="#EQBackToPlayerL" prefHeight="51.0" prefWidth="126.0" text="Back">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="195.0" layoutY="699.0" mnemonicParsing="false" onAction="#UseItemL" prefHeight="51.0" prefWidth="158.0" text="Use">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <TableView fx:id="EQTableViewL" layoutX="14.0" layoutY="50.0" prefHeight="582.0" prefWidth="350.0" AnchorPane.bottomAnchor="140.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="50.0">
+                     <columns>
+                        <TableColumn prefWidth="174.0" text="Items name" />
+                        <TableColumn minWidth="0.0" prefWidth="60.0" text="BA" />
+                        <TableColumn minWidth="0.0" prefWidth="60.0" text="SA" />
+                        <TableColumn minWidth="0.0" prefWidth="56.0" text="Used" />
+                     </columns>
+                  </TableView>
+                  <Label fx:id="MoneyEQLabelL" layoutX="172.0" layoutY="645.0" text="Money: ">
+                     <font>
+                        <Font name="System Bold Italic" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="ShopPanelL" prefHeight="772.0" prefWidth="378.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label layoutX="167.0" layoutY="14.0" text="Shop">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="32.0" layoutY="699.0" mnemonicParsing="false" onAction="#ShopBackToPlayerL" prefHeight="51.0" prefWidth="126.0" text="Back">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="195.0" layoutY="699.0" mnemonicParsing="false" onAction="#BuyOrSellL" prefHeight="51.0" prefWidth="158.0" text="Buy/Sell">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <TableView fx:id="ShopTableViewL" layoutX="14.0" layoutY="50.0" prefHeight="582.0" prefWidth="350.0" AnchorPane.bottomAnchor="140.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="100.0">
+                     <columns>
+                        <TableColumn prefWidth="150.0" text="Items name" />
+                        <TableColumn minWidth="0.0" prefWidth="60.0" text="BA" />
+                        <TableColumn minWidth="0.0" prefWidth="60.0" text="SA" />
+                        <TableColumn text="Price" />
+                     </columns>
+                  </TableView>
+                  <Label fx:id="MoneyShopLabelL" layoutX="172.0" layoutY="645.0" text="Money: ">
+                     <font>
+                        <Font name="System Bold Italic" size="18.0" />
+                     </font>
+                  </Label>
+                  <RadioButton fx:id="BuyRadioButtonL" disable="true" layoutX="103.0" layoutY="57.0" mnemonicParsing="false" onAction="#RadioButtonsSelectBuyL" selected="true" text="BUY">
+                     <font>
+                        <Font name="System Bold Italic" size="16.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="SellRadioButtonL" layoutX="217.0" layoutY="57.0" mnemonicParsing="false" onAction="#RadioButtonsSelectSellL" text="SELL">
+                     <font>
+                        <Font name="System Bold Italic" size="16.0" />
+                     </font>
+                  </RadioButton>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="BattlefieldPanelL" prefHeight="772.0" prefWidth="378.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label layoutX="130.0" layoutY="212.0" text="Battlefield">
+                     <font>
+                        <Font name="System Bold Italic" size="24.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="145.0" layoutY="285.0" mnemonicParsing="false" onAction="#AttackL" prefHeight="35.0" prefWidth="89.0" text="Attack" />
+                  <Button layoutX="145.0" layoutY="340.0" mnemonicParsing="false" onAction="#RestL" prefHeight="35.0" prefWidth="89.0" text="Rest" />
+                  <Button layoutX="145.0" layoutY="395.0" mnemonicParsing="false" onAction="#ToUseItemL" prefHeight="35.0" prefWidth="89.0" text="Use item" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="PickItemPanelL" prefHeight="772.0" prefWidth="378.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label layoutX="150.0" layoutY="14.0" text="Pick item">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="32.0" layoutY="699.0" mnemonicParsing="false" onAction="#PickItemBackToBattlefieldL" prefHeight="51.0" prefWidth="126.0" text="Back">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="195.0" layoutY="699.0" mnemonicParsing="false" onAction="#ConsumeItemL" prefHeight="51.0" prefWidth="158.0" text="Use">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <TableView fx:id="PickItemTableViewL" layoutX="14.0" layoutY="50.0" prefHeight="630.0" prefWidth="350.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="50.0">
+                     <columns>
+                        <TableColumn prefWidth="233.0" text="Items name" />
+                        <TableColumn minWidth="0.0" prefWidth="116.0" text="Attribute" />
+                     </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="RegisterPanelL" layoutX="10.0" layoutY="10.0" prefHeight="772.0" prefWidth="378.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Button layoutX="220.0" layoutY="433.0" mnemonicParsing="false" onAction="#RegisterL" prefHeight="43.0" prefWidth="126.0" text="Register" />
+                  <TextField fx:id="AccountTextFieldL1" layoutX="96.0" layoutY="287.0" promptText="Account Name" />
+                  <TextField fx:id="PasswordTextFieldL1" layoutX="96.0" layoutY="351.0" promptText="Password" />
+                  <Label fx:id="LoginErrorLabelL12" layoutX="108.0" layoutY="156.0" text="Register Panel">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="33.0" layoutY="433.0" mnemonicParsing="false" onAction="#RegisterBackToWelcomeL" prefHeight="43.0" prefWidth="126.0" text="Back" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="WelcomePanelL" prefHeight="772.0" prefWidth="378.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label layoutX="111.0" layoutY="208.0" text="Welcome" wrapText="true">
+                     <font>
+                        <Font name="System Bold Italic" size="36.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="205.0" layoutY="386.0" mnemonicParsing="false" onAction="#ToLoginL" prefHeight="51.0" prefWidth="125.0" text="Log In">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="49.0" layoutY="386.0" mnemonicParsing="false" onAction="#ToRegisterL" text="Register">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="95.0" layoutY="261.0" text="in our little RPG world">
+                     <font>
+                        <Font name="System Bold Italic" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children></AnchorPane>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="274.0">
+         <children>
+            <TextArea fx:id="ChatTextArea" editable="false" layoutY="49.0" prefHeight="718.0" prefWidth="500.0" wrapText="true" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="49.0">
+               <opaqueInsets>
+                  <Insets bottom="5.0" />
+               </opaqueInsets>
+            </TextArea>
+            <Label layoutX="128.0" layoutY="14.0" text="Chat with application">
+               <font>
+                  <Font name="System Bold Italic" size="24.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
+      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="274.0">
+         <children>
+            <AnchorPane fx:id="LoginPanelR" prefHeight="772.0" prefWidth="378.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <TextField fx:id="AccountTextFieldR" layoutX="96.0" layoutY="287.0" promptText="Account Name" />
+                  <TextField fx:id="PasswordTextFieldR" layoutX="96.0" layoutY="351.0" promptText="Password" />
+                  <Label fx:id="LoginErrorLabelR" layoutX="59.0" layoutY="191.0" text="Zle wprowadzone dane" textFill="#ff0101" visible="false">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="LoginErrorLabelL11" layoutX="123.0" layoutY="156.0" text="Login Panel">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="33.0" layoutY="433.0" mnemonicParsing="false" onAction="#LoginBackToWelcomeR" prefHeight="43.0" prefWidth="126.0" text="Back" />
+                  <Button layoutX="220.0" layoutY="433.0" mnemonicParsing="false" onAction="#LogInR" prefHeight="43.0" prefWidth="126.0" text="Log in" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="AdminPanelR" prefHeight="772.0" prefWidth="378.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Button layoutX="132.0" layoutY="227.0" mnemonicParsing="false" onAction="#ToModifyR" prefHeight="31.0" prefWidth="114.0" text="Modify Item" />
+                  <Button layoutX="132.0" layoutY="287.0" mnemonicParsing="false" onAction="#ToAddR" prefHeight="31.0" prefWidth="114.0" text="Add Item" />
+                  <Button layoutX="132.0" layoutY="347.0" mnemonicParsing="false" onAction="#ToRemoveR" prefHeight="31.0" prefWidth="114.0" text="Remove Item" />
+                  <Button layoutX="132.0" layoutY="434.0" mnemonicParsing="false" onAction="#ToHistoryR" prefHeight="31.0" prefWidth="114.0" text="Show History" />
+                  <Label layoutX="116.0" layoutY="148.0" text="Admin Panel">
+                     <font>
+                        <Font name="System Bold Italic" size="24.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="132.0" layoutY="541.0" mnemonicParsing="false" onAction="#AdminBackToLoginR" text="Log out">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="ModifyPanelR" layoutX="10.0" prefHeight="772.0" prefWidth="378.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <TreeView fx:id="TreeModifyR" layoutX="14.0" layoutY="14.0" prefHeight="439.0" prefWidth="349.0" AnchorPane.bottomAnchor="383.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="50.0" />
+                  <Label layoutX="117.0" layoutY="14.0" text="Modify item section">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="NameModifyTextFieldR" layoutX="142.0" layoutY="422.0" />
+                  <TextField fx:id="PriceModifyTextFieldR" layoutX="142.0" layoutY="475.0" />
+                  <TextField fx:id="BasicAttributeModifyTextFieldR" layoutX="142.0" layoutY="528.0" />
+                  <Label layoutX="55.0" layoutY="427.0" text="Name" />
+                  <Label layoutX="59.0" layoutY="480.0" text="Price" />
+                  <Label layoutX="27.0" layoutY="533.0" text="Basic Attribute" />
+                  <Button layoutX="32.0" layoutY="699.0" mnemonicParsing="false" onAction="#ModifyBackToAdminR" prefHeight="51.0" prefWidth="126.0" text="Back">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="211.0" layoutY="699.0" mnemonicParsing="false" onAction="#ModifyApplyR" prefHeight="51.0" prefWidth="126.0" text="Apply">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="37.0" layoutY="639.0" text="Value of SA" />
+                  <TextField fx:id="ValueOfSAModifyTextFieldR" layoutX="144.0" layoutY="634.0" />
+                  <Label layoutX="20.0" layoutY="586.0" text="Special Attribute" />
+                  <ChoiceBox fx:id="SpecialAttributeModifyChoiceBoxR" layoutX="144.0" layoutY="581.0" prefHeight="31.0" prefWidth="187.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="AddPanelR" layoutX="10.0" layoutY="10.0" prefHeight="772.0" prefWidth="378.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <TreeView fx:id="TreeAddR" layoutX="14.0" layoutY="14.0" prefHeight="439.0" prefWidth="349.0" AnchorPane.bottomAnchor="383.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="50.0" />
+                  <Label layoutX="117.0" layoutY="14.0" text="Add item section">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="NameAddTextFieldR" layoutX="142.0" layoutY="422.0" />
+                  <TextField fx:id="PriceAddTextFieldR" layoutX="142.0" layoutY="475.0" />
+                  <TextField fx:id="BasicAttributeAddTextFieldR" layoutX="142.0" layoutY="528.0" />
+                  <Label layoutX="55.0" layoutY="427.0" text="Name" />
+                  <Label layoutX="59.0" layoutY="480.0" text="Price" />
+                  <Label layoutX="27.0" layoutY="533.0" text="Basic Attribute" />
+                  <Button layoutX="32.0" layoutY="699.0" mnemonicParsing="false" onAction="#AddBackToAdminR" prefHeight="51.0" prefWidth="126.0" text="Back">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="211.0" layoutY="699.0" mnemonicParsing="false" onAction="#AddApplyR" prefHeight="51.0" prefWidth="126.0" text="Apply">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="37.0" layoutY="639.0" text="Value of SA" />
+                  <TextField fx:id="ValueOfSAAddTextFieldR" layoutX="144.0" layoutY="634.0" />
+                  <Label layoutX="20.0" layoutY="586.0" text="Special Attribute" />
+                  <ChoiceBox fx:id="SpecialAttributeAddChoiceBoxR" layoutX="144.0" layoutY="581.0" prefHeight="31.0" prefWidth="187.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="RemovePanelR" layoutX="-6.0" prefHeight="772.0" prefWidth="378.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <TreeView fx:id="TreeRemoveR" layoutX="14.0" layoutY="14.0" prefHeight="540.0" prefWidth="350.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="50.0" />
+                  <Label layoutX="100.0" layoutY="14.0" text="Remove item section">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="33.0" layoutY="643.0" mnemonicParsing="false" onAction="#RemoveBackToAdminR" prefHeight="51.0" prefWidth="126.0" text="Back">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="211.0" layoutY="643.0" mnemonicParsing="false" onAction="#RemoveApplyR" prefHeight="51.0" prefWidth="126.0" text="Apply">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="HistoryPanelR" layoutX="-6.0" prefHeight="772.0" prefWidth="378.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label layoutX="110.0" layoutY="14.0" text="History list section">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="32.0" layoutY="699.0" mnemonicParsing="false" onAction="#HistoryBackToAdminR" prefHeight="51.0" prefWidth="126.0" text="Back">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="195.0" layoutY="699.0" mnemonicParsing="false" onAction="#HistorySpecifyR" prefHeight="51.0" prefWidth="158.0" text="Specify Chosen">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <TableView fx:id="HistoryTableViewR" layoutX="14.0" layoutY="50.0" prefHeight="625.0" prefWidth="350.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="50.0">
+                     <columns>
+                        <TableColumn prefWidth="117.0" text="Player1 name" />
+                        <TableColumn minWidth="0.0" prefWidth="111.0" text="Player2 name" />
+                        <TableColumn minWidth="0.0" prefWidth="121.0" text="Who win" />
+                     </columns>
+                  </TableView>
+                  <TableView fx:id="SpecifyHistoryTableViewR" prefHeight="625.0" prefWidth="350.0" visible="false" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="50.0">
+                     <columns>
+                        <TableColumn prefWidth="137.0" text="Who" />
+                        <TableColumn prefWidth="139.0" text="Action" />
+                        <TableColumn prefWidth="73.0" text="Value" />
+                     </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="PlayerPanelR" layoutX="-6.0" prefHeight="772.0" prefWidth="378.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Button layoutX="132.0" layoutY="227.0" mnemonicParsing="false" onAction="#ToEQR" prefHeight="31.0" prefWidth="114.0" text="EQ" />
+                  <Button layoutX="132.0" layoutY="287.0" mnemonicParsing="false" onAction="#ToShopR" prefHeight="31.0" prefWidth="114.0" text="Shop" />
+                  <Button layoutX="61.0" layoutY="346.0" mnemonicParsing="false" onAction="#ToBattlefield" prefHeight="31.0" prefWidth="114.0" text="Battle" />
+                  <Label layoutX="118.0" layoutY="148.0" text="Player Panel">
+                     <font>
+                        <Font name="System Bold Italic" size="24.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="132.0" layoutY="434.0" mnemonicParsing="false" onAction="#PlayerBackToLoginR" text="Log out">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
+                  <ToggleButton fx:id="ReadyButtonR" layoutX="204.0" layoutY="346.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="114.0" text="Ready" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="EQPanelR" prefHeight="772.0" prefWidth="378.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label layoutX="145.0" layoutY="14.0" text="EQ section">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="32.0" layoutY="699.0" mnemonicParsing="false" onAction="#EQBackToPlayerR" prefHeight="51.0" prefWidth="126.0" text="Back">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="195.0" layoutY="699.0" mnemonicParsing="false" onAction="#UseItemR" prefHeight="51.0" prefWidth="158.0" text="Use">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <TableView fx:id="EQTableViewR" layoutX="14.0" layoutY="50.0" prefHeight="582.0" prefWidth="350.0" AnchorPane.bottomAnchor="140.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="50.0">
+                     <columns>
+                        <TableColumn prefWidth="174.0" text="Items name" />
+                        <TableColumn minWidth="0.0" prefWidth="60.0" text="BA" />
+                        <TableColumn minWidth="0.0" prefWidth="60.0" text="SA" />
+                        <TableColumn minWidth="0.0" prefWidth="56.0" text="Used" />
+                     </columns>
+                  </TableView>
+                  <Label fx:id="MoneyEQLabelR" layoutX="172.0" layoutY="645.0" text="Money: ">
+                     <font>
+                        <Font name="System Bold Italic" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="ShopPanelR" prefHeight="772.0" prefWidth="378.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label layoutX="167.0" layoutY="14.0" text="Shop">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="32.0" layoutY="699.0" mnemonicParsing="false" onAction="#ShopBackToPlayerR" prefHeight="51.0" prefWidth="126.0" text="Back">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="195.0" layoutY="699.0" mnemonicParsing="false" onAction="#BuyOrSellR" prefHeight="51.0" prefWidth="158.0" text="Buy/Sell">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <TableView fx:id="ShopTableViewR" layoutX="14.0" layoutY="50.0" prefHeight="582.0" prefWidth="350.0" AnchorPane.bottomAnchor="140.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="100.0">
+                     <columns>
+                        <TableColumn prefWidth="150.0" text="Items name" />
+                        <TableColumn minWidth="0.0" prefWidth="60.0" text="BA" />
+                        <TableColumn minWidth="0.0" prefWidth="60.0" text="SA" />
+                        <TableColumn text="Price" />
+                     </columns>
+                  </TableView>
+                  <Label fx:id="MoneyShopLabelR" layoutX="172.0" layoutY="645.0" text="Money: ">
+                     <font>
+                        <Font name="System Bold Italic" size="18.0" />
+                     </font>
+                  </Label>
+                  <RadioButton fx:id="BuyRadioButtonR" disable="true" layoutX="103.0" layoutY="57.0" mnemonicParsing="false" onAction="#RadioButtonsSelectBuyR" selected="true" text="BUY">
+                     <font>
+                        <Font name="System Bold Italic" size="16.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="SellRadioButtonR" layoutX="217.0" layoutY="57.0" mnemonicParsing="false" onAction="#RadioButtonsSelectSellR" text="SELL">
+                     <font>
+                        <Font name="System Bold Italic" size="16.0" />
+                     </font>
+                  </RadioButton>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="BattlefieldPanelR" layoutX="-14.0" prefHeight="772.0" prefWidth="378.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label layoutX="130.0" layoutY="212.0" text="Battlefield">
+                     <font>
+                        <Font name="System Bold Italic" size="24.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="145.0" layoutY="285.0" mnemonicParsing="false" onAction="#AttackR" prefHeight="35.0" prefWidth="89.0" text="Attack" />
+                  <Button layoutX="145.0" layoutY="340.0" mnemonicParsing="false" onAction="#RestR" prefHeight="35.0" prefWidth="89.0" text="Rest" />
+                  <Button layoutX="145.0" layoutY="395.0" mnemonicParsing="false" onAction="#ToUseItemR" prefHeight="35.0" prefWidth="89.0" text="Use item" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="PickItemPanelR" layoutX="-6.0" prefHeight="772.0" prefWidth="378.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label layoutX="150.0" layoutY="14.0" text="Pick item">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="24.0" layoutY="699.0" mnemonicParsing="false" onAction="#PickItemBackToBattlefieldR" prefHeight="51.0" prefWidth="126.0" text="Back">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="195.0" layoutY="699.0" mnemonicParsing="false" onAction="#ConsumeItemR" prefHeight="51.0" prefWidth="158.0" text="Use">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <TableView fx:id="PickItemTableViewR" layoutX="14.0" layoutY="50.0" prefHeight="630.0" prefWidth="350.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="50.0">
+                     <columns>
+                        <TableColumn prefWidth="233.0" text="Items name" />
+                        <TableColumn minWidth="0.0" prefWidth="116.0" text="Attribute" />
+                     </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="RegisterPanelR" layoutX="20.0" layoutY="20.0" prefHeight="772.0" prefWidth="378.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Button layoutX="220.0" layoutY="433.0" mnemonicParsing="false" onAction="#RegisterR" prefHeight="43.0" prefWidth="126.0" text="Register" />
+                  <TextField fx:id="AccountTextFieldL11" layoutX="96.0" layoutY="287.0" promptText="Account Name" />
+                  <TextField fx:id="PasswordTextFieldL11" layoutX="96.0" layoutY="351.0" promptText="Password" />
+                  <Label fx:id="LoginErrorLabelL121" layoutX="108.0" layoutY="156.0" text="Register Panel">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="33.0" layoutY="433.0" mnemonicParsing="false" onAction="#RegisterBackToWelcomeR" prefHeight="43.0" prefWidth="126.0" text="Back" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="WelcomePanelR" layoutX="10.0" layoutY="10.0" prefHeight="772.0" prefWidth="378.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label layoutX="111.0" layoutY="208.0" text="Welcome" wrapText="true">
+                     <font>
+                        <Font name="System Bold Italic" size="36.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="205.0" layoutY="386.0" mnemonicParsing="false" onAction="#ToLoginR" prefHeight="51.0" prefWidth="125.0" text="Log In">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="49.0" layoutY="386.0" mnemonicParsing="false" onAction="#ToRegisterR" text="Register">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="95.0" layoutY="261.0" text="in our little RPG world">
+                     <font>
+                        <Font name="System Bold Italic" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children></AnchorPane>
+  </items>
+</SplitPane>

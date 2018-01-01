@@ -1,13 +1,29 @@
-import java.util.List;
+package GUI;
 
-import DataAccessLayer.*;
-import Models.*;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
-public class TestApp {
 
+@SuppressWarnings("restriction")
+public class GUI_Main extends Application {
+
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+		Parent root = FXMLLoader.load(getClass().getResource("guiRPG.fxml"));
+		primaryStage.setTitle("RPG simulator");
+		primaryStage.setScene(new Scene(root, 1274, 774));
+		primaryStage.show();
+	}
+	
 	public static void main(String[] args) {
-
-		DataBase db = new DataBase(new RepositoryFactory());
+		launch(args);
+	}
+		
+			
+		/*DataBase db = new DataBase(new RepositoryFactory());
 
 		AccountRepository accRepo = db.getAccountRepository();
 		List<AppUser> allAccs = accRepo.GetAll();
@@ -37,6 +53,5 @@ public class TestApp {
 		BattleFieldHistoryRepository bfhRepo = db.getBattleFieldHistoryRepository();
 		List<BattlefieldHistory> allBfh = bfhRepo.GetAll();
 
-		DataBase.Dispose();
-	}
+		DataBase.Dispose();*/
 }
