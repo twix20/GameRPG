@@ -56,4 +56,6 @@ public abstract class AppUser {
 	public void setRegisterDate(Date registerDate) {
 		this.registerDate = registerDate;
 	}
+	
+	abstract public Boolean getIsPlayer();
 }
