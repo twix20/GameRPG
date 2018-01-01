@@ -21,7 +21,6 @@ public class Admin extends AppUser {
 	private DataBase dataBase;
 	
 	public Admin() {}
-	//TODO interakcje z baza
 	public Item addItem(Item it) {
 		ItemRepository r = dataBase.getItemRepository();
 		r.Add(it);
