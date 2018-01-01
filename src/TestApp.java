@@ -6,7 +6,6 @@ import Models.*;
 public class TestApp {
 
 	public static void main(String[] args) {
-
 		DataBase db = new DataBase(new RepositoryFactory());
 
 		AccountRepository accRepo = db.getAccountRepository();

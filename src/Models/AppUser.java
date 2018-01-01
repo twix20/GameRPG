@@ -23,6 +23,9 @@ public abstract class AppUser {
 	@Column(name = "CreatedAt")
 	private Date registerDate;
 	
+	@Column(name = "Type")
+	private String Type;
+
 	public AppUser() {}
 
 	public int getId() {
@@ -55,5 +58,13 @@ public abstract class AppUser {
 
 	public void setRegisterDate(Date registerDate) {
 		this.registerDate = registerDate;
+	}
+	
+	public String getType() {
+		return Type;
+	}
+
+	public void setType(String type) {
+		Type = type;
 	}
 }
