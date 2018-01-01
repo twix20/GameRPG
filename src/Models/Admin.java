@@ -1,8 +1,17 @@
 package Models;
 
+import java.util.List;
+
 import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+import javax.persistence.metamodel.EntityType;
+
+import org.hibernate.Session;
 
 import DataAccessLayer.DataBase;
+import DataAccessLayer.ItemRepository;
 
 @Entity
 @DiscriminatorValue("ADMIN")
@@ -14,19 +23,30 @@ public class Admin extends AppUser {
 	public Admin() {}
 	//TODO interakcje z baza
 	public Item addItem(Item it) {
-		return null;
+		ItemRepository r = dataBase.getItemRepository();
+		r.Add(it);
+		
+		return it;
 	}
-	public Item editItem(int id) {
-		return null;
+	public Item editItem(Item it) {
+		ItemRepository r = dataBase.getItemRepository();
+		r.Update(it);
+		
+		return it;
 	}
-	public Item deleteItem(int id) {
-		return null;
+	public void deleteItem(Item it) {
+		ItemRepository r = dataBase.getItemRepository();
+		r.Remove(it);
 	}
 	public void showMatchHisory() {
 		
 	}
 	public Item findItemByName(String name) {
-		return null;
+		ItemRepository r = dataBase.getItemRepository();
+		
+		Item item = r.FindItemByName(name);
+		
+		return item;
 	}
 	public DataBase getDataBase() {
 		return dataBase;

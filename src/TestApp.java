@@ -7,6 +7,10 @@ public class TestApp {
 
 	public static void main(String[] args) {
 		DataBase db = new DataBase(new RepositoryFactory());
+		
+		ItemRepository itemRepo = db.getItemRepository();
+		Item i = itemRepo.FindItemByName("Miecz Grabarza ksiezyca");
+		System.out.format("Id: %d Name: %s\n", i.getId(), i.getName());
 
 		AccountRepository accRepo = db.getAccountRepository();
 		List<AppUser> allAccs = accRepo.GetAll();

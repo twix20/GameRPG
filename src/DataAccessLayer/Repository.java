@@ -10,12 +10,12 @@ import javax.persistence.criteria.*;
 import org.hibernate.*;
 
 public abstract class Repository<T, ID extends Serializable> {
-	private SessionFactory sessionFactory;
-	private Class<T> type;
+	protected SessionFactory sessionFactory;
+	protected Class<T> type;
 	
 	
-	private List<T> allFetched = null;
-	private T entity = null;
+	protected List<T> allFetched = null;
+	protected T entity = null;
 	
 
 	public Repository(Class<T> type, SessionFactory sessionFactory) {

@@ -23,7 +23,7 @@ public abstract class AppUser {
 	@Column(name = "CreatedAt")
 	private Date registerDate;
 	
-	@Column(name = "Type")
+	@Column(name = "Type", insertable = false, updatable = false)
 	private String Type;
 
 	public AppUser() {}
