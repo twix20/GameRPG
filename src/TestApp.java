@@ -13,12 +13,13 @@ public class TestApp {
 		System.out.format("Id: %d Name: %s\n", i.getId(), i.getName());
 
 		AccountRepository accRepo = db.getAccountRepository();
+		AppUser userByLoginPasword = accRepo.GetByLoginPassword("FakeMag1", "123");
+		System.out.format("Id: %d Nickname: %s\n", userByLoginPasword.getId(), userByLoginPasword.getNickname());
+		
 		List<AppUser> allAccs = accRepo.GetAll();
 
 		Player p = (Player) allAccs.get(0);
-
 		Equipment eq = p.getEquipment();
-
 		for (PlayerItem item : eq.getPlayerItems()) {
 
 			System.out.println(item.getItem().getName());
