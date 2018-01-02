@@ -15,7 +15,7 @@ public class Player extends AppUser {
 	@Embedded
 	protected Equipment equipment;
 	
-	public Player() { }
+	public Player() {}
 
 	public Player(String nickname, String password, int currentHp, int maxHp, Equipment equipment) {
 		this.setCurrentHp(currentHp);
