@@ -16,17 +16,14 @@ import javafx.collections.ObservableList;
 import java.util.Collection;
 import java.util.List;
 import DataAccessLayer.DataBase;
-import Models.Ammunition;
 import Models.Armor;
 import Models.BattlefieldHistory;
-import Models.Bow;
 import Models.HealingPotion;
 import Models.Item;
 import Models.Shield;
 import Models.Statistic;
 import Models.StatisticTypeEnum;
 import Models.Sword;
-import Models.Wand;
 
 @SuppressWarnings("restriction")
 public class Controller {
@@ -822,13 +819,8 @@ public class Controller {
 					shieldItems.getChildren().add(item);
 				} else if (i instanceof Sword) {
 					swordItems.getChildren().add(item);
-				} else if (i instanceof Wand) {
-					wandItems.getChildren().add(item);
-				} else if (i instanceof Bow) {
-					bowItems.getChildren().add(item);
-				} else if (i instanceof Ammunition) {
-					ammunitionItems.getChildren().add(item);
-				} else if (i instanceof HealingPotion) {
+				}
+				else if (i instanceof HealingPotion) {
 					healingPotionItems.getChildren().add(item);
 				}
 			}
