@@ -1,3 +1,4 @@
+
 package Models;
 
 import javax.persistence.*;
@@ -6,21 +7,22 @@ import javax.persistence.*;
 @DiscriminatorValue("HealingPotion")
 public class HealingPotion extends UseableItem {
     @Column(name = "HealValue")
-    private int healValue; 
+    private int healing; 
     
     public HealingPotion() {}
     
 	public HealingPotion(int id, String name, int price, StatisticsBag statistics) {
 		super(id, name, price, statistics);
 	}
+	@Override
 	public int Use() {
-		return this.gethealValue();
+		return this.getHealing();
 	}
-	
-	public int gethealValue() {
-		return this.healValue;
+	public int getHealing() {
+		return healing;
 	}
-	public void setHealValue(int value) {
-		this.healValue = value;
+	public void setHealing(int healing) {
+		this.healing = healing;
 	}
 }
+
