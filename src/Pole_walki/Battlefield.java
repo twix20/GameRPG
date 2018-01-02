@@ -57,6 +57,12 @@ public class Battlefield {
 		this.getHistory().setFightEndDate(new Date());
 		this.getHistory().setWhoWonPlayerId(this.getWhoseTurn());
 		//TODO zapisac zmiany do bazy
+		int reward = 10;
+		 		if(this.getAnotherPlayer().getEquipment().getGold() - reward <= 0)
+		 			this.getAnotherPlayer().getEquipment().setGold(0);
+		 		else
+		 			this.getAnotherPlayer().getEquipment().setGold(this.getAnotherPlayer().getEquipment().getGold() - reward);	
+		 		this.getWhoseTurn().getEquipment().setGold(this.getWhoseTurn().getEquipment().getGold() + reward);
 	}
 	
 	public void changeTurn() {

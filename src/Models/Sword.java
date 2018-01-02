@@ -1,5 +1,7 @@
 package Models;
 
+import java.util.Random;
+
 import javax.persistence.*;
 
 @Entity
@@ -13,6 +15,7 @@ public class Sword extends AttackItem {
 	}
 	
     public int DealDamage() {
-    	return getDamage();
+    	Random rand = new Random();
+    	return (int) (rand.nextInt((int) (getDamage() * 0.3)) + getDamage() * 0.7);
     }
 }

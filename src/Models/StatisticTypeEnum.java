@@ -3,7 +3,7 @@ package Models;
 import java.util.*;
 
 public enum StatisticTypeEnum {
-	Hp(1), Mp(2), DealDmg(3);
+	Hp(1), Def(2), DealDmg(3);
 
 	private int dbId;
 
