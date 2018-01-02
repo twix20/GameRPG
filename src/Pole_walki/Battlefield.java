@@ -9,7 +9,6 @@ import Models.BattlefieldHistory;
 import Models.HealingPotion;
 import Models.Player;
 import Models.UseableItem;
-import Models.Warrior;
 
 public class Battlefield {
     private ArrayList<Player> players;
@@ -22,10 +21,9 @@ public class Battlefield {
 		history = new BattlefieldHistory(players.get(0), players.get(1));
 	}
 	public boolean Attack() {
-		boolean stillAlive = true;
-	if(this.getWhoseTurn() instanceof Warrior) {
-		int dmg = ((Warrior)this.getWhoseTurn()).battle(getAnotherPlayer());
-		 stillAlive = this.getAnotherPlayer().getCurrentHp() - dmg > 0;
+		int dmg = this.getWhoseTurn().Battle(getAnotherPlayer());
+		boolean stillAlive = this.getAnotherPlayer().getCurrentHp() - dmg > 0;
+		
 	     if(stillAlive) {
 	    	 this.changeHP(this.getAnotherPlayer(), - dmg);
 	    	 this.getHistory().getActions().add(new BattlefieldActionsHistory(this.getWhoseTurn(),"attack", dmg ));
@@ -33,7 +31,7 @@ public class Battlefield {
 	     } else {
 	    	 this.endBattle();
 	     }
-	}
+
 	  return stillAlive;
 	}
 	

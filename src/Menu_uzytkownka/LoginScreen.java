@@ -6,8 +6,7 @@ import DataAccessLayer.AccountRepository;
 import DataAccessLayer.DataBase;
 import Models.Admin;
 import Models.AppUser;
-import Models.Mage;
-import Models.Warrior;
+import Models.Player;
 
 public class LoginScreen {
 	private DataBase dataBase;
@@ -21,22 +20,16 @@ public class LoginScreen {
 		if(user == null) {
 			
 			AppUser userToDb = null;
-			if(accountType == "WARRIOR") {
-				Warrior warr = new Warrior();
-				warr.setCurrentHp(100);
-				warr.setMaxHp(100);
-				userToDb = warr;
-			}else if(accountType == "MAG") {
-				Mage mag = new Mage();
-				mag.setCurrentHp(100);
-				mag.setMaxHp(100);
-				userToDb = mag;
-			}else if(accountType == "ADMIN") {
-				Admin admin = new Admin();
-				userToDb = admin;
+			if(accountType == "ADMIN") {
+				Admin newAdmin = new Admin();
+				userToDb = newAdmin;
+			}else if(accountType == "PLAYER") {
+				Player newPlayer = new Player();
+				newPlayer.setCurrentHp(100);
+				newPlayer.setMaxHp(100);
+				//TODO: dodac przypisanie poczatkowych przedmiotow dla gracza
 			}
 			
-			userToDb.setType(accountType);
 			userToDb.setNickname(login);
 			userToDb.setPassword(password);
 			userToDb.setRegisterDate(new Date());

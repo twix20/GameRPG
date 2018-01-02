@@ -33,9 +33,6 @@ public class DataBase {
 
 						.addAnnotatedClass(AttackItem.class)
 						.addAnnotatedClass(Sword.class)
-						.addAnnotatedClass(Wand.class)
-						.addAnnotatedClass(Ammunition.class)
-						.addAnnotatedClass(Bow.class)
 
 						.addAnnotatedClass(DefensiveItem.class)
 						.addAnnotatedClass(Shield.class)
@@ -44,8 +41,9 @@ public class DataBase {
 						.addAnnotatedClass(UseableItem.class)
 						.addAnnotatedClass(HealingPotion.class)
 
-						.addAnnotatedClass(AppUser.class).addAnnotatedClass(Player.class).addAnnotatedClass(Admin.class)
-						.addAnnotatedClass(Mage.class).addAnnotatedClass(Warrior.class)
+						.addAnnotatedClass(AppUser.class)
+						.addAnnotatedClass(Player.class)
+						.addAnnotatedClass(Admin.class)
 
 						.addAnnotatedClass(BattlefieldActionsHistory.class).addAnnotatedClass(BattlefieldHistory.class);
 

@@ -29,8 +29,8 @@ insert into Item_Statistic_XREF (Item_Id, Statistic_Id)
 select i.Id, floor(random() * 9 + 1) from Item i;
 
 -- Player
-insert into Player(Id, Nickname, Password, CurrentHp, MaxHp, CurrentMana, MaxMana, CreatedAt, Gold, Type) values(1, 'FakeMag1', '123', 50, 100, 10, 40, CURRENT_TIMESTAMP, 34, 'MAG');
-insert into Player(Id, Nickname, Password, CurrentHp, MaxHp, CurrentMana, MaxMana, CreatedAt, Gold, Type) values(2, 'FakeWarrior1', '123', 50, 100, 10, 40, CURRENT_TIMESTAMP, 34, 'WARRIOR');
+insert into Player(Id, Nickname, Password, CurrentHp, MaxHp, CurrentMana, MaxMana, CreatedAt, Gold, Type) values(1, 'FakePlayer1', '123', 50, 100, 10, 40, CURRENT_TIMESTAMP, 34, 'PLAYER');
+insert into Player(Id, Nickname, Password, CurrentHp, MaxHp, CurrentMana, MaxMana, CreatedAt, Gold, Type) values(2, 'FakePlayer2', '123', 50, 100, 10, 40, CURRENT_TIMESTAMP, 34, 'PLAYER');
 insert into Player(Id, Nickname, Password, CurrentHp, MaxHp, CurrentMana, MaxMana, CreatedAt, Gold, Type) values(3, 'FakeAdmin1', '123', 50, 100, 10, 40, CURRENT_TIMESTAMP, 34, 'ADMIN');
 
 -- Player_Item_XREF

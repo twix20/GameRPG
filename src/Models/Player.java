@@ -3,6 +3,7 @@ package Models;
 import javax.persistence.*;
 
 @Entity
+@DiscriminatorValue("PLAYER")
 public class Player extends AppUser {
 
 	@Column(name = "CurrentHp")
@@ -24,14 +25,19 @@ public class Player extends AppUser {
 		this.equipment = equipment;
 	}
 	
-	public int battle(Player player) {
-		return 0;
+	public int Battle(Player player) {
+		int dmg = 0;
+		for(PlayerItem item : this.getEquipment().getPlayerItems())
+			if(item.getItem() instanceof AttackItem && item.isEquiped() == true) {
+			dmg = 	item.getItem().getStatistics().getStatisticValue(StatisticTypeEnum.DealDmg);
+			break;
+			}
+		return dmg;
 	}
 
 	public AttackItem getWeapon() {
 		return null;
 	}
-
 
 	public int getCurrentHp() {
 		return currentHp;
