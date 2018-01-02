@@ -12,12 +12,13 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextArea;
 import javafx.collections.FXCollections;
-
+import javafx.collections.ObservableList;
 import java.util.Collection;
 import java.util.List;
 import DataAccessLayer.DataBase;
 import Models.Ammunition;
 import Models.Armor;
+import Models.BattlefieldHistory;
 import Models.Bow;
 import Models.HealingPotion;
 import Models.Item;
@@ -192,13 +193,13 @@ public class Controller {
 	//---------------------------------------
 	//TableViews
 	@FXML
-	private TableView<String> HistoryTableViewL;
+	private TableView<HistoryRow> HistoryTableViewL;
 	@FXML
-	private TableView<String> HistoryTableViewR;
+	private TableView<HistoryRow> HistoryTableViewR;
 	@FXML
-	private TableView<String> SpecifyHistoryTableViewL;
+	private TableView<HistoryRow> SpecifyHistoryTableViewL;
 	@FXML
-	private TableView<String> SpecifyHistoryTableViewR;
+	private TableView<HistoryRow> SpecifyHistoryTableViewR;
 	
 	@FXML
 	private TableView<String> EQTableViewL;
@@ -391,11 +392,12 @@ public class Controller {
 		}
 		
 		public void ToHistoryL() {
+			HistoryTableViewL.setItems(ConvertHistoryToTable());
 			AdminPanelL.setVisible(false);
 			HistoryPanelL.setVisible(true);
 		}
 		public void ToHistoryR() {
-			TreeModifyL.setRoot(MakeTreeRootFromDataBase());
+			
 			AdminPanelR.setVisible(false);
 			HistoryPanelR.setVisible(true);
 		}
@@ -585,20 +587,30 @@ public class Controller {
 		}
 		
 		public void RemoveApplyL() {
-			
+			gameFacade.RemoveItem(FindLastSelectedItem(TreeRemoveL));
 		}
 		public void RemoveApplyR() {
-			
+			gameFacade.RemoveItem(FindLastSelectedItem(TreeRemoveR));
 		}
 		//----------------------------------
 		//History panel
 		public void HistoryBackToAdminL() {
-			HistoryPanelL.setVisible(false);
-			AdminPanelL.setVisible(true);
+			if (SpecifyHistoryTableViewL.isVisible() == true) {
+				SpecifyHistoryTableViewL.setVisible(false);
+				HistoryTableViewL.setVisible(true);
+			} else {
+				HistoryPanelL.setVisible(false);
+				AdminPanelL.setVisible(true);
+			}
 		}
 		public void HistoryBackToAdminR() {
-			HistoryPanelR.setVisible(false);
-			AdminPanelR.setVisible(true);
+			if (SpecifyHistoryTableViewR.isVisible() == true) {
+				SpecifyHistoryTableViewR.setVisible(false);
+				HistoryTableViewR.setVisible(true);
+			} else {
+				HistoryPanelR.setVisible(false);
+				AdminPanelR.setVisible(true);
+			}
 		}
 			
 		public void HistorySpecifyL() {
@@ -837,5 +849,28 @@ public class Controller {
 			}
 			return null;
 		}
+
+		
+		private static class HistoryRow { //struktura przechowywujaca potrzebna do tableView
+			public String Player1_name, Player2_name, Who_win;
+			HistoryRow(String a, String b, String c) {
+				this.Player1_name = a;
+				this.Player2_name = b;
+				this.Who_win = c;
+			}
+		}
+		
+		private ObservableList<HistoryRow> ConvertHistoryToTable() {
+			DataBase db = gameFacade.getDataBase();
+			List<BattlefieldHistory> history = db.getBattleFieldHistoryRepository().GetAll();
+			
+			ObservableList<HistoryRow> data = FXCollections.observableArrayList();
+			for (BattlefieldHistory h : history) {
+				data.add(new HistoryRow(h.getPlayer1().getNickname(), h.getPlayer2().getNickname(), h.getWhoWonPlayerId().getNickname()));
+			}
+			return data;
+		}
+
+
 }
 

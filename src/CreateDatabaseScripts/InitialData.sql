@@ -2,10 +2,10 @@
 -- ! Wartosci Id musza odpowiadac enumowi StatisticTypeEnum !
 insert into StatisticType (Id, Name) values (1, 'Hp');
 insert into StatisticType (Id, Name) values (2, 'Mp');
-insert into StatisticType (Id, Name) values (3, 'Str');
-insert into StatisticType (Id, Name) values (4, 'Agi');
-insert into StatisticType (Id, Name) values (5, 'DealDmg');
-insert into StatisticType (Id, Name) values (6, 'Armor');
+insert into StatisticType (Id, Name) values (3, 'DealDmg');
+insert into StatisticType (Id, Name) values (4, 'Armor');
+insert into StatisticType (Id, Name) values (5, 'Str');
+insert into StatisticType (Id, Name) values (6, 'Agi');
 
 -- Statistic
 insert into Statistic(Id, StatisticType_Id, Value) values (1, 1, 10);

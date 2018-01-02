@@ -3,7 +3,6 @@ package GUI;
 import DataAccessLayer.DataBase;
 import DataAccessLayer.RepositoryFactory;
 import java.util.List;
-import DataAccessLayer.*;
 import Models.*;
 
 public class GameFacade {
@@ -23,6 +22,11 @@ public class GameFacade {
 	public void AddItem(String name, String price, String basicAttributeValue, String whichSA, String specialAttributeValue) {
 		// TODO
 	}
+	
+	public void RemoveItem(Item itemToRemove) {
+		// TODO
+	}
+	
 	
 	public String VerifyAccount(String accountName, String accountPassword) {
 		for (AppUser ap : allAccs) {

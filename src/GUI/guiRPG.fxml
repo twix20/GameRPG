@@ -46,7 +46,7 @@
                   </Button>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="ModifyPanelL" prefHeight="772.0" prefWidth="378.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="ModifyPanelL" prefHeight="772.0" prefWidth="378.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <TreeView fx:id="TreeModifyL" layoutX="14.0" layoutY="14.0" prefHeight="439.0" prefWidth="349.0" AnchorPane.bottomAnchor="415.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="50.0" />
                   <Label layoutX="117.0" layoutY="14.0" text="Modify item section">
@@ -127,7 +127,7 @@
                   </Button>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="HistoryPanelL" prefHeight="772.0" prefWidth="378.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="HistoryPanelL" prefHeight="772.0" prefWidth="378.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Label layoutX="110.0" layoutY="14.0" text="History list section">
                      <font>
@@ -146,9 +146,9 @@
                   </Button>
                   <TableView fx:id="HistoryTableViewL" layoutX="14.0" layoutY="50.0" prefHeight="625.0" prefWidth="350.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="50.0">
                     <columns>
-                      <TableColumn prefWidth="117.0" text="Player1 name" />
-                      <TableColumn minWidth="0.0" prefWidth="111.0" text="Player2 name" />
-                        <TableColumn minWidth="0.0" prefWidth="121.0" text="Who win" />
+                      <TableColumn id="Player1_name" prefWidth="117.0" text="Player1_name" />
+                      <TableColumn minWidth="0.0" prefWidth="111.0" text="Player2_name" />
+                        <TableColumn minWidth="0.0" prefWidth="121.0" text="Who_win" />
                     </columns>
                   </TableView>
                   <TableView fx:id="SpecifyHistoryTableViewL" prefHeight="625.0" prefWidth="350.0" visible="false" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="50.0">
@@ -388,7 +388,7 @@
                   </Button>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="ModifyPanelR" layoutX="10.0" prefHeight="772.0" prefWidth="378.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="ModifyPanelR" layoutX="10.0" prefHeight="772.0" prefWidth="378.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <TreeView fx:id="TreeModifyR" layoutX="14.0" layoutY="14.0" prefHeight="439.0" prefWidth="349.0" AnchorPane.bottomAnchor="415.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="50.0" />
                   <Label layoutX="117.0" layoutY="14.0" text="Modify item section">
@@ -469,7 +469,7 @@
                   </Button>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="HistoryPanelR" layoutX="-6.0" prefHeight="772.0" prefWidth="378.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="HistoryPanelR" layoutX="-6.0" prefHeight="772.0" prefWidth="378.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Label layoutX="110.0" layoutY="14.0" text="History list section">
                      <font>
