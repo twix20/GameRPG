@@ -3,7 +3,7 @@ package Models;
 import javax.persistence.Entity;
 
 @Entity
-public class UseableItem extends Item {
+public abstract  class UseableItem extends Item {
 
 	public UseableItem() {}
 	
@@ -11,8 +11,5 @@ public class UseableItem extends Item {
 		super(id, name, price, statistics);
 	}
 	
-    public int Use() {
-		return 0;
-    	
-    }
+    public abstract int Use();
 }

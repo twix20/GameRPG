@@ -13,6 +13,7 @@ public class HealingPotion extends UseableItem {
 	public HealingPotion(int id, String name, int price, StatisticsBag statistics) {
 		super(id, name, price, statistics);
 	}
+	@Override
 	public int Use() {
 		return this.getHealing();
 	}
