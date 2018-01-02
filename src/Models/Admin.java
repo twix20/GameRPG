@@ -35,8 +35,4 @@ public class Admin extends AppUser {
 	public void setDataBase(DataBase dataBase) {
 		this.dataBase = dataBase;
 	}
-	
-	public Boolean getIsPlayer() {
-		return false;
-	}
 }

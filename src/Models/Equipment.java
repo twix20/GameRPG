@@ -31,7 +31,5 @@ public class Equipment {
 	}
 	public void setPlayerItems(Set<PlayerItem> playerItems) {
 		this.playerItems = playerItems;
-	}
-	
-
+	}	
 }

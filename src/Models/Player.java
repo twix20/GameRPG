@@ -52,8 +52,4 @@ public class Player extends AppUser {
 	public Equipment getEquipment() {
 		return equipment;
 	}
-	
-	public Boolean getIsPlayer() {
-		return true;
-	}
 }

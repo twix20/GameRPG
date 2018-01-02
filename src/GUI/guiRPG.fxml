@@ -46,15 +46,15 @@
                   </Button>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="ModifyPanelL" prefHeight="772.0" prefWidth="378.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="ModifyPanelL" prefHeight="772.0" prefWidth="378.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <TreeView fx:id="TreeModifyL" layoutX="14.0" layoutY="14.0" prefHeight="439.0" prefWidth="349.0" AnchorPane.bottomAnchor="383.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="50.0" />
+                  <TreeView fx:id="TreeModifyL" layoutX="14.0" layoutY="14.0" prefHeight="439.0" prefWidth="349.0" AnchorPane.bottomAnchor="415.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="50.0" />
                   <Label layoutX="117.0" layoutY="14.0" text="Modify item section">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="NameModifyTextFieldR" layoutX="142.0" layoutY="422.0" />
+                  <TextField fx:id="NameModifyTextFieldL" layoutX="142.0" layoutY="422.0" />
                   <TextField fx:id="PriceModifyTextFieldL" layoutX="142.0" layoutY="475.0" />
                   <TextField fx:id="BasicAttributeModifyTextFieldL" layoutX="142.0" layoutY="528.0" />
                   <Label layoutX="55.0" layoutY="427.0" text="Name" />
@@ -74,6 +74,7 @@
                   <TextField fx:id="ValueOfSAModifyTextFieldL" layoutX="144.0" layoutY="634.0" />
                   <Label layoutX="20.0" layoutY="586.0" text="Special Attribute" />
                   <ChoiceBox fx:id="SpecialAttributeModifyChoiceBoxL" layoutX="150.0" layoutY="581.0" prefHeight="31.0" prefWidth="187.0" />
+                  <Button layoutX="54.0" layoutY="371.0" mnemonicParsing="false" onAction="#ModifyTreeSourceL" text="Show parameters of the choosen item" />
                </children>
             </AnchorPane>
             <AnchorPane fx:id="AddPanelL" prefHeight="772.0" prefWidth="378.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -291,17 +292,27 @@
             <AnchorPane fx:id="RegisterPanelL" layoutX="10.0" layoutY="10.0" prefHeight="772.0" prefWidth="378.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Button layoutX="220.0" layoutY="433.0" mnemonicParsing="false" onAction="#RegisterL" prefHeight="43.0" prefWidth="126.0" text="Register" />
-                  <TextField fx:id="AccountTextFieldL1" layoutX="96.0" layoutY="287.0" promptText="Account Name" />
-                  <TextField fx:id="PasswordTextFieldL1" layoutX="96.0" layoutY="351.0" promptText="Password" />
+                  <TextField fx:id="AccountRegisterTextFieldL" layoutX="96.0" layoutY="287.0" promptText="Account Name" />
+                  <TextField fx:id="PasswordRegisterTextFieldL" layoutX="96.0" layoutY="351.0" promptText="Password" />
                   <Label fx:id="LoginErrorLabelL12" layoutX="108.0" layoutY="156.0" text="Register Panel">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
                   <Button layoutX="33.0" layoutY="433.0" mnemonicParsing="false" onAction="#RegisterBackToWelcomeL" prefHeight="43.0" prefWidth="126.0" text="Back" />
+                  <Label fx:id="SuccessRegisterLabelL" layoutX="147.0" layoutY="214.0" text="Success" textFill="#05ab0d" visible="false">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="FailureRegisterLabelL" layoutX="152.0" layoutY="214.0" text="Failure" textFill="RED" visible="false">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="WelcomePanelL" prefHeight="772.0" prefWidth="378.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="WelcomePanelL" prefHeight="772.0" prefWidth="378.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Label layoutX="111.0" layoutY="208.0" text="Welcome" wrapText="true">
                      <font>
@@ -377,9 +388,9 @@
                   </Button>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="ModifyPanelR" layoutX="10.0" prefHeight="772.0" prefWidth="378.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="ModifyPanelR" layoutX="10.0" prefHeight="772.0" prefWidth="378.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <TreeView fx:id="TreeModifyR" layoutX="14.0" layoutY="14.0" prefHeight="439.0" prefWidth="349.0" AnchorPane.bottomAnchor="383.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="50.0" />
+                  <TreeView fx:id="TreeModifyR" layoutX="14.0" layoutY="14.0" prefHeight="439.0" prefWidth="349.0" AnchorPane.bottomAnchor="415.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="50.0" />
                   <Label layoutX="117.0" layoutY="14.0" text="Modify item section">
                      <font>
                         <Font name="System Bold" size="18.0" />
@@ -405,6 +416,7 @@
                   <TextField fx:id="ValueOfSAModifyTextFieldR" layoutX="144.0" layoutY="634.0" />
                   <Label layoutX="20.0" layoutY="586.0" text="Special Attribute" />
                   <ChoiceBox fx:id="SpecialAttributeModifyChoiceBoxR" layoutX="144.0" layoutY="581.0" prefHeight="31.0" prefWidth="187.0" />
+                  <Button layoutX="54.0" layoutY="371.0" mnemonicParsing="false" onAction="#ModifyTreeSourceR" text="Show parameters of the choosen item" />
                </children>
             </AnchorPane>
             <AnchorPane fx:id="AddPanelR" layoutX="10.0" layoutY="10.0" prefHeight="772.0" prefWidth="378.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -622,17 +634,27 @@
             <AnchorPane fx:id="RegisterPanelR" layoutX="20.0" layoutY="20.0" prefHeight="772.0" prefWidth="378.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Button layoutX="220.0" layoutY="433.0" mnemonicParsing="false" onAction="#RegisterR" prefHeight="43.0" prefWidth="126.0" text="Register" />
-                  <TextField fx:id="AccountTextFieldL11" layoutX="96.0" layoutY="287.0" promptText="Account Name" />
-                  <TextField fx:id="PasswordTextFieldL11" layoutX="96.0" layoutY="351.0" promptText="Password" />
+                  <TextField fx:id="AccountRegisterTextFieldR" layoutX="96.0" layoutY="287.0" promptText="Account Name" />
+                  <TextField fx:id="PasswordRegisterTextFieldR" layoutX="96.0" layoutY="351.0" promptText="Password" />
                   <Label fx:id="LoginErrorLabelL121" layoutX="108.0" layoutY="156.0" text="Register Panel">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
                   <Button layoutX="33.0" layoutY="433.0" mnemonicParsing="false" onAction="#RegisterBackToWelcomeR" prefHeight="43.0" prefWidth="126.0" text="Back" />
+                  <Label fx:id="SuccessRegisterLabelR" layoutX="147.0" layoutY="214.0" text="Success" textFill="#05ab0d" visible="false">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="FailureRegisterLabelR" layoutX="152.0" layoutY="214.0" text="Failure" textFill="RED" visible="false">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="WelcomePanelR" layoutX="10.0" layoutY="10.0" prefHeight="772.0" prefWidth="378.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="WelcomePanelR" layoutX="10.0" layoutY="10.0" prefHeight="772.0" prefWidth="378.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Label layoutX="111.0" layoutY="208.0" text="Welcome" wrapText="true">
                      <font>
