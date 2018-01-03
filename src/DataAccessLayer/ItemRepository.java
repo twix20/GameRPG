@@ -29,12 +29,7 @@ public class ItemRepository extends Repository<Item, Integer>{
 	
 	public Item FindItemByName(String itemName){
 		
-		Session session = this.sessionFactory.openSession();
-		Transaction tx = null;
-		
-		try {
-			tx = session.beginTransaction();
-			
+		runInSession(session -> {
 			CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
 			CriteriaQuery<Item> criteriaQuery = criteriaBuilder.createQuery(Item.class);
 			Root<Item> itemRoot = criteriaQuery.from(Item.class);
@@ -46,15 +41,7 @@ public class ItemRepository extends Repository<Item, Integer>{
 	        
 			Query q = session.createQuery(criteriaQuery);
 			entity = (Item)q.getSingleResult();
-					      
-			tx.commit();
-		} catch (RuntimeException e) {
-			tx.rollback();
-			e.printStackTrace();
-			throw e;
-		} finally {
-			session.close();
-		}	
+		});
 		
 		return entity;
 	}

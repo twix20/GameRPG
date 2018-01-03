@@ -20,6 +20,9 @@ public class BattlefieldActionsHistory {
 	
 	@Column(name="Value")
 	private int Value;
+	
+	@Column(name="Battlefield_Id", insertable=false, updatable=false)
+	private int BattlefieldId;
 
 	@ManyToOne
 	@JoinColumn(name = "Battlefield_Id", foreignKey = @ForeignKey(name = "BfActionsHistory_Bf"))

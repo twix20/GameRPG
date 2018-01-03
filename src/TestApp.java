@@ -8,6 +8,7 @@ public class TestApp {
 	public static void main(String[] args) {
 		DataBase db = new DataBase(new RepositoryFactory());
 		
+
 		ItemRepository itemRepo = db.getItemRepository();
 		Item i = itemRepo.FindItemByName("Miecz Grabarza ksiezyca");
 		System.out.format("Id: %d Name: %s\n", i.getId(), i.getName());
@@ -40,6 +41,7 @@ public class TestApp {
 
 		BattleFieldHistoryRepository bfhRepo = db.getBattleFieldHistoryRepository();
 		List<BattlefieldHistory> allBfh = bfhRepo.GetAll();
+		BattlefieldHistory oneHistory = bfhRepo.GetForBattleField(1);
 
 		DataBase.Dispose();
 	}

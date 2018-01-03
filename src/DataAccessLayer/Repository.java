@@ -68,7 +68,7 @@ public abstract class Repository<T, ID extends Serializable> {
 		return allFetched;
 	}
 	
-	private void runInSession(Consumer<Session> action) {
+	protected void runInSession(Consumer<Session> action) {
 		
 		Session session = this.sessionFactory.openSession();
 		Transaction tx = null;

@@ -2,6 +2,7 @@ package Models;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -31,8 +32,8 @@ public class BattlefieldHistory {
 	@JoinColumn(name = "Player2_Id", foreignKey = @ForeignKey(name = "Bf_Player2"))
 	private Player player2;
 
-	@OneToMany(mappedBy = "battlefieldHistory")
-	private List<BattlefieldActionsHistory> actions;
+	@OneToMany(mappedBy = "battlefieldHistory", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	private Set<BattlefieldActionsHistory> actions;
 	
 
 	public BattlefieldHistory() {}
@@ -90,11 +91,11 @@ public class BattlefieldHistory {
 		this.player2 = player2;
 	}
 	
-	public List<BattlefieldActionsHistory> getActions() {
+	public Set<BattlefieldActionsHistory> getActions() {
 		return actions;
 	}
 	
-	public void setActions(List<BattlefieldActionsHistory> actions) {
+	public void setActions(Set<BattlefieldActionsHistory> actions) {
 		this.actions = actions;
 	}
 }

@@ -3,7 +3,7 @@
 insert into StatisticType (Id, Name) values (1, 'Hp');
 insert into StatisticType (Id, Name) values (2, 'Mp');
 insert into StatisticType (Id, Name) values (3, 'DealDmg');
-insert into StatisticType (Id, Name) values (4, 'Armor');
+insert into StatisticType (Id, Name) values (4, 'Def');
 insert into StatisticType (Id, Name) values (5, 'Str');
 insert into StatisticType (Id, Name) values (6, 'Agi');
 
