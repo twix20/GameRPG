@@ -1,5 +1,6 @@
 package GUI;
 
+import DataAccessLayer.AccountRepository;
 import DataAccessLayer.DataBase;
 import DataAccessLayer.RepositoryFactory;
 import java.util.List;
@@ -29,14 +30,13 @@ public class GameFacade {
 	
 	
 	public String VerifyAccount(String accountName, String accountPassword) {
-		for (AppUser ap : allAccs) {
-			System.out.println("\nName: |" + ap.getNickname() + "| Pass |" + ap.getPassword() + "|");
-			if (accountName.equals(ap.getNickname()) && accountPassword.equals(ap.getPassword()))
-				if (ap instanceof Player) {
-					return "player";
-				} else return "admin";
-		}
-		return "error";
+		AccountRepository accRepo = getDataBase().getAccountRepository();
+		AppUser user = accRepo.GetByLoginPassword(accountName, accountPassword);
+		
+		if(user == null)
+			return "error";
+	
+		return user instanceof Player ? "player" : "admin";
 	}
 	
 	
