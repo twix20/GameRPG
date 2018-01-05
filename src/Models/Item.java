@@ -65,6 +65,10 @@ public abstract class Item
 	public StatisticsBag getStatistics() {
 		return new StatisticsBag(statistics);
 	}
+	
+	public Set<Statistic> getStatisticsSet(){
+		return this.statistics;
+	}
 
 	public void setStatistics(Set<Statistic> statistics) {
 		this.statistics = statistics;

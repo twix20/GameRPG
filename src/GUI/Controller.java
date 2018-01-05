@@ -488,16 +488,20 @@ public class Controller {
 		}
 		
 		public void ModifyApplyL() {
+			/*TODO
 			gameFacade.ModifyItem(FindLastSelectedItem(TreeModifyL), NameModifyTextFieldL.getText(), 
 					PriceModifyTextFieldL.getText(), BasicAttributeModifyTextFieldL.getText(), 
 					SpecialAttributeModifyChoiceBoxL.getSelectionModel().getSelectedItem(), ValueOfSAModifyTextFieldL.getText());
 			TreeModifyL.setRoot(MakeTreeRootFromDataBase());
+			*/
 		}
 		public void ModifyApplyR() {
+			/*//TODO
 			gameFacade.ModifyItem(FindLastSelectedItem(TreeModifyR), NameModifyTextFieldR.getText(), 
 					PriceModifyTextFieldR.getText(), BasicAttributeModifyTextFieldR.getText(), 
 					SpecialAttributeModifyChoiceBoxR.getSelectionModel().getSelectedItem(), ValueOfSAModifyTextFieldR.getText());
 			TreeModifyR.setRoot(MakeTreeRootFromDataBase());
+			*/
 		}
 		//----------------------------------
 		//Add panel
@@ -563,14 +567,18 @@ public class Controller {
 		*/
 		
 		public void AddApplyL() {
+			/*//TODO
 			gameFacade.AddItem(NameAddTextFieldL.getText(), PriceAddTextFieldL.getText(), BasicAttributeAddTextFieldL.getText(), 
 					SpecialAttributeAddChoiceBoxL.getSelectionModel().getSelectedItem(), ValueOfSAAddTextFieldL.getText());
 			TreeAddL.setRoot(MakeTreeRootFromDataBase());
+			*/
 		}
 		public void AddApplyR() {
+			/*//TODO
 			gameFacade.AddItem(NameAddTextFieldL.getText(), PriceAddTextFieldL.getText(), BasicAttributeAddTextFieldL.getText(), 
 					SpecialAttributeAddChoiceBoxL.getSelectionModel().getSelectedItem(), ValueOfSAAddTextFieldL.getText());
 			TreeAddR.setRoot(MakeTreeRootFromDataBase());
+			*/
 		}
 		//----------------------------------
 		//Remove panel
