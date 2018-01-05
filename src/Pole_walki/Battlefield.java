@@ -35,12 +35,12 @@ public class Battlefield {
 	  return stillAlive;
 	}
 	
-	public void Use(UseableItem item) {
-		if(new HealingPotion().getClass().equals(item.getClass())){
+	public void Use(HealingPotion item) {
+		
 			this.changeHP(this.getWhoseTurn(), item.Use());
 			this.getHistory().getActions().add(new BattlefieldActionsHistory(this.getWhoseTurn(),"potion", item.Use()));
 			this.changeTurn();	
-		}		
+		
 	}
 	
 	public void Rest() {
@@ -65,8 +65,11 @@ public class Battlefield {
 		 		this.getWhoseTurn().getEquipment().setGold(this.getWhoseTurn().getEquipment().getGold() + reward);
 	}
 	
-	public void changeTurn() {
-		this.setWhoseTurn(getAnotherPlayer());	
+	public String changeTurn() {
+		this.setWhoseTurn(getAnotherPlayer());
+		if (this.whoseTurn.equals(players.get(0)))
+			return "T1";
+		else return "T0";
 	}
 	public Player getAnotherPlayer() {
 		return this.getPlayers().get(0).equals(this.getWhoseTurn()) ? this.getPlayers().get(1) : this.getPlayers().get(0);	
