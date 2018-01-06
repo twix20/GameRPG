@@ -13,8 +13,7 @@ public class Shop {
 		this.setDepot(depot);
 		// TODO pobrac depot z bazy
 	}
-	public Item buy(Player player, int index){
-		Item item = depot.get(index);
+	public Item buy(Player player, Item item){
 		if(player.getEquipment().getGold() - item.getPrice() >= 0)
 		{
 			player.getEquipment().setGold(player.getEquipment().getGold() - item.getPrice());
@@ -27,26 +26,12 @@ public class Shop {
 	    }
 		return item;
 	}
-	public Item sell(Player player, int index){
-		PlayerItem it = null;
-			for(int i = 0; i < index; i++)
-				it = player.getEquipment().getPlayerItems().iterator().next();
-			player.getEquipment().getPlayerItems().remove(it);
-			player.getEquipment().setGold(player.getEquipment().getGold() + (it.getItem().getPrice()/2));
-			return it.getItem();
+	public Item sell(Player player, Item item){	
+			player.getEquipment().getPlayerItems().remove(item);
+			player.getEquipment().setGold(player.getEquipment().getGold() + (item.getPrice()/2));
+			return item;
 	}
-	public Item repair(Player player, int index){
-		PlayerItem it = null;
-		for(int i = 0; i < index; i++)
-			it = player.getEquipment().getPlayerItems().iterator().next();
-		int cost = 100 - it.getCurrentDurability();
-		if(player.getEquipment().getGold() - cost >= 0) {
-		player.getEquipment().setGold(player.getEquipment().getGold() - cost );
-		it.setCurrentDurability(100);
-		player.getEquipment().getPlayerItems().add(it);
-		}
-		return it.getItem();
-	}
+
 	public void showDepod() {
 		//gui
 		

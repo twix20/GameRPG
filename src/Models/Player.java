@@ -26,16 +26,11 @@ public class Player extends AppUser {
 	}
 	
 	public int Battle(Player player) {
-		int dmg = 2, durabilityLoss = 10, block = 0; //dmg bez zbroji 2
+		int dmg = 0,  block = 0; 
 		 		for(PlayerItem item : this.getEquipment().getPlayerItems()) {
 		 			
 		  			if(item.getItem() instanceof AttackItem && item.isEquiped() == true) {
 		  			dmg = 	item.getItem().getStatistics().getStatisticValue(StatisticTypeEnum.DealDmg);
-		 			item.setCurrentDurability(item.getCurrentDurability() - durabilityLoss);
-		 			
-		 			if(item.getCurrentDurability() <= 0)
-		 				item.setEquiped(false);
-		 			
 		  			break;
 		  			}
 		 
@@ -44,7 +39,6 @@ public class Player extends AppUser {
 		 		for(PlayerItem item : player.getEquipment().getPlayerItems()) {
 		 			if(item.getItem() instanceof DefensiveItem && item.isEquiped() == true) {
 		 				block = item.getItem().getStatistics().getStatisticValue(StatisticTypeEnum.Def);
-		 				item.setCurrentDurability(item.getCurrentDurability() - durabilityLoss);
 		 				break;
 		 			}
 				}

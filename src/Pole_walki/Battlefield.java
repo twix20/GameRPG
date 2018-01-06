@@ -37,8 +37,8 @@ public class Battlefield {
 	
 	public void Use(HealingPotion item) {
 		
-			this.changeHP(this.getWhoseTurn(), item.Use());
-			this.getHistory().getActions().add(new BattlefieldActionsHistory(this.getWhoseTurn(),"potion", item.Use()));
+			this.getHistory().getActions().add(item.Use(this.getWhoseTurn()));
+			this.getWhoseTurn().getEquipment().getPlayerItems().remove(item);
 			this.changeTurn();	
 		
 	}
