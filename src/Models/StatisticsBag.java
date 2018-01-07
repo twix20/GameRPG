@@ -35,6 +35,12 @@ public class StatisticsBag {
 		return allStatistics.containsKey(statType) ? 
 				allStatistics.get(statType).getValue(): 0;
 	}
+	public void setStatisticValue(StatisticTypeEnum statType, int newValue) {
+		if(allStatistics.containsKey(statType)) {
+			allStatistics.get(statType).setValue(newValue);
+		}
+	}
+	
 	public void removeStatistic(StatisticTypeEnum statType, int valueToRemove) {
 		if(!allStatistics.containsKey(statType)) return;
 		

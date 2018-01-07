@@ -606,18 +606,19 @@ public class Controller implements Initializable {
 			StatisticsBag sb = new StatisticsBag();
 			Item item = FindLastSelectedItem(TreeModifyL);
 
+			int newItemValue = new Integer(ValueOfSAModifyTextFieldL.getText());
 			switch (SpecialAttributeModifyChoiceBoxL.getSelectionModel().getSelectedItem()) {
 			case "Hp":
-				sb.addStatistic(new Statistic(new StatisticType(StatisticTypeEnum.Hp, "Hp"), new Integer(ValueOfSAModifyTextFieldL.getText())));
+				sb.setStatisticValue(StatisticTypeEnum.Hp, newItemValue);
 				break;
 			case "Mp":
-				sb.addStatistic(new Statistic(new StatisticType(StatisticTypeEnum.Mp, "Mp"), new Integer(ValueOfSAModifyTextFieldL.getText())));
+				sb.setStatisticValue(StatisticTypeEnum.Mp, newItemValue);
 				break;
 			case "Str":
-				sb.addStatistic(new Statistic(new StatisticType(StatisticTypeEnum.Str, "Str"), new Integer(ValueOfSAModifyTextFieldL.getText())));
+				sb.setStatisticValue(StatisticTypeEnum.Str, newItemValue);
 				break;
 			case "Agi":
-				sb.addStatistic(new Statistic(new StatisticType(StatisticTypeEnum.Agi, "Agi"), new Integer(ValueOfSAModifyTextFieldL.getText())));
+				sb.setStatisticValue(StatisticTypeEnum.Agi, newItemValue);
 				break;
 			}					
 			gameFacade.ModifyItem(item, NameModifyTextFieldL.getText(), new Integer(PriceModifyTextFieldL.getText()),
@@ -628,20 +629,21 @@ public class Controller implements Initializable {
 			StatisticsBag sb = new StatisticsBag();
 			Item item = FindLastSelectedItem(TreeModifyR);
 
+			int newItemValue = new Integer(ValueOfSAModifyTextFieldR.getText());
 			switch (SpecialAttributeModifyChoiceBoxR.getSelectionModel().getSelectedItem()) {
 			case "Hp":
-				sb.addStatistic(new Statistic(new StatisticType(StatisticTypeEnum.Hp, "Hp"), new Integer(ValueOfSAModifyTextFieldR.getText())));
+				sb.setStatisticValue(StatisticTypeEnum.Hp, newItemValue);
 				break;
 			case "Mp":
-				sb.addStatistic(new Statistic(new StatisticType(StatisticTypeEnum.Mp, "Mp"), new Integer(ValueOfSAModifyTextFieldR.getText())));
+				sb.setStatisticValue(StatisticTypeEnum.Mp, newItemValue);
 				break;
 			case "Str":
-				sb.addStatistic(new Statistic(new StatisticType(StatisticTypeEnum.Str, "Str"), new Integer(ValueOfSAModifyTextFieldR.getText())));
+				sb.setStatisticValue(StatisticTypeEnum.Str, newItemValue);
 				break;
 			case "Agi":
-				sb.addStatistic(new Statistic(new StatisticType(StatisticTypeEnum.Agi, "Agi"), new Integer(ValueOfSAModifyTextFieldR.getText())));
+				sb.setStatisticValue(StatisticTypeEnum.Agi, newItemValue);
 				break;
-			}					
+			}			
 			gameFacade.ModifyItem(item, NameModifyTextFieldR.getText(), new Integer(PriceModifyTextFieldR.getText()), 
 					sb, new Integer(BasicAttributeModifyTextFieldR.getText()).intValue());
 			TreeModifyR.setRoot(MakeTreeRootFromDataBase());
