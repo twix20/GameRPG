@@ -11,8 +11,8 @@ public class Spear extends AttackItem {
 
 	public Spear() {}
 	
-	public Spear(int id, String name, int price, StatisticsBag statistics, int damage) {
-		super(id, name, price, statistics, damage);
+	public Spear(String name, int price, StatisticsBag statistics, int damage) {
+		super(name, price, statistics, damage);
 	}
 	
     public int DealDamage() {

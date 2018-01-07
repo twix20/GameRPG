@@ -13,8 +13,8 @@ public abstract class AttackItem extends Item {
 
 	 public AttackItem() {}
 	
-	 public AttackItem(int id, String name, int price, StatisticsBag statistics, int damage) {
-		super(id, name, price, statistics);
+	 public AttackItem(String name, int price, StatisticsBag statistics, int damage) {
+		super(name, price, statistics);
 		 
 		this.setDamage(damage);
 		//this.setMaxDurability(maxDurability);

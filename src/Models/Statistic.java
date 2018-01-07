@@ -10,7 +10,7 @@ public class Statistic {
 	@Column(name = "Id", unique = true, nullable = false)
 	private int id;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="StatisticType_Id", foreignKey=@ForeignKey(name="Statistic_StatisticType"))
 	private StatisticType statisticType;
 	
@@ -19,8 +19,7 @@ public class Statistic {
 	
 	public Statistic() {}
 	
-	public Statistic(int id, StatisticType type, int value) {
-		this.id = id;
+	public Statistic(StatisticType type, int value) {
 		this.statisticType = type;
 		this.setValue(value);
 	}

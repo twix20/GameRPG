@@ -31,8 +31,7 @@ public abstract class Item
 	
 	public Item() {}
 	
-	public Item(int id, String name, int price, StatisticsBag statistics){
-		this.setId(id);
+	public Item(String name, int price, StatisticsBag statistics){
 		this.setName(name);
 		this.setPrice(price);
 		this.setStatistics(new HashSet<Statistic>(statistics.values()));

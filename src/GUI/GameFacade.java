@@ -104,6 +104,11 @@ public class GameFacade {
 			return new Statement("error");
 		
 		
+		//Sprawdzenie czy juz nie posiada przedmiotu
+		PlayerItem pi = player.getEquipment().getPlayerItemByItemId(item.getId());
+		if(pi != null)
+			return new Statement("error");
+		
 		PlayerItemId pk = new PlayerItemId();
 		pk.setItem(item);
 		pk.setPlayer(player);
@@ -125,8 +130,23 @@ public class GameFacade {
 	}
 
 	public void ItemSell(AppUser user, Item item) {
-		// TODO Auto-generated method stub
+		if(!(user instanceof Player))
+			return;
 		
+		Player player = (Player)user;
+		PlayerItem playerItem = player.getEquipment().getPlayerItemByItemId(item.getId());
+		
+		if(playerItem == null) //Player nie ma tego przedmiotu
+			return;
+		
+		int currentGold = player.getEquipment().getGold();
+		int goldAfterSell = currentGold + item.getPrice();
+		
+		player.getEquipment().setGold(goldAfterSell);
+		player.getEquipment().getPlayerItems().remove(playerItem);
+		
+		AccountRepository accRepo = db.getAccountRepository();
+		accRepo.SaveOrUpdate(player);
 	}
 
 	public void UseItemInEQ(Item item) {

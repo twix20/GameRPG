@@ -10,8 +10,8 @@ public class Sword extends AttackItem {
 
 	public Sword() {}
 	
-	public Sword(int id, String name, int price, StatisticsBag statistics, int damage) {
-		super(id, name, price, statistics, damage);
+	public Sword(String name, int price, StatisticsBag statistics, int damage) {
+		super(name, price, statistics, damage);
 	}
 	
     public int DealDamage() {

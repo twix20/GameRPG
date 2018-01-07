@@ -29,5 +29,15 @@ public class Equipment {
 	public void setPlayerItems(Set<PlayerItem> playerItems) {
 		this.playerItems = playerItems;
 	}
+	
+	public PlayerItem getPlayerItemByItemId(int itemId) {
+		for(PlayerItem pi : getPlayerItems()) {
+			
+			if(pi.getItem().getId() == itemId)
+				return pi;
+		}
+		
+		return null;
+	}
 
 }

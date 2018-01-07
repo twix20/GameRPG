@@ -22,4 +22,8 @@ public enum StatisticTypeEnum {
 	public static StatisticTypeEnum valueOf(int dbId) {
 		return map.get(dbId);
 	}
+	
+    public int getDbId() {
+        return dbId;
+    }
 }

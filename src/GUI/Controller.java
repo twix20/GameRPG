@@ -38,6 +38,7 @@ import Models.Shield;
 import Models.Spear;
 import Models.Statistic;
 import Models.StatisticType;
+import Models.StatisticTypeEnum;
 import Models.StatisticsBag;
 import Models.Sword;
 
@@ -607,16 +608,16 @@ public class Controller implements Initializable {
 
 			switch (SpecialAttributeModifyChoiceBoxL.getSelectionModel().getSelectedItem()) {
 			case "Hp":
-				sb.addStatistic(new Statistic(1, new StatisticType(1, "Hp"), new Integer(ValueOfSAModifyTextFieldL.getText())));
+				sb.addStatistic(new Statistic(new StatisticType(StatisticTypeEnum.Hp, "Hp"), new Integer(ValueOfSAModifyTextFieldL.getText())));
 				break;
 			case "Mp":
-				sb.addStatistic(new Statistic(2, new StatisticType(2, "Mp"), new Integer(ValueOfSAModifyTextFieldL.getText())));
+				sb.addStatistic(new Statistic(new StatisticType(StatisticTypeEnum.Mp, "Mp"), new Integer(ValueOfSAModifyTextFieldL.getText())));
 				break;
 			case "Str":
-				sb.addStatistic(new Statistic(5, new StatisticType(5, "Str"), new Integer(ValueOfSAModifyTextFieldL.getText())));
+				sb.addStatistic(new Statistic(new StatisticType(StatisticTypeEnum.Str, "Str"), new Integer(ValueOfSAModifyTextFieldL.getText())));
 				break;
 			case "Agi":
-				sb.addStatistic(new Statistic(6, new StatisticType(6, "Agi"), new Integer(ValueOfSAModifyTextFieldL.getText())));
+				sb.addStatistic(new Statistic(new StatisticType(StatisticTypeEnum.Agi, "Agi"), new Integer(ValueOfSAModifyTextFieldL.getText())));
 				break;
 			}					
 			gameFacade.ModifyItem(item, NameModifyTextFieldL.getText(), new Integer(PriceModifyTextFieldL.getText()),
@@ -629,16 +630,16 @@ public class Controller implements Initializable {
 
 			switch (SpecialAttributeModifyChoiceBoxR.getSelectionModel().getSelectedItem()) {
 			case "Hp":
-				sb.addStatistic(new Statistic(1, new StatisticType(1, "Hp"), new Integer(ValueOfSAModifyTextFieldR.getText())));
+				sb.addStatistic(new Statistic(new StatisticType(StatisticTypeEnum.Hp, "Hp"), new Integer(ValueOfSAModifyTextFieldR.getText())));
 				break;
 			case "Mp":
-				sb.addStatistic(new Statistic(2, new StatisticType(2, "Mp"), new Integer(ValueOfSAModifyTextFieldR.getText())));
+				sb.addStatistic(new Statistic(new StatisticType(StatisticTypeEnum.Mp, "Mp"), new Integer(ValueOfSAModifyTextFieldR.getText())));
 				break;
 			case "Str":
-				sb.addStatistic(new Statistic(5, new StatisticType(5, "Str"), new Integer(ValueOfSAModifyTextFieldR.getText())));
+				sb.addStatistic(new Statistic(new StatisticType(StatisticTypeEnum.Str, "Str"), new Integer(ValueOfSAModifyTextFieldR.getText())));
 				break;
 			case "Agi":
-				sb.addStatistic(new Statistic(6, new StatisticType(6, "Agi"), new Integer(ValueOfSAModifyTextFieldR.getText())));
+				sb.addStatistic(new Statistic(new StatisticType(StatisticTypeEnum.Agi, "Agi"), new Integer(ValueOfSAModifyTextFieldR.getText())));
 				break;
 			}					
 			gameFacade.ModifyItem(item, NameModifyTextFieldR.getText(), new Integer(PriceModifyTextFieldR.getText()), 
@@ -661,36 +662,43 @@ public class Controller implements Initializable {
 			
 			switch (SpecialAttributeAddChoiceBoxL.getSelectionModel().getSelectedItem()) {
 			case "Hp":
-				sb.addStatistic(new Statistic(1, new StatisticType(1, "Hp"), new Integer(ValueOfSAAddTextFieldL.getText())));
+				sb.addStatistic(new Statistic(new StatisticType(StatisticTypeEnum.Hp, "Hp"), new Integer(ValueOfSAAddTextFieldL.getText())));
 				break;
 			case "Mp":
-				sb.addStatistic(new Statistic(2, new StatisticType(2, "Mp"), new Integer(ValueOfSAAddTextFieldL.getText())));
+				sb.addStatistic(new Statistic(new StatisticType(StatisticTypeEnum.Mp, "Mp"), new Integer(ValueOfSAAddTextFieldL.getText())));
 				break;
 			case "Str":
-				sb.addStatistic(new Statistic(5, new StatisticType(5, "Str"), new Integer(ValueOfSAAddTextFieldL.getText())));
+				sb.addStatistic(new Statistic(new StatisticType(StatisticTypeEnum.Str, "Str"), new Integer(ValueOfSAAddTextFieldL.getText())));
 				break;
 			case "Agi":
-				sb.addStatistic(new Statistic(6, new StatisticType(6, "Agi"), new Integer(ValueOfSAAddTextFieldL.getText())));
+				sb.addStatistic(new Statistic(new StatisticType(StatisticTypeEnum.Agi, "Agi"), new Integer(ValueOfSAAddTextFieldL.getText())));
 				break;
 			}	
 			Item item = null;
-			int id = gameFacade.getDataBase().getItemRepository().GetAll().size() + 1;	
+			
+			String name = NameAddTextFieldL.getText();
+			int price = new Integer(PriceAddTextFieldL.getText()).intValue();
+			
+			String x = BasicAttributeAddTextFieldL.getText(); // To jest nullem
+			String xx = BasicAttributeModifyTextFieldL.getText();
+			
+			int basicAttribute = new Integer(xx).intValue();
 			switch (ItemTypeAddChoiceBoxL.getSelectionModel().getSelectedItem()) {
 			case "Sword":
-				item = new Sword(id, NameAddTextFieldL.getText(), new Integer(PriceAddTextFieldL.getText()).intValue(),
-						sb, new Integer(BasicAttributeModifyTextFieldL.getText()).intValue());
+				item = new Sword(name, price,
+						sb, basicAttribute);
 				break;
 			case "Spear":
-				item = new Spear(id, NameAddTextFieldL.getText(), new Integer(PriceAddTextFieldL.getText()).intValue(),
-						sb, new Integer(BasicAttributeModifyTextFieldL.getText()).intValue());
+				item = new Spear(name, price,
+						sb, basicAttribute);
 				break;
 			case "Armor":
-				item = new Armor(id, NameAddTextFieldL.getText(), new Integer(PriceAddTextFieldL.getText()).intValue(),
-						sb, new Integer(BasicAttributeModifyTextFieldL.getText()).intValue());
+				item = new Armor(name, price,
+						sb, basicAttribute);
 				break;
 			case "Shield":
-				item = new Shield(id, NameAddTextFieldL.getText(), new Integer(PriceAddTextFieldL.getText()).intValue(),
-						sb, new Integer(BasicAttributeModifyTextFieldL.getText()).intValue());
+				item = new Shield(name, price,
+						sb, basicAttribute);
 				break;
 			/*case "HealingPotion":
 				item = new Sword(id, NameAddTextFieldL.getText(), new Integer(PriceAddTextFieldL.getText()).intValue(),
@@ -705,36 +713,36 @@ public class Controller implements Initializable {
 			
 			switch (SpecialAttributeAddChoiceBoxR.getSelectionModel().getSelectedItem()) {
 			case "Hp":
-				sb.addStatistic(new Statistic(1, new StatisticType(1, "Hp"), new Integer(ValueOfSAAddTextFieldR.getText())));
+				sb.addStatistic(new Statistic(new StatisticType(StatisticTypeEnum.Hp, "Hp"), new Integer(ValueOfSAAddTextFieldR.getText())));
 				break;
 			case "Mp":
-				sb.addStatistic(new Statistic(2, new StatisticType(2, "Mp"), new Integer(ValueOfSAAddTextFieldR.getText())));
+				sb.addStatistic(new Statistic(new StatisticType(StatisticTypeEnum.Mp, "Mp"), new Integer(ValueOfSAAddTextFieldR.getText())));
 				break;
 			case "Str":
-				sb.addStatistic(new Statistic(5, new StatisticType(5, "Str"), new Integer(ValueOfSAAddTextFieldR.getText())));
+				sb.addStatistic(new Statistic(new StatisticType(StatisticTypeEnum.Str, "Str"), new Integer(ValueOfSAAddTextFieldR.getText())));
 				break;
 			case "Agi":
-				sb.addStatistic(new Statistic(6, new StatisticType(6, "Agi"), new Integer(ValueOfSAAddTextFieldR.getText())));
+				sb.addStatistic(new Statistic(new StatisticType(StatisticTypeEnum.Agi, "Agi"), new Integer(ValueOfSAAddTextFieldR.getText())));
 				break;
 			}	
+			
 			Item item = null;
-			int id = gameFacade.getDataBase().getItemRepository().GetAll().size() + 1;	
 			switch (ItemTypeAddChoiceBoxR.getSelectionModel().getSelectedItem()) {
 			case "Sword":
-				item = new Sword(id, NameAddTextFieldR.getText(), new Integer(PriceAddTextFieldR.getText()).intValue(),
-						sb, new Integer(BasicAttributeModifyTextFieldR.getText()).intValue());
+				item = new Sword(NameAddTextFieldR.getText(), new Integer(PriceAddTextFieldR.getText()).intValue(),
+						sb, new Integer(BasicAttributeAddTextFieldR.getText()).intValue());
 				break;
 			case "Spear":
-				item = new Spear(id, NameAddTextFieldR.getText(), new Integer(PriceAddTextFieldR.getText()).intValue(),
-						sb, new Integer(BasicAttributeModifyTextFieldR.getText()).intValue());
+				item = new Spear(NameAddTextFieldR.getText(), new Integer(PriceAddTextFieldR.getText()).intValue(),
+						sb, new Integer(BasicAttributeAddTextFieldR.getText()).intValue());
 				break;
 			case "Armor":
-				item = new Armor(id, NameAddTextFieldR.getText(), new Integer(PriceAddTextFieldR.getText()).intValue(),
-						sb, new Integer(BasicAttributeModifyTextFieldR.getText()).intValue());
+				item = new Armor(NameAddTextFieldR.getText(), new Integer(PriceAddTextFieldR.getText()).intValue(),
+						sb, new Integer(BasicAttributeAddTextFieldR.getText()).intValue());
 				break;
 			case "Shield":
-				item = new Shield(id, NameAddTextFieldR.getText(), new Integer(PriceAddTextFieldR.getText()).intValue(),
-						sb, new Integer(BasicAttributeModifyTextFieldR.getText()).intValue());
+				item = new Shield(NameAddTextFieldR.getText(), new Integer(PriceAddTextFieldR.getText()).intValue(),
+						sb, new Integer(BasicAttributeAddTextFieldR.getText()).intValue());
 				break;
 			/*case "HealingPotion":
 				item = new Sword(id, NameAddTextFieldL.getText(), new Integer(PriceAddTextFieldL.getText()).intValue(),
@@ -912,7 +920,7 @@ public class Controller implements Initializable {
 			}
 			
 			if (komunikat.getInformation().equals("error"))
-					ChatTextArea.appendText("Graczowi " + userL.getNickname() + " nie powiodlo sie kupic " + item.getName() + " bo mial za malo pieniedzy\n");
+					ChatTextArea.appendText("Graczowi " + userL.getNickname() + " nie powiodlo sie kupic " + item.getName() + " bo mial za malo pieniedzy albo juz posiada przedmiot\n");
 			else if (BuyRadioButtonL.isSelected())
 				ChatTextArea.appendText("Gracz " + userL.getNickname() + " kupil " + item.getName() + "\n");
 			else ChatTextArea.appendText("Gracz " + userL.getNickname() + " sprzedal " + item.getName() + "\n");
@@ -930,7 +938,7 @@ public class Controller implements Initializable {
 			}
 			
 			if (komunikat.getInformation().equals("error"))
-					ChatTextArea.appendText("Graczowi " + userR.getNickname() + " nie powiodlo sie kupic " + item.getName() + " bo mial za malo pieniedzy");
+					ChatTextArea.appendText("Graczowi " + userR.getNickname() + " nie powiodlo sie kupic " + item.getName() + " bo mial za malo pieniedzy albo juz posiada przedmiot");
 			else if (BuyRadioButtonR.isSelected())
 				ChatTextArea.appendText("Gracz " + userR.getNickname() + " kupil " + item.getName());
 			else ChatTextArea.appendText("Gracz " + userR.getNickname() + " sprzedal " + item.getName());
