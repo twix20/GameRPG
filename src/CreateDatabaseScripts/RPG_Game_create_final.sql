@@ -1,10 +1,10 @@
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2017-12-28 17:43:44.445
+-- Last modification date: 2018-01-07 12:27:44.296
 
 -- tables
 -- Table: BattlefieldActionsHistory
 CREATE TABLE BattlefieldActionsHistory (
-    Id int  NOT NULL,
+    Id serial  NOT NULL,
     ActionDate timestamp  NOT NULL,
     ActionDescription varchar(200)  NOT NULL,
     Value int  NOT NULL,
@@ -15,7 +15,7 @@ CREATE TABLE BattlefieldActionsHistory (
 
 -- Table: BattlefieldHistory
 CREATE TABLE BattlefieldHistory (
-    Id int  NOT NULL,
+    Id serial  NOT NULL,
     FightStartDate timestamp  NOT NULL,
     FightEndDate timestamp  NULL,
     WhoWon_Player_Id int  NOT NULL,
@@ -27,7 +27,7 @@ CREATE TABLE BattlefieldHistory (
 
 -- Table: Item
 CREATE TABLE Item (
-    Id int  NOT NULL,
+    Id serial  NOT NULL,
     Name varchar(200)  NOT NULL,
     MaxDurability int  NOT NULL,
     Price int  NOT NULL,
@@ -47,13 +47,13 @@ CREATE TABLE Item_Statistic_XREF (
 
 -- Table: Player
 CREATE TABLE Player (
-    Id int  NOT NULL,
+    Id serial  NOT NULL,
     Nickname varchar(200)  NOT NULL,
     Password varchar(200)  NOT NULL,
     CurrentHp int  NOT NULL,
     MaxHp int  NOT NULL,
-    CurrentMana int  NOT NULL,
-    MaxMana int  NOT NULL,
+    CurrentMana int  NULL,
+    MaxMana int  NULL,
     CreatedAt timestamp  NOT NULL,
     Gold int  NOT NULL,
     Type varchar(200)  NOT NULL,
@@ -72,7 +72,7 @@ CREATE TABLE Player_Item_XREF (
 
 -- Table: Statistic
 CREATE TABLE Statistic (
-    Id int  NOT NULL,
+    Id serial  NOT NULL,
     StatisticType_Id int  NOT NULL,
     Value int  NOT NULL,
     CONSTRAINT Statistic_pk PRIMARY KEY (Id)
@@ -80,7 +80,7 @@ CREATE TABLE Statistic (
 
 -- Table: StatisticType
 CREATE TABLE StatisticType (
-    Id int  NOT NULL,
+    Id serial  NOT NULL,
     Name varchar(200)  NOT NULL,
     CONSTRAINT StatisticType_pk PRIMARY KEY (Id)
 );

@@ -408,7 +408,7 @@ public class Controller implements Initializable {
 			};
 		}
 		public void RegisterR() {
-			Statement komunikat = gameFacade.RegisterUser(AccountRegisterTextFieldL.getText(), PasswordRegisterTextFieldL.getText());
+			Statement komunikat = gameFacade.RegisterUser(AccountRegisterTextFieldR.getText(), PasswordRegisterTextFieldR.getText());
 			switch (komunikat.getInformation()) {
 			case "success":
 				FailureRegisterLabelR.setVisible(false);
@@ -904,7 +904,7 @@ public class Controller implements Initializable {
 		public void BuyOrSellL() {
 			Statement komunikat = new Statement("success");
 			Item item = FindItemByName(ShopTableViewL.selectionModelProperty().getValue().getSelectedItem().getA());
-			if (BuyRadioButtonL.isArmed())
+			if (BuyRadioButtonL.isSelected())
 				komunikat = gameFacade.ItemBuy(userL, item);
 			else {
 				gameFacade.ItemSell(userL, item);
@@ -913,7 +913,7 @@ public class Controller implements Initializable {
 			
 			if (komunikat.getInformation().equals("error"))
 					ChatTextArea.appendText("Graczowi " + userL.getNickname() + " nie powiodlo sie kupic " + item.getName() + " bo mial za malo pieniedzy\n");
-			else if (BuyRadioButtonL.isArmed())
+			else if (BuyRadioButtonL.isSelected())
 				ChatTextArea.appendText("Gracz " + userL.getNickname() + " kupil " + item.getName() + "\n");
 			else ChatTextArea.appendText("Gracz " + userL.getNickname() + " sprzedal " + item.getName() + "\n");
 			
@@ -922,7 +922,7 @@ public class Controller implements Initializable {
 		public void BuyOrSellR() {
 			Statement komunikat = new Statement("success");
 			Item item = FindItemByName(ShopTableViewR.selectionModelProperty().getValue().getSelectedItem().getA());
-			if (BuyRadioButtonR.isArmed())
+			if (BuyRadioButtonR.isSelected())
 				komunikat = gameFacade.ItemBuy(userR, item);
 			else {
 				gameFacade.ItemSell(userR, item);
@@ -931,7 +931,7 @@ public class Controller implements Initializable {
 			
 			if (komunikat.getInformation().equals("error"))
 					ChatTextArea.appendText("Graczowi " + userR.getNickname() + " nie powiodlo sie kupic " + item.getName() + " bo mial za malo pieniedzy");
-			else if (BuyRadioButtonR.isArmed())
+			else if (BuyRadioButtonR.isSelected())
 				ChatTextArea.appendText("Gracz " + userR.getNickname() + " kupil " + item.getName());
 			else ChatTextArea.appendText("Gracz " + userR.getNickname() + " sprzedal " + item.getName());
 			

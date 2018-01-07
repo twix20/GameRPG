@@ -23,10 +23,18 @@ public abstract class Repository<T, ID extends Serializable> {
 		this.type = type;
 	}
 
-	public void Add(T model) {
+	public void SaveOrUpdate(T model) {
 		
 		runInSession(session -> {
 			session.saveOrUpdate(model);
+		});
+		
+	}
+	
+	public void Merge(T model) {
+		
+		runInSession(session -> {
+			session.merge(model);
 		});
 		
 	}

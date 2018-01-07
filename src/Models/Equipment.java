@@ -11,7 +11,7 @@ public class Equipment {
 	@Column(name = "Gold")
 	private int gold;
 	
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "pk.player")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "pk.player", cascade=CascadeType.ALL)
 	private Set<PlayerItem> playerItems = new HashSet<>();
 	
 	public Equipment() {}

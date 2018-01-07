@@ -10,8 +10,8 @@ import javax.persistence.*;
 public abstract class AppUser {
 
 	@Id
-	@Column(name = "Id")
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "Id", unique = true, updatable = false, nullable = false)
 	private int id;
 
 	@Column(name = "Nickname")

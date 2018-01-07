@@ -34,11 +34,12 @@ public class GameFacade {
 		newPlayer.setCurrentHp(100);
 		newPlayer.setMaxHp(100);
 		newPlayer.setRegisterDate(new Date());
+		newPlayer.getEquipment().setGold(200);
 		
 		//TODO. add default item to player
 		
 		AccountRepository accRepo = getDataBase().getAccountRepository();
-		accRepo.Add(newPlayer);
+		accRepo.SaveOrUpdate(newPlayer);
 		
 		return new Statement(ACCOUNT_CREATION_SUCCESS);
 	}
@@ -64,7 +65,7 @@ public class GameFacade {
 	//PRAWDOPODOBNIE TEZ DO POPRAWY
 	public void AddItem(Item itemToAdd) {
 		ItemRepository itemRepo = getDataBase().getItemRepository();
-		itemRepo.Add(itemToAdd);
+		itemRepo.SaveOrUpdate(itemToAdd);
 	}
 	
 	public void RemoveItem(Item itemToRemove) {
@@ -92,8 +93,34 @@ public class GameFacade {
 	}
 
 	public Statement ItemBuy(AppUser user, Item item) {
+		if(!(user instanceof Player))
+			return new Statement("error");
+		
+		Player player = (Player)user;
+		int currentGold = player.getEquipment().getGold();
+		
+		int balanceAfterPurchase = currentGold - item.getPrice();
+		if(balanceAfterPurchase < 0)//Za malo pieniedzy
+			return new Statement("error");
+		
+		
+		PlayerItemId pk = new PlayerItemId();
+		pk.setItem(item);
+		pk.setPlayer(player);
+		
+		PlayerItem newItem = new PlayerItem();
+		newItem.setPk(pk);
+		newItem.setEquiped(false);
+		newItem.setCustomItemName(null);
+		
+		player.getEquipment().setGold(balanceAfterPurchase);
+		player.getEquipment().getPlayerItems().add(newItem);
+		
+		AccountRepository accRepo = db.getAccountRepository();
+		accRepo.SaveOrUpdate(player);
+		
 		// TODO Auto-generated method stub
-		return new Statement("error"); // analogiczne zwracane wartosci co przy przy rejestracji
+		return new Statement("ok"); // analogiczne zwracane wartosci co przy przy rejestracji
 		
 	}
 
