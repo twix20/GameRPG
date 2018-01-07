@@ -44,6 +44,11 @@
                         <Font size="24.0" />
                      </font>
                   </Button>
+                  <Label fx:id="WelcomeAdminLabelL" layoutX="65.0" layoutY="90.0" text="Welcome">
+                     <font>
+                        <Font name="System Bold Italic" size="18.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
             <AnchorPane fx:id="ModifyPanelL" prefHeight="772.0" prefWidth="378.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -79,7 +84,7 @@
             </AnchorPane>
             <AnchorPane fx:id="AddPanelL" prefHeight="772.0" prefWidth="378.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <TreeView fx:id="TreeAddL" layoutX="14.0" layoutY="14.0" prefHeight="439.0" prefWidth="349.0" AnchorPane.bottomAnchor="383.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="50.0" />
+                  <TreeView fx:id="TreeAddL" layoutX="14.0" layoutY="14.0" prefHeight="439.0" prefWidth="349.0" AnchorPane.bottomAnchor="415.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="50.0" />
                   <Label layoutX="117.0" layoutY="14.0" text="Add item section">
                      <font>
                         <Font name="System Bold" size="18.0" />
@@ -105,6 +110,8 @@
                   <TextField fx:id="ValueOfSAAddTextFieldL" layoutX="144.0" layoutY="634.0" />
                   <Label layoutX="20.0" layoutY="586.0" text="Special Attribute" />
                   <ChoiceBox fx:id="SpecialAttributeAddChoiceBoxL" layoutX="144.0" layoutY="581.0" prefHeight="31.0" prefWidth="187.0" />
+                  <ChoiceBox fx:id="ItemTypeAddChoiceBoxL" layoutX="141.0" layoutY="371.0" prefHeight="31.0" prefWidth="187.0" />
+                  <Label layoutX="58.0" layoutY="376.0" text="Type" />
                </children>
             </AnchorPane>
             <AnchorPane fx:id="RemovePanelL" prefHeight="772.0" prefWidth="378.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -127,7 +134,7 @@
                   </Button>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="HistoryPanelL" prefHeight="772.0" prefWidth="378.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="HistoryPanelL" prefHeight="772.0" prefWidth="378.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Label layoutX="110.0" layoutY="14.0" text="History list section">
                      <font>
@@ -146,16 +153,18 @@
                   </Button>
                   <TableView fx:id="HistoryTableViewL" layoutX="14.0" layoutY="50.0" prefHeight="625.0" prefWidth="350.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="50.0">
                     <columns>
-                      <TableColumn id="Player1_name" prefWidth="117.0" text="Player1_name" />
-                      <TableColumn minWidth="0.0" prefWidth="111.0" text="Player2_name" />
-                        <TableColumn minWidth="0.0" prefWidth="121.0" text="Who_win" />
+                        <TableColumn id="Player1_name" fx:id="IDHistoryColumnL" prefWidth="37.0" text="ID" />
+                      <TableColumn id="Player1_name" fx:id="p1NameColumnL" prefWidth="104.0" text="Player1 name" />
+                      <TableColumn fx:id="p2NameColumnL" minWidth="0.0" prefWidth="104.0" text="Player2 name" />
+                        <TableColumn fx:id="winNameColumnL" minWidth="0.0" prefWidth="104.0" text="Who win" />
+                        <TableColumn id="Player1_name" fx:id="p1NameColumnL11" prefWidth="37.0" text="ID" />
                     </columns>
                   </TableView>
                   <TableView fx:id="SpecifyHistoryTableViewL" prefHeight="625.0" prefWidth="350.0" visible="false" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="50.0">
                     <columns>
-                      <TableColumn prefWidth="137.0" text="Who" />
-                      <TableColumn prefWidth="139.0" text="Action" />
-                        <TableColumn prefWidth="73.0" text="Value" />
+                      <TableColumn fx:id="WhoColumnSpecifyHistoryL" prefWidth="105.0" text="Who" />
+                      <TableColumn fx:id="ActionColumnSpecifyHistoryL" prefWidth="171.0" text="Action" />
+                        <TableColumn fx:id="ValueColumnSpecifyHistoryL" prefWidth="73.0" text="Value" />
                     </columns>
                   </TableView>
                </children>
@@ -176,6 +185,11 @@
                      </font>
                   </Button>
                   <ToggleButton fx:id="ReadyButtonL" layoutX="61.0" layoutY="346.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="114.0" text="Ready" />
+                  <Label fx:id="WelcomePlayerLabelL" layoutX="65.0" layoutY="90.0" text="Welcome">
+                     <font>
+                        <Font name="System Bold Italic" size="18.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
             <AnchorPane fx:id="EQPanelL" prefHeight="772.0" prefWidth="378.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -197,10 +211,10 @@
                   </Button>
                   <TableView fx:id="EQTableViewL" layoutX="14.0" layoutY="50.0" prefHeight="582.0" prefWidth="350.0" AnchorPane.bottomAnchor="140.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="50.0">
                      <columns>
-                        <TableColumn prefWidth="174.0" text="Items name" />
-                        <TableColumn minWidth="0.0" prefWidth="60.0" text="BA" />
-                        <TableColumn minWidth="0.0" prefWidth="60.0" text="SA" />
-                        <TableColumn minWidth="0.0" prefWidth="56.0" text="Used" />
+                        <TableColumn fx:id="EQNameColumnL" prefWidth="174.0" text="Items name" />
+                        <TableColumn fx:id="EQBAColumnL" minWidth="0.0" prefWidth="60.0" text="BA" />
+                        <TableColumn fx:id="EQSAColumnL" minWidth="0.0" prefWidth="60.0" text="SA" />
+                        <TableColumn fx:id="EQUsedColumnL" minWidth="0.0" prefWidth="56.0" text="Used" />
                      </columns>
                   </TableView>
                   <Label fx:id="MoneyEQLabelL" layoutX="172.0" layoutY="645.0" text="Money: ">
@@ -229,10 +243,10 @@
                   </Button>
                   <TableView fx:id="ShopTableViewL" layoutX="14.0" layoutY="50.0" prefHeight="582.0" prefWidth="350.0" AnchorPane.bottomAnchor="140.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="100.0">
                      <columns>
-                        <TableColumn prefWidth="150.0" text="Items name" />
-                        <TableColumn minWidth="0.0" prefWidth="60.0" text="BA" />
-                        <TableColumn minWidth="0.0" prefWidth="60.0" text="SA" />
-                        <TableColumn text="Price" />
+                        <TableColumn fx:id="ShopNameColumnL" prefWidth="150.0" text="Items name" />
+                        <TableColumn fx:id="ShopBAColumnL" minWidth="0.0" prefWidth="60.0" text="BA" />
+                        <TableColumn fx:id="ShopSAColumnL" minWidth="0.0" prefWidth="60.0" text="SA" />
+                        <TableColumn fx:id="ShopPriceColumnL" text="Price" />
                      </columns>
                   </TableView>
                   <Label fx:id="MoneyShopLabelL" layoutX="172.0" layoutY="645.0" text="Money: ">
@@ -262,6 +276,11 @@
                   <Button layoutX="145.0" layoutY="285.0" mnemonicParsing="false" onAction="#AttackL" prefHeight="35.0" prefWidth="89.0" text="Attack" />
                   <Button layoutX="145.0" layoutY="340.0" mnemonicParsing="false" onAction="#RestL" prefHeight="35.0" prefWidth="89.0" text="Rest" />
                   <Button layoutX="145.0" layoutY="395.0" mnemonicParsing="false" onAction="#ToUseItemL" prefHeight="35.0" prefWidth="89.0" text="Use item" />
+                  <Label fx:id="BattlefieldNameLabelL" layoutX="45.0" layoutY="150.0" text="Gracz">
+                     <font>
+                        <Font name="System Bold Italic" size="24.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
             <AnchorPane fx:id="PickItemPanelL" prefHeight="772.0" prefWidth="378.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -283,8 +302,8 @@
                   </Button>
                   <TableView fx:id="PickItemTableViewL" layoutX="14.0" layoutY="50.0" prefHeight="630.0" prefWidth="350.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="50.0">
                      <columns>
-                        <TableColumn prefWidth="233.0" text="Items name" />
-                        <TableColumn minWidth="0.0" prefWidth="116.0" text="Attribute" />
+                        <TableColumn fx:id="PickItemNameColumnL" prefWidth="233.0" text="Items name" />
+                        <TableColumn fx:id="PickItemAttributeColumnL" minWidth="0.0" prefWidth="116.0" text="Attribute" />
                      </columns>
                   </TableView>
                </children>
@@ -312,7 +331,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="WelcomePanelL" prefHeight="772.0" prefWidth="378.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="WelcomePanelL" prefHeight="772.0" prefWidth="378.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Label layoutX="111.0" layoutY="208.0" text="Welcome" wrapText="true">
                      <font>
@@ -386,6 +405,11 @@
                         <Font size="24.0" />
                      </font>
                   </Button>
+                  <Label fx:id="WelcomeAdminLabelR" layoutX="65.0" layoutY="90.0" text="Welcome">
+                     <font>
+                        <Font name="System Bold Italic" size="18.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
             <AnchorPane fx:id="ModifyPanelR" layoutX="10.0" prefHeight="772.0" prefWidth="378.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -421,7 +445,7 @@
             </AnchorPane>
             <AnchorPane fx:id="AddPanelR" layoutX="10.0" layoutY="10.0" prefHeight="772.0" prefWidth="378.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <TreeView fx:id="TreeAddR" layoutX="14.0" layoutY="14.0" prefHeight="439.0" prefWidth="349.0" AnchorPane.bottomAnchor="383.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="50.0" />
+                  <TreeView fx:id="TreeAddR" layoutX="14.0" layoutY="14.0" prefHeight="439.0" prefWidth="349.0" AnchorPane.bottomAnchor="415.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="50.0" />
                   <Label layoutX="117.0" layoutY="14.0" text="Add item section">
                      <font>
                         <Font name="System Bold" size="18.0" />
@@ -447,6 +471,8 @@
                   <TextField fx:id="ValueOfSAAddTextFieldR" layoutX="144.0" layoutY="634.0" />
                   <Label layoutX="20.0" layoutY="586.0" text="Special Attribute" />
                   <ChoiceBox fx:id="SpecialAttributeAddChoiceBoxR" layoutX="144.0" layoutY="581.0" prefHeight="31.0" prefWidth="187.0" />
+                  <Label layoutX="60.0" layoutY="376.0" text="Type" />
+                  <ChoiceBox fx:id="ItemTypeAddChoiceBoxR" layoutX="141.0" layoutY="371.0" prefHeight="31.0" prefWidth="187.0" />
                </children>
             </AnchorPane>
             <AnchorPane fx:id="RemovePanelR" layoutX="-6.0" prefHeight="772.0" prefWidth="378.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -469,7 +495,7 @@
                   </Button>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="HistoryPanelR" layoutX="-6.0" prefHeight="772.0" prefWidth="378.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="HistoryPanelR" layoutX="-6.0" prefHeight="772.0" prefWidth="378.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Label layoutX="110.0" layoutY="14.0" text="History list section">
                      <font>
@@ -488,16 +514,17 @@
                   </Button>
                   <TableView fx:id="HistoryTableViewR" layoutX="14.0" layoutY="50.0" prefHeight="625.0" prefWidth="350.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="50.0">
                      <columns>
-                        <TableColumn prefWidth="117.0" text="Player1 name" />
-                        <TableColumn minWidth="0.0" prefWidth="111.0" text="Player2 name" />
-                        <TableColumn minWidth="0.0" prefWidth="121.0" text="Who win" />
+                        <TableColumn id="Player1_name" fx:id="IDHistoryColumnR" prefWidth="37.0" text="ID" />
+                        <TableColumn fx:id="p1NameColumnR" prefWidth="104.0" text="Player1 name" />
+                        <TableColumn fx:id="p2NameColumnR" minWidth="0.0" prefWidth="104.0" text="Player2 name" />
+                        <TableColumn fx:id="winNameColumnR" minWidth="0.0" prefWidth="104.0" text="Who win" />
                      </columns>
                   </TableView>
                   <TableView fx:id="SpecifyHistoryTableViewR" prefHeight="625.0" prefWidth="350.0" visible="false" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="50.0">
                      <columns>
-                        <TableColumn prefWidth="137.0" text="Who" />
-                        <TableColumn prefWidth="139.0" text="Action" />
-                        <TableColumn prefWidth="73.0" text="Value" />
+                        <TableColumn fx:id="WhoColumnSpecifyHistoryR" prefWidth="105.0" text="Who" />
+                        <TableColumn fx:id="ActionColumnSpecifyHistoryR" prefWidth="171.0" text="Action" />
+                        <TableColumn fx:id="ValueColumnSpecifyHistoryR" prefWidth="73.0" text="Value" />
                      </columns>
                   </TableView>
                </children>
@@ -518,6 +545,11 @@
                      </font>
                   </Button>
                   <ToggleButton fx:id="ReadyButtonR" layoutX="204.0" layoutY="346.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="114.0" text="Ready" />
+                  <Label fx:id="WelcomePlayerLabelR" layoutX="65.0" layoutY="90.0" text="Welcome">
+                     <font>
+                        <Font name="System Bold Italic" size="18.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
             <AnchorPane fx:id="EQPanelR" prefHeight="772.0" prefWidth="378.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -539,10 +571,10 @@
                   </Button>
                   <TableView fx:id="EQTableViewR" layoutX="14.0" layoutY="50.0" prefHeight="582.0" prefWidth="350.0" AnchorPane.bottomAnchor="140.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="50.0">
                      <columns>
-                        <TableColumn prefWidth="174.0" text="Items name" />
-                        <TableColumn minWidth="0.0" prefWidth="60.0" text="BA" />
-                        <TableColumn minWidth="0.0" prefWidth="60.0" text="SA" />
-                        <TableColumn minWidth="0.0" prefWidth="56.0" text="Used" />
+                        <TableColumn fx:id="EQNameColumnR" prefWidth="174.0" text="Items name" />
+                        <TableColumn fx:id="EQBAColumnR" minWidth="0.0" prefWidth="60.0" text="BA" />
+                        <TableColumn fx:id="EQSAColumnR" minWidth="0.0" prefWidth="60.0" text="SA" />
+                        <TableColumn fx:id="EQUsedColumnR" minWidth="0.0" prefWidth="56.0" text="Used" />
                      </columns>
                   </TableView>
                   <Label fx:id="MoneyEQLabelR" layoutX="172.0" layoutY="645.0" text="Money: ">
@@ -571,10 +603,10 @@
                   </Button>
                   <TableView fx:id="ShopTableViewR" layoutX="14.0" layoutY="50.0" prefHeight="582.0" prefWidth="350.0" AnchorPane.bottomAnchor="140.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="100.0">
                      <columns>
-                        <TableColumn prefWidth="150.0" text="Items name" />
-                        <TableColumn minWidth="0.0" prefWidth="60.0" text="BA" />
-                        <TableColumn minWidth="0.0" prefWidth="60.0" text="SA" />
-                        <TableColumn text="Price" />
+                        <TableColumn fx:id="ShopNameColumnR" prefWidth="150.0" text="Items name" />
+                        <TableColumn fx:id="ShopBAColumnR" minWidth="0.0" prefWidth="60.0" text="BA" />
+                        <TableColumn fx:id="ShopSAColumnR" minWidth="0.0" prefWidth="60.0" text="SA" />
+                        <TableColumn fx:id="ShopPriceColumnR" text="Price" />
                      </columns>
                   </TableView>
                   <Label fx:id="MoneyShopLabelR" layoutX="172.0" layoutY="645.0" text="Money: ">
@@ -594,7 +626,7 @@
                   </RadioButton>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="BattlefieldPanelR" layoutX="-14.0" prefHeight="772.0" prefWidth="378.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="BattlefieldPanelR" layoutX="-14.0" prefHeight="772.0" prefWidth="378.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Label layoutX="130.0" layoutY="212.0" text="Battlefield">
                      <font>
@@ -604,6 +636,11 @@
                   <Button layoutX="145.0" layoutY="285.0" mnemonicParsing="false" onAction="#AttackR" prefHeight="35.0" prefWidth="89.0" text="Attack" />
                   <Button layoutX="145.0" layoutY="340.0" mnemonicParsing="false" onAction="#RestR" prefHeight="35.0" prefWidth="89.0" text="Rest" />
                   <Button layoutX="145.0" layoutY="395.0" mnemonicParsing="false" onAction="#ToUseItemR" prefHeight="35.0" prefWidth="89.0" text="Use item" />
+                  <Label fx:id="BattlefieldNameLabelR" layoutX="45.0" layoutY="150.0" text="Gracz">
+                     <font>
+                        <Font name="System Bold Italic" size="24.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
             <AnchorPane fx:id="PickItemPanelR" layoutX="-6.0" prefHeight="772.0" prefWidth="378.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -625,8 +662,8 @@
                   </Button>
                   <TableView fx:id="PickItemTableViewR" layoutX="14.0" layoutY="50.0" prefHeight="630.0" prefWidth="350.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="50.0">
                      <columns>
-                        <TableColumn prefWidth="233.0" text="Items name" />
-                        <TableColumn minWidth="0.0" prefWidth="116.0" text="Attribute" />
+                        <TableColumn fx:id="PickItemNameColumnR" prefWidth="233.0" text="Items name" />
+                        <TableColumn fx:id="PickItemAttributeColumnR" minWidth="0.0" prefWidth="116.0" text="Attribute" />
                      </columns>
                   </TableView>
                </children>
@@ -654,7 +691,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="WelcomePanelR" layoutX="10.0" layoutY="10.0" prefHeight="772.0" prefWidth="378.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="WelcomePanelR" layoutX="10.0" layoutY="10.0" prefHeight="772.0" prefWidth="378.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Label layoutX="111.0" layoutY="208.0" text="Welcome" wrapText="true">
                      <font>
