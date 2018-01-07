@@ -13,11 +13,11 @@ public abstract class AttackItem extends Item {
 
 	 public AttackItem() {}
 	
-	 public AttackItem(int id, String name, int price, StatisticsBag statistics, int maxDurability, int damage) {
+	 public AttackItem(int id, String name, int price, StatisticsBag statistics, int damage) {
 		super(id, name, price, statistics);
 		 
 		this.setDamage(damage);
-		this.setMaxDurability(maxDurability);
+		//this.setMaxDurability(maxDurability);
 	}
 	 
 	 public int DealDamage() {

@@ -15,6 +15,11 @@ public class StatisticType
 	
 	public StatisticType() {}
 	
+	public StatisticType(int id, String name) {
+		this.id = id;
+		this.name = name;
+	}
+	
 	public int getId() {
 		return id;
 	}
