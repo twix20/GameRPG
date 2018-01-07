@@ -32,7 +32,7 @@ public class Player extends AppUser {
 		 		for(PlayerItem item : this.getEquipment().getPlayerItems()) {
 		 			
 		  			if(item.getItem() instanceof AttackItem && item.isEquiped() == true) {
-		  			dmg = 	item.getItem().getStatistics().getStatisticValue(StatisticTypeEnum.DealDmg);
+		  				dmg = ((AttackItem)item.getItem()).DealDamage();
 		  			break;
 		  			}
 		 
@@ -47,7 +47,7 @@ public class Player extends AppUser {
 		 		return dmg - block;
 	}
 
-
+    
 	public int getCurrentHp() {
 		return currentHp;
 	}

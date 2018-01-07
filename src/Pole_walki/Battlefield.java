@@ -21,7 +21,7 @@ public class Battlefield {
 		history = new BattlefieldHistory(players.get(0), players.get(1));
 	}
 	public boolean Attack() {
-		int dmg = this.getWhoseTurn().Battle(getAnotherPlayer());
+		int dmg = this.getWhoseTurn().Battle(getAnotherPlayer());	
 		boolean stillAlive = this.getAnotherPlayer().getCurrentHp() - dmg > 0;
 		
 	     if(stillAlive) {

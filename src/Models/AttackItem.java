@@ -20,9 +20,7 @@ public abstract class AttackItem extends Item {
 		//this.setMaxDurability(maxDurability);
 	}
 	 
-	 public int DealDamage() {
-		 return 0;
-	 }
+	 public abstract int DealDamage();
 	 
 	public int getDamage() {
 		return damage;

@@ -15,9 +15,10 @@ public class PlayerItem {
 	public PlayerItem(Item item, Player player) {
 		this.setCustomItemName(item.getName());
 		this.setEquiped(false);
-		this.setItem(item);
 		this.setPk(new PlayerItemId(item, player)); 
-		this.setItem(player);
+		this.setItem(item);
+		
+		
 	}
 	
 	@EmbeddedId
