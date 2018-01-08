@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Table(name = "BattlefieldActionsHistory")
 public class BattlefieldActionsHistory {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "Id", unique = true, nullable = false)
 	private int Id;
 

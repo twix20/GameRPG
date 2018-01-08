@@ -11,12 +11,13 @@ public class HealingPotion extends UseableItem {
     
     public HealingPotion() {}
     
-	public HealingPotion(int id, String name, int price, StatisticsBag statistics) {
-		super(id, name, price, statistics);
+	public HealingPotion(String name, int price, StatisticsBag statistics) {
+		super(name, price, statistics);
 	}
 	@Override
-	public int Use() {
-		return this.getHealing();
+	public BattlefieldActionsHistory Use(Player player) {
+		player.setCurrentHp(player.getCurrentHp() + this.getHealing());
+		return new BattlefieldActionsHistory(player, "potion", this.getHealing());
 	}
 	public int getHealing() {
 		return healing;

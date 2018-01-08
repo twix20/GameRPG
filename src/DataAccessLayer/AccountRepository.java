@@ -37,8 +37,12 @@ public class AccountRepository extends Repository<AppUser, String> {
 	        criteriaQuery.where(predicate1, predicate2);
 	        
 			Query q = session.createQuery(criteriaQuery);
-			entity = (AppUser)q.getSingleResult();
-					      
+			
+			allFetched = q.getResultList();
+			
+        	if (allFetched.size() == 1) 
+        		entity = allFetched.get(0);
+
 			tx.commit();
 		} catch (RuntimeException e) {
 			tx.rollback();

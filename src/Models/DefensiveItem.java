@@ -11,8 +11,8 @@ public class DefensiveItem extends Item {
     
     public DefensiveItem() {}
     
-	public DefensiveItem(int id, String name, int price, StatisticsBag statistics, int defDamage) {
-		super(id, name, price, statistics);
+	public DefensiveItem(String name, int price, StatisticsBag statistics, int defDamage) {
+		super(name, price, statistics);
 		
 		this.setDefDamage(defDamage);
 	}

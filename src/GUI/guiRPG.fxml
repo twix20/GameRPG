@@ -92,7 +92,7 @@
                   </Label>
                   <TextField fx:id="NameAddTextFieldL" layoutX="142.0" layoutY="422.0" />
                   <TextField fx:id="PriceAddTextFieldL" layoutX="142.0" layoutY="475.0" />
-                  <TextField fx:id="BasicAttributeAddTextFieldR" layoutX="142.0" layoutY="528.0" />
+                  <TextField fx:id="BasicAttributeAddTextFieldL" layoutX="142.0" layoutY="528.0" />
                   <Label layoutX="55.0" layoutY="427.0" text="Name" />
                   <Label layoutX="59.0" layoutY="480.0" text="Price" />
                   <Label layoutX="27.0" layoutY="533.0" text="Basic Attribute" />

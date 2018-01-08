@@ -15,7 +15,9 @@ public class Player extends AppUser {
 	@Embedded
 	protected Equipment equipment;
 	
-	public Player() {}
+	public Player() {
+		equipment = new Equipment();
+	}
 
 	public Player(String nickname, String password, int currentHp, int maxHp, Equipment equipment) {
 		this.setCurrentHp(currentHp);
@@ -25,32 +27,21 @@ public class Player extends AppUser {
 		this.equipment = equipment;
 	}
 	
-	public int Battle(Player player) {
-		int dmg = 2, durabilityLoss = 10, block = 0; //dmg bez zbroji 2
-		 		for(PlayerItem item : this.getEquipment().getPlayerItems()) {
-		 			
-		  			if(item.getItem() instanceof AttackItem && item.isEquiped() == true) {
-		  			dmg = 	item.getItem().getStatistics().getStatisticValue(StatisticTypeEnum.DealDmg);
-		 			item.setCurrentDurability(item.getCurrentDurability() - durabilityLoss);
-		 			
-		 			if(item.getCurrentDurability() <= 0)
-		 				item.setEquiped(false);
-		 			
-		  			break;
-		  			}
-		 
-				}
-		 		
-		 		for(PlayerItem item : player.getEquipment().getPlayerItems()) {
-		 			if(item.getItem() instanceof DefensiveItem && item.isEquiped() == true) {
-		 				block = item.getItem().getStatistics().getStatisticValue(StatisticTypeEnum.Def);
-		 				item.setCurrentDurability(item.getCurrentDurability() - durabilityLoss);
-		 				break;
-		 			}
-				}
-		 		return dmg - block;
+	/// Returns damage to deal
+	public int Battle(Player target) {
+		int dmg = 2,  block = 0; 
+		
+		int dmgFromEquipment = this.getEquipment().GetSumEquipedStatistic(StatisticTypeEnum.DealDmg);
+ 		//Always deal at least 2 dmg
+		if(dmgFromEquipment > 2)
+			dmg = dmgFromEquipment;
+		
+		int targetDefFromEquipment = target.getEquipment().GetSumEquipedStatistic(StatisticTypeEnum.Def);
+		block = targetDefFromEquipment;
+		
+ 		int delta = dmg - block;
+ 		return delta <= 0 ? 2 : 50;//TODO do testow 50 hit
 	}
-
 
 	public int getCurrentHp() {
 		return currentHp;

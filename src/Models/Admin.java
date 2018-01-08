@@ -23,7 +23,7 @@ public class Admin extends AppUser {
 	public Admin() {}
 	public Item addItem(Item it) {
 		ItemRepository r = dataBase.getItemRepository();
-		r.Add(it);
+		r.SaveOrUpdate(it);
 		
 		return it;
 	}

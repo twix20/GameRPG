@@ -10,10 +10,10 @@ public class Sword extends AttackItem {
 
 	public Sword() {}
 	
-	public Sword(int id, String name, int price, StatisticsBag statistics, int damage) {
-		super(id, name, price, statistics, damage);
+	public Sword(String name, int price, StatisticsBag statistics, int damage) {
+		super(name, price, statistics, damage);
 	}
-	
+	@Override
     public int DealDamage() {
     	Random rand = new Random();
     	return (int) (rand.nextInt((int) (getDamage() * 0.3)) + getDamage() * 0.7);

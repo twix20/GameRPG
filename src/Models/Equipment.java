@@ -11,7 +11,7 @@ public class Equipment {
 	@Column(name = "Gold")
 	private int gold;
 	
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "pk.player")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "pk.player", cascade=CascadeType.ALL)
 	private Set<PlayerItem> playerItems = new HashSet<>();
 	
 	public Equipment() {}
@@ -28,6 +28,36 @@ public class Equipment {
 	}
 	public void setPlayerItems(Set<PlayerItem> playerItems) {
 		this.playerItems = playerItems;
+	}
+	
+	public PlayerItem getPlayerItemByItemId(int itemId) {
+		for(PlayerItem pi : getPlayerItems()) {
+			
+			if(pi.getItem().getId() == itemId)
+				return pi;
+		}
+		
+		return null;
+	}
+	
+	public int GetSumEquipedStatistic(StatisticTypeEnum stat) {
+		int totalStatValue = 0;
+		
+		for(PlayerItem playerItem : this.playerItems) {
+			if(playerItem.isEquiped() == false) continue;
+			
+			if(stat == StatisticTypeEnum.DealDmg && playerItem.getItem() instanceof AttackItem) {
+				totalStatValue += ((AttackItem)(playerItem.getItem())).getDamage();
+			}
+			
+			if(stat == StatisticTypeEnum.Def && playerItem.getItem() instanceof DefensiveItem) {
+				totalStatValue += ((DefensiveItem)(playerItem.getItem())).getDefDamage();
+			}
+			
+			totalStatValue += playerItem.getItem().getStatistics().getStatisticValue(stat);
+		}
+		
+		return totalStatValue;
 	}
 
 }

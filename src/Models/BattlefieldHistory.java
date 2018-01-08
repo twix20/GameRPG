@@ -1,6 +1,7 @@
 package Models;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -11,6 +12,7 @@ import javax.persistence.*;
 public class BattlefieldHistory {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "Id")
 	private int id;
 
@@ -36,8 +38,11 @@ public class BattlefieldHistory {
 	private Set<BattlefieldActionsHistory> actions;
 	
 
-	public BattlefieldHistory() {}
+	public BattlefieldHistory() {
+		this.setActions(new HashSet<>());
+	}
 	public BattlefieldHistory(Player player1, Player player2) {
+		this.setActions(new HashSet<>());
 		this.setFightStartDate(new Date());
 		this.setPlayer1(player1);
 		this.setPlayer2(player2);

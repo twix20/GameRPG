@@ -15,8 +15,8 @@ public class StatisticType
 	
 	public StatisticType() {}
 	
-	public StatisticType(int id, String name) {
-		this.id = id;
+	public StatisticType(StatisticTypeEnum id, String name) {
+		this.id = id.getDbId();
 		this.name = name;
 	}
 	

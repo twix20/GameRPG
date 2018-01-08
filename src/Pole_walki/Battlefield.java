@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
 
+import DataAccessLayer.AccountRepository;
+import DataAccessLayer.BattleFieldHistoryRepository;
+import DataAccessLayer.DataBase;
 import Models.BattlefieldActionsHistory;
 import Models.BattlefieldHistory;
 import Models.HealingPotion;
@@ -14,19 +17,25 @@ public class Battlefield {
     private ArrayList<Player> players;
     private Player whoseTurn;
     private BattlefieldHistory history;
-	public Battlefield(ArrayList<Player> players) {
+    private DataBase db;
+    
+	public Battlefield(DataBase db, ArrayList<Player> players) {
+		this.db = db;
 		this.setPlayers(players);
-		Random rand = new Random();
-		this.setWhoseTurn(rand.nextInt(100) < 50 ? players.get(0) : players.get(1));
-		history = new BattlefieldHistory(players.get(0), players.get(1));
+		this.history = new BattlefieldHistory(players.get(0), players.get(1));
 	}
 	public boolean Attack() {
-		int dmg = this.getWhoseTurn().Battle(getAnotherPlayer());
-		boolean stillAlive = this.getAnotherPlayer().getCurrentHp() - dmg > 0;
+		int dmg = GetCurrentPlayerDmg();
+		
+		int hpBeforeDmg = this.getAnotherPlayer().getCurrentHp();
+		int hpAfterDmg = hpBeforeDmg - dmg;
+		
+		boolean stillAlive = hpAfterDmg > 0;
+		
+		this.AppendActionHistory(new BattlefieldActionsHistory(this.getWhoseTurn(),"attack", dmg ));
 		
 	     if(stillAlive) {
 	    	 this.changeHP(this.getAnotherPlayer(), - dmg);
-	    	 this.getHistory().getActions().add(new BattlefieldActionsHistory(this.getWhoseTurn(),"attack", dmg ));
 	    	 this.changeTurn();
 	     } else {
 	    	 this.endBattle();
@@ -35,34 +44,58 @@ public class Battlefield {
 	  return stillAlive;
 	}
 	
+	public int GetCurrentPlayerDmg() {
+		return this.getWhoseTurn().Battle(getAnotherPlayer());
+	}
+	
 	public void Use(HealingPotion item) {
 		
-			this.changeHP(this.getWhoseTurn(), item.Use());
-			this.getHistory().getActions().add(new BattlefieldActionsHistory(this.getWhoseTurn(),"potion", item.Use()));
-			this.changeTurn();	
+		BattlefieldActionsHistory action = item.Use(this.getWhoseTurn());
+		this.AppendActionHistory(action);
+		
+		this.getWhoseTurn().getEquipment().getPlayerItems().remove(item);
+		this.changeTurn();	
 		
 	}
 	
 	public void Rest() {
 		this.changeHP(this.getWhoseTurn(),20);
-		this.getHistory().getActions().add(new BattlefieldActionsHistory(this.getWhoseTurn(),"rest", 20));
+	
+	   	this.AppendActionHistory(new BattlefieldActionsHistory(this.getWhoseTurn(),"rest", 20));
 		this.changeTurn();	
 	}
 	
-	public void changeHP(Player player, int howMany) {	
-		player.setCurrentHp(this.getWhoseTurn().getCurrentHp() + howMany);
+	public void changeHP(Player player, int howMany) {
+		player.setCurrentHp(player.getCurrentHp() + howMany);
 	}
 	
 	public void endBattle() {
 		this.getHistory().setFightEndDate(new Date());
 		this.getHistory().setWhoWonPlayerId(this.getWhoseTurn());
-		//TODO zapisac zmiany do bazy
+		
 		int reward = 10;
-		 		if(this.getAnotherPlayer().getEquipment().getGold() - reward <= 0)
-		 			this.getAnotherPlayer().getEquipment().setGold(0);
-		 		else
-		 			this.getAnotherPlayer().getEquipment().setGold(this.getAnotherPlayer().getEquipment().getGold() - reward);	
-		 		this.getWhoseTurn().getEquipment().setGold(this.getWhoseTurn().getEquipment().getGold() + reward);
+ 		if(this.getAnotherPlayer().getEquipment().getGold() - reward <= 0)
+ 			this.getAnotherPlayer().getEquipment().setGold(0);
+ 		else
+ 			this.getAnotherPlayer().getEquipment().setGold(this.getAnotherPlayer().getEquipment().getGold() - reward);	
+ 		this.getWhoseTurn().getEquipment().setGold(this.getWhoseTurn().getEquipment().getGold() + reward);
+ 		
+ 		
+ 		//Save in db
+ 		RefreshPlayersHp();
+ 		
+ 		BattleFieldHistoryRepository bfRepo = db.getBattleFieldHistoryRepository();
+ 		bfRepo.SaveOrUpdate(getHistory());
+ 		bfRepo.Detach(getHistory());
+	}
+	
+	private void RefreshPlayersHp() {
+		AccountRepository accRepo = db.getAccountRepository();
+		
+		for(Player p : players) {
+			p.setCurrentHp(p.getMaxHp());
+			accRepo.SaveOrUpdate(p);
+		}
 	}
 	
 	public String changeTurn() {
@@ -91,6 +124,13 @@ public class Battlefield {
 	public BattlefieldHistory getHistory() {
 		return history;
 	}
+	
+	public void AppendActionHistory(BattlefieldActionsHistory action) {
+		action.setBattlefield(getHistory());
+		
+		getHistory().getActions().add(action);
+	}
+	
 	public void setHistory(BattlefieldHistory history) {
 		this.history = history;
 	}

@@ -13,12 +13,12 @@ public class PlayerItem {
 	
 	public PlayerItem() {}
 	public PlayerItem(Item item, Player player) {
-		//this.setCurrentDurability(item.getDurability());
 		this.setCustomItemName(item.getName());
 		this.setEquiped(false);
-		this.setItem(item);
 		this.setPk(new PlayerItemId(item, player)); 
-		this.setItem(player);
+		this.setItem(item);
+		
+		
 	}
 	
 	@EmbeddedId
@@ -30,8 +30,7 @@ public class PlayerItem {
 	@Column(name = "IsEquiped")
 	private boolean isEquiped;
 	
-	@Column(name = "CurrentDurability")
-	private Integer currentDurability;
+	
 	
 	
 	@Transient
@@ -62,12 +61,7 @@ public class PlayerItem {
 	public void setEquiped(boolean isEquiped) {
 		this.isEquiped = isEquiped;
 	}
-	public Integer getCurrentDurability() {
-		return currentDurability;
-	}
-	public void setCurrentDurability(Integer currentDurability) {
-		this.currentDurability = currentDurability;
-	}
+	
 	
 	public PlayerItemId getPk() {
 		return pk;

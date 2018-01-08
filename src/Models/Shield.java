@@ -9,8 +9,8 @@ public class Shield extends DefensiveItem {
 
 	public Shield() {}
 	
-	public Shield(int id, String name, int price, StatisticsBag statistics, int defDamage) {
-		super(id, name, price, statistics, defDamage);
+	public Shield(String name, int price, StatisticsBag statistics, int defDamage) {
+		super(name, price, statistics, defDamage);
 	}
 	
     public int Defend() {
