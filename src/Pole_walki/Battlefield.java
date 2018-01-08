@@ -32,10 +32,10 @@ public class Battlefield {
 		
 		boolean stillAlive = hpAfterDmg > 0;
 		
+		this.AppendActionHistory(new BattlefieldActionsHistory(this.getWhoseTurn(),"attack", dmg ));
+		
 	     if(stillAlive) {
 	    	 this.changeHP(this.getAnotherPlayer(), - dmg);
-
-	    	 this.AppendActionHistory(new BattlefieldActionsHistory(this.getWhoseTurn(),"attack", dmg ));
 	    	 this.changeTurn();
 	     } else {
 	    	 this.endBattle();
