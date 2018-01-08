@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
 
+import DataAccessLayer.AccountRepository;
 import DataAccessLayer.BattleFieldHistoryRepository;
 import DataAccessLayer.DataBase;
 import Models.BattlefieldActionsHistory;
@@ -20,19 +21,20 @@ public class Battlefield {
     
 	public Battlefield(DataBase db, ArrayList<Player> players) {
 		this.db = db;
-		
 		this.setPlayers(players);
-		Random rand = new Random();
-		this.setWhoseTurn(rand.nextInt(100) < 50 ? players.get(0) : players.get(1));
-		history = new BattlefieldHistory(players.get(0), players.get(1));
+		this.history = new BattlefieldHistory(players.get(0), players.get(1));
 	}
 	public boolean Attack() {
-		int dmg = GetCurrentPlayerDmg();	
-		boolean stillAlive = this.getAnotherPlayer().getCurrentHp() - dmg >= 0;
+		int dmg = GetCurrentPlayerDmg();
+		
+		int hpBeforeDmg = this.getAnotherPlayer().getCurrentHp();
+		int hpAfterDmg = hpBeforeDmg - dmg;
+		
+		boolean stillAlive = hpAfterDmg > 0;
 		
 	     if(stillAlive) {
 	    	 this.changeHP(this.getAnotherPlayer(), - dmg);
-	    	 
+
 	    	 this.AppendActionHistory(new BattlefieldActionsHistory(this.getWhoseTurn(),"attack", dmg ));
 	    	 this.changeTurn();
 	     } else {
@@ -63,8 +65,8 @@ public class Battlefield {
 		this.changeTurn();	
 	}
 	
-	public void changeHP(Player player, int howMany) {	
-		player.setCurrentHp(this.getWhoseTurn().getCurrentHp() + howMany);
+	public void changeHP(Player player, int howMany) {
+		player.setCurrentHp(player.getCurrentHp() + howMany);
 	}
 	
 	public void endBattle() {
@@ -80,8 +82,20 @@ public class Battlefield {
  		
  		
  		//Save in db
+ 		RefreshPlayersHp();
+ 		
  		BattleFieldHistoryRepository bfRepo = db.getBattleFieldHistoryRepository();
  		bfRepo.SaveOrUpdate(getHistory());
+ 		bfRepo.Detach(getHistory());
+	}
+	
+	private void RefreshPlayersHp() {
+		AccountRepository accRepo = db.getAccountRepository();
+		
+		for(Player p : players) {
+			p.setCurrentHp(p.getMaxHp());
+			accRepo.SaveOrUpdate(p);
+		}
 	}
 	
 	public String changeTurn() {

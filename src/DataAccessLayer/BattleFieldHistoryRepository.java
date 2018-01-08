@@ -43,4 +43,5 @@ public class BattleFieldHistoryRepository extends Repository<BattlefieldHistory,
 		
 		return entity;
 	}
+
 }

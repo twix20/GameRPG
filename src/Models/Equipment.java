@@ -39,5 +39,25 @@ public class Equipment {
 		
 		return null;
 	}
+	
+	public int GetSumEquipedStatistic(StatisticTypeEnum stat) {
+		int totalStatValue = 0;
+		
+		for(PlayerItem playerItem : this.playerItems) {
+			if(playerItem.isEquiped() == false) continue;
+			
+			if(stat == StatisticTypeEnum.DealDmg && playerItem.getItem() instanceof AttackItem) {
+				totalStatValue += ((AttackItem)(playerItem.getItem())).getDamage();
+			}
+			
+			if(stat == StatisticTypeEnum.Def && playerItem.getItem() instanceof DefensiveItem) {
+				totalStatValue += ((DefensiveItem)(playerItem.getItem())).getDefDamage();
+			}
+			
+			totalStatValue += playerItem.getItem().getStatistics().getStatisticValue(stat);
+		}
+		
+		return totalStatValue;
+	}
 
 }

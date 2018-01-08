@@ -28,8 +28,15 @@ public abstract class Repository<T, ID extends Serializable> {
 		runInSession(session -> {
 			session.saveOrUpdate(model);
 		});
-		
 	}
+	
+	public void Detach(T model) {
+		runInSession(session -> {
+			session.evict(model);
+		});
+	}
+	
+	
 	
 	public void Merge(T model) {
 		

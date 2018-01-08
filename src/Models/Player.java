@@ -28,32 +28,21 @@ public class Player extends AppUser {
 	}
 	
 	/// Returns damage to deal
-	public int Battle(Player player) {
+	public int Battle(Player target) {
 		int dmg = 2,  block = 0; 
- 		for(PlayerItem item : this.getEquipment().getPlayerItems()) {
- 			
-  			if(item.getItem() instanceof AttackItem && item.isEquiped() == true) {
-  				dmg = ((AttackItem)item.getItem()).DealDamage();
-
-  			break;
-  			}
- 
-		}
- 		
- 		for(PlayerItem item : player.getEquipment().getPlayerItems()) {
- 			if(item.getItem() instanceof DefensiveItem && item.isEquiped() == true) {
- 				block = item.getItem().getStatistics().getStatisticValue(StatisticTypeEnum.Def);
- 				block += ((DefensiveItem)(item.getItem())).getDefDamage();
- 				break;
- 			}
-		}
- 		
- 		int delta = dmg - block;
+		
+		int dmgFromEquipment = this.getEquipment().GetSumEquipedStatistic(StatisticTypeEnum.DealDmg);
  		//Always deal at least 2 dmg
+		if(dmgFromEquipment > 2)
+			dmg = dmgFromEquipment;
+		
+		int targetDefFromEquipment = target.getEquipment().GetSumEquipedStatistic(StatisticTypeEnum.Def);
+		block = targetDefFromEquipment;
+		
+ 		int delta = dmg - block;
  		return delta <= 0 ? 2 : 50;//TODO do testow 50 hit
 	}
 
-    
 	public int getCurrentHp() {
 		return currentHp;
 	}

@@ -21,7 +21,6 @@ public class GameFacade {
 	
 	public Battlefield battleField;
 	
-	
 	public Statement RegisterUser(String accountName, String accountPassword) {
 		if (accountName.equals("") || accountPassword.equals(""))
 			return new Statement(ACCOUNT_DOESNT_EXIST);
@@ -164,7 +163,7 @@ public class GameFacade {
 
 	public void Rest(Player user) {
 		// TODO Auto-generated method stub
-		
+		this.battleField.Rest();
 	}
 
 	public Statement Attack(Player attacker, Player target) {
@@ -175,8 +174,6 @@ public class GameFacade {
 		
 		if(survived)
 			return new Statement("survived", dmgToDeal);
-		
-		this.battleField.endBattle();
 		
 		return new Statement("killed", dmgToDeal); //pierwszy parametr survived/killed, drugi to wartosc za ile zaatakowal
 	}

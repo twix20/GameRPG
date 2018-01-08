@@ -848,9 +848,12 @@ public class Controller implements Initializable {
 		public void ToBattlefield() {
 			if (ReadyButtonL.isSelected() == true && ReadyButtonR.isSelected() == true) {
 				Random r = new Random();
-				if ((r.nextInt() % 101) > 50)
+				int a = r.nextInt();
+				int whoseTurn = (a % 2);
+				if (whoseTurn == 1)
 					BlockGUI(true);
-				else BlockGUI(false);
+				else 
+					BlockGUI(false);
 				
 				PlayerPanelL.setVisible(false);
 				PlayerPanelR.setVisible(false);
@@ -864,7 +867,7 @@ public class Controller implements Initializable {
 				players.add((Player)userR);
 				
 				this.gameFacade.battleField = new Battlefield(this.gameFacade.getDataBase(), players);
-				this.gameFacade.battleField.setWhoseTurn(players.get(0));
+				this.gameFacade.battleField.setWhoseTurn(players.get(whoseTurn));
 			}
 		}
 		//----------------------------------
