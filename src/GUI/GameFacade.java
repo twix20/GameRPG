@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Set;
 
 import Models.*;
+import Pole_walki.Battlefield;
 
 public class GameFacade {
 	final String ACCOUNT_DOESNT_EXIST = "error"; 
@@ -17,6 +18,8 @@ public class GameFacade {
 	
 	private DataBase db = new DataBase(new RepositoryFactory());
 	private List<AppUser> allAccs = db.getAccountRepository().GetAll();
+	
+	public Battlefield battleField;
 	
 	
 	public Statement RegisterUser(String accountName, String accountPassword) {
@@ -159,13 +162,22 @@ public class GameFacade {
 		
 	}
 
-	public void Rest(AppUser user) {
+	public void Rest(Player user) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	public Statement Attack(AppUser attacker, AppUser target) {
+	public Statement Attack(Player attacker, Player target) {
 		// TODO Auto-generated method stub
-		return new Statement("killed", 10); //pierwszy parametr survived/killed, drugi to wartosc za ile zaatakowal
+		
+		int dmgToDeal = this.battleField.GetCurrentPlayerDmg();
+		boolean survived = this.battleField.Attack();
+		
+		if(survived)
+			return new Statement("survived", dmgToDeal);
+		
+		this.battleField.endBattle();
+		
+		return new Statement("killed", dmgToDeal); //pierwszy parametr survived/killed, drugi to wartosc za ile zaatakowal
 	}
 }

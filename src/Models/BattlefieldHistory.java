@@ -12,6 +12,7 @@ import javax.persistence.*;
 public class BattlefieldHistory {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "Id")
 	private int id;
 

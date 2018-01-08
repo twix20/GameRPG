@@ -18,6 +18,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Random;
@@ -41,6 +42,7 @@ import Models.StatisticType;
 import Models.StatisticTypeEnum;
 import Models.StatisticsBag;
 import Models.Sword;
+import Pole_walki.Battlefield;
 
 @SuppressWarnings("restriction")
 public class Controller implements Initializable {
@@ -856,6 +858,13 @@ public class Controller implements Initializable {
 				BattlefieldPanelR.setVisible(true);
 				BattlefieldNameLabelL.setText("Gracz " + userL.getNickname() + " -> " + new Integer(((Player)userL).getCurrentHp()).toString() + "Hp\n");
 				BattlefieldNameLabelR.setText("Gracz " + userR.getNickname() + " -> " + new Integer(((Player)userR).getCurrentHp()).toString() + "Hp\n");
+				
+				ArrayList<Player> players = new ArrayList<Player>();
+				players.add((Player)userL);
+				players.add((Player)userR);
+				
+				this.gameFacade.battleField = new Battlefield(this.gameFacade.getDataBase(), players);
+				this.gameFacade.battleField.setWhoseTurn(players.get(0));
 			}
 		}
 		//----------------------------------
@@ -951,7 +960,7 @@ public class Controller implements Initializable {
 		//Battlefield panel
 		public void AttackL() {
 			Statement komunikat = null;
-			komunikat = gameFacade.Attack(userL, userR);
+			komunikat = gameFacade.Attack((Player)userL, (Player)userR);
 			
 			ChatTextArea.appendText("Gracz " + userL.getNickname() + " zaatakowal " + userR.getNickname() + " i wybil mu "
 					+ new Integer(komunikat.getValue()).toString() + " obrazen!\n");
@@ -972,7 +981,7 @@ public class Controller implements Initializable {
 		}
 		public void AttackR() {
 			Statement komunikat = null;
-			komunikat = gameFacade.Attack(userR, userL);
+			komunikat = gameFacade.Attack((Player)userR, (Player)userL);
 			
 			ChatTextArea.appendText("Gracz " + userR.getNickname() + " zaatakowal " + userL.getNickname() + " i wybil mu "
 					+ new Integer(komunikat.getValue()).toString() + " obrazen!\n");
@@ -993,13 +1002,13 @@ public class Controller implements Initializable {
 		}
 		
 		public void RestL() {
-			gameFacade.Rest(userL);
+			gameFacade.Rest((Player)userL);
 			ChatTextArea.appendText("Gracz " + userL.getNickname() + " odpoczal i zregenerowal troche zdrowia\n");
 			BattlefieldNameLabelL.setText("Gracz " + userL.getNickname() + " -> " + new Integer(((Player)userL).getCurrentHp()).toString() + "Hp\n");
 			BlockGUI(true);
 		}
 		public void RestR() {
-			gameFacade.Rest(userR);
+			gameFacade.Rest((Player)userR);
 			ChatTextArea.appendText("Gracz " + userR.getNickname() + " odpoczal i zregenerowal troche zdrowia\n");
 			BattlefieldNameLabelR.setText("Gracz " + userR.getNickname() + " -> " + new Integer(((Player)userR).getCurrentHp()).toString() + "Hp\n");
 			BlockGUI(false);

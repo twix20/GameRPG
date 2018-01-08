@@ -27,24 +27,30 @@ public class Player extends AppUser {
 		this.equipment = equipment;
 	}
 	
+	/// Returns damage to deal
 	public int Battle(Player player) {
-		int dmg = 0,  block = 0; 
-		 		for(PlayerItem item : this.getEquipment().getPlayerItems()) {
-		 			
-		  			if(item.getItem() instanceof AttackItem && item.isEquiped() == true) {
-		  				dmg = ((AttackItem)item.getItem()).DealDamage();
-		  			break;
-		  			}
-		 
-				}
-		 		
-		 		for(PlayerItem item : player.getEquipment().getPlayerItems()) {
-		 			if(item.getItem() instanceof DefensiveItem && item.isEquiped() == true) {
-		 				block = item.getItem().getStatistics().getStatisticValue(StatisticTypeEnum.Def);
-		 				break;
-		 			}
-				}
-		 		return dmg - block;
+		int dmg = 2,  block = 0; 
+ 		for(PlayerItem item : this.getEquipment().getPlayerItems()) {
+ 			
+  			if(item.getItem() instanceof AttackItem && item.isEquiped() == true) {
+  				dmg = ((AttackItem)item.getItem()).DealDamage();
+
+  			break;
+  			}
+ 
+		}
+ 		
+ 		for(PlayerItem item : player.getEquipment().getPlayerItems()) {
+ 			if(item.getItem() instanceof DefensiveItem && item.isEquiped() == true) {
+ 				block = item.getItem().getStatistics().getStatisticValue(StatisticTypeEnum.Def);
+ 				block += ((DefensiveItem)(item.getItem())).getDefDamage();
+ 				break;
+ 			}
+		}
+ 		
+ 		int delta = dmg - block;
+ 		//Always deal at least 2 dmg
+ 		return delta <= 0 ? 2 : 50;//TODO do testow 50 hit
 	}
 
     
