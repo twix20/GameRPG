@@ -50,6 +50,14 @@ public class Player extends AppUser {
 	public void setCurrentHp(int currentHp) {
 		this.currentHp = currentHp;
 	}
+	
+	public void setCurrentHpWithEquipment() {
+		
+		int hpFromEquipment = this.getEquipment().GetSumEquipedStatistic(StatisticTypeEnum.Hp);
+		int maxPlayerHp = getMaxHp();
+		
+		this.setCurrentHp(hpFromEquipment + maxPlayerHp);
+	}
 
 	public int getMaxHp() {
 		return maxHp;

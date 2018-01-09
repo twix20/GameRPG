@@ -22,7 +22,11 @@ public class Battlefield {
     
 	public Battlefield(DataBase db, ArrayList<Player> players) {
 		this.db = db;
+		
 		this.setPlayers(players);
+		players.get(0).setCurrentHpWithEquipment();
+		players.get(1).setCurrentHpWithEquipment();
+		
 		this.history = new BattlefieldHistory(players.get(0), players.get(1));
 	}
 	public boolean Attack() {
