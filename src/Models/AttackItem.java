@@ -16,7 +16,7 @@ public abstract class AttackItem extends Item {
 		this.setDamage(damage);
 	}
 	 
-	 public abstract int DealDamage();
+	public abstract int DealDamage();
 	 
 	public int getDamage() {
 		return damage;

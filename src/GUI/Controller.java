@@ -1323,23 +1323,22 @@ public class Controller implements Initializable {
 		
 		private ObservableList<TableRow> ConvertEQToTable(Set<PlayerItem> items) {		
 			ObservableList<TableRow> data = FXCollections.observableArrayList();
-			String equiped;
+			
 			for (PlayerItem i : items) {
-				if (i.isEquiped()) equiped = "*";
-				else equiped = "";
-						
-				if (i.getItem() instanceof AttackItem)
-					data.add(new TableRow(i.getItem().getName(), new Integer(((AttackItem)i.getItem()).DealDamage()).toString(),
-							((Statistic) i.getItem().getStatistics().values().toArray()[0]).getStatisticType().getName() + " " +
-							new Integer(((Statistic) i.getItem().getStatistics().values().toArray()[0]).getValue()).toString(), equiped));
-				else if (i.getItem() instanceof DefensiveItem)
-					data.add(new TableRow(i.getItem().getName(), new Integer(((DefensiveItem)i.getItem()).getDefDamage()).toString(),
-							((Statistic) i.getItem().getStatistics().values().toArray()[0]).getStatisticType().getName() + " " +
-							new Integer(((Statistic) i.getItem().getStatistics().values().toArray()[0]).getValue()).toString(), equiped));
-				else if (i.getItem() instanceof HealingPotion)
-					data.add(new TableRow(i.getItem().getName(), new Integer(((HealingPotion)i.getItem()).getHealing()).toString(),
-							"---", 
-							new Integer(i.getItem().getPrice()).toString()));
+				String equiped = i.isEquiped() ? "*YES*" : "";
+				if(i.getItem() instanceof HealingPotion)
+					equiped = "---";
+				
+				String itemName = i.getItem().getName();
+				int BA = i.getItem().getBaisicAttribute();
+				
+				String statisticAttributes = "";
+				for(Statistic s : i.getItem().getStatisticsSet()) {
+					if(s.getValue() != 0)
+						statisticAttributes += String.format("%s %d ", s.getStatisticType().getName(), s.getValue());
+				}
+
+				data.add(new TableRow(itemName, Integer.toString(BA), statisticAttributes, equiped));
 			}
 			return data;
 		}
