@@ -19,7 +19,6 @@ import javafx.collections.ObservableList;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 import java.util.ResourceBundle;
@@ -976,59 +975,71 @@ public class Controller implements Initializable {
 			BuyRadioButtonL.setDisable(true);
 		}
 		public void RadioButtonsSelectSellL() {
-			ShopTableViewL.setItems(ConvertShopBuyToTable(new ArrayList(((Player)userL).getEquipment().getPlayerItems())));
+			
+			List<Item> items = new ArrayList<>();
+			for(PlayerItem pi : ((Player)userL).getEquipment().getPlayerItems()) {
+				items.add(pi.getItem());
+			}
+			
+			ShopTableViewL.setItems(ConvertShopBuyToTable(items));
 			BuyRadioButtonL.setSelected(false);	
 			BuyRadioButtonL.setDisable(false);
 			SellRadioButtonL.setDisable(true);
 		}
 		public void RadioButtonsSelectBuyR() {
-			ShopTableViewR.setItems(ConvertShopBuyToTable(gameFacade.getDataBase().getItemRepository().GetAll()));
+			List<Item> items = new ArrayList<>();
+			for(PlayerItem pi : ((Player)userR).getEquipment().getPlayerItems()) {
+				items.add(pi.getItem());
+			}
+			
+			ShopTableViewR.setItems(ConvertShopBuyToTable(items));
 			SellRadioButtonR.setSelected(false);
 			SellRadioButtonR.setDisable(false);
 			BuyRadioButtonR.setDisable(true);
 		}
 		public void RadioButtonsSelectSellR() {
-			ShopTableViewR.setItems(ConvertShopBuyToTable(new ArrayList(((Player)userR).getEquipment().getPlayerItems())));
+			List<Item> items = new ArrayList<>();
+			for(PlayerItem pi : ((Player)userR).getEquipment().getPlayerItems()) {
+				items.add(pi.getItem());
+			}
+			
+			ShopTableViewR.setItems(ConvertShopBuyToTable(items));
 			BuyRadioButtonR.setSelected(false);
 			BuyRadioButtonR.setDisable(false);
 			SellRadioButtonR.setDisable(true);
 		}
 		
-		public void BuyOrSellL() {
+		public void BuyOrSell(TableView<TableRow> ShopTableView, RadioButton BuyRadioButton, Label MoneyShopLabel, AppUser user) {
 			Statement komunikat = new Statement("success");
-			Item item = FindItemByName(ShopTableViewL.selectionModelProperty().getValue().getSelectedItem().getA());
+			Item item = FindItemByName(ShopTableView.selectionModelProperty().getValue().getSelectedItem().getA());
 			if (BuyRadioButtonL.isSelected())
-				komunikat = gameFacade.ItemBuy(userL, item);
+				komunikat = gameFacade.ItemBuy(user, item);
 			else {
-				gameFacade.ItemSell(userL, item);
-				ShopTableViewL.setItems(ConvertShopBuyToTable(new ArrayList(((Player)userL).getEquipment().getPlayerItems())));
+				gameFacade.ItemSell(user, item);
+				
+				List<Item> items = new ArrayList<>();
+				for(PlayerItem pi : ((Player)user).getEquipment().getPlayerItems()) {
+					items.add(pi.getItem());
+				}
+			
+				ShopTableView.setItems(ConvertShopBuyToTable(items));
 			}
 			
 			if (komunikat.getInformation().equals("error"))
-					ChatTextArea.appendText("Graczowi " + userL.getNickname() + " nie powiodlo sie kupic " + item.getName() + " bo mial za malo pieniedzy albo juz posiada przedmiot\n");
+					ChatTextArea.appendText("Graczowi " + user.getNickname() + " nie powiodlo sie kupic " + item.getName() + " bo mial za malo pieniedzy albo juz posiada przedmiot\n");
 			else if (BuyRadioButtonL.isSelected())
-				ChatTextArea.appendText("Gracz " + userL.getNickname() + " kupil " + item.getName() + "\n");
-			else ChatTextArea.appendText("Gracz " + userL.getNickname() + " sprzedal " + item.getName() + "\n");
+				ChatTextArea.appendText("Gracz " + user.getNickname() + " kupil " + item.getName() + "\n");
+			else 
+				ChatTextArea.appendText("Gracz " + user.getNickname() + " sprzedal " + item.getName() + "\n");
 			
-			MoneyShopLabelL.setText("Money " + new Integer(((Player)userL).getEquipment().getGold()).toString());
+			MoneyShopLabel.setText("Money " + new Integer(((Player)userL).getEquipment().getGold()).toString());
+		}
+		
+		public void BuyOrSellL() {
+			BuyOrSell(ShopTableViewL, BuyRadioButtonL, MoneyShopLabelL, userL);
 		}
 		public void BuyOrSellR() {
-			Statement komunikat = new Statement("success");
-			Item item = FindItemByName(ShopTableViewR.selectionModelProperty().getValue().getSelectedItem().getA());
-			if (BuyRadioButtonR.isSelected())
-				komunikat = gameFacade.ItemBuy(userR, item);
-			else {
-				gameFacade.ItemSell(userR, item);
-				ShopTableViewR.setItems(ConvertShopBuyToTable(new ArrayList(((Player)userR).getEquipment().getPlayerItems())));
-			}
-			
-			if (komunikat.getInformation().equals("error"))
-					ChatTextArea.appendText("Graczowi " + userR.getNickname() + " nie powiodlo sie kupic " + item.getName() + " bo mial za malo pieniedzy albo juz posiada przedmiot");
-			else if (BuyRadioButtonR.isSelected())
-				ChatTextArea.appendText("Gracz " + userR.getNickname() + " kupil " + item.getName());
-			else ChatTextArea.appendText("Gracz " + userR.getNickname() + " sprzedal " + item.getName());
-			
-			MoneyShopLabelR.setText("Money " + new Integer(((Player)userR).getEquipment().getGold()).toString());
+			BuyOrSell(ShopTableViewR, BuyRadioButtonR, MoneyShopLabelR, userR);
 		}
 		//----------------------------------
 		//Battlefield panel
@@ -1282,7 +1293,6 @@ public class Controller implements Initializable {
 			}
 			return data;
 		}
-		
 		
 		private ObservableList<TableRow> ConvertShopBuyToTable(List<Item> items) {		
 			ObservableList<TableRow> data = FXCollections.observableArrayList();

@@ -6,7 +6,6 @@ import DataAccessLayer.ItemRepository;
 import DataAccessLayer.RepositoryFactory;
 
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -18,7 +17,6 @@ public class GameFacade {
 	final String ACCOUNT_CREATION_SUCCESS = "success";
 	
 	private DataBase db = new DataBase(new RepositoryFactory());
-	private List<AppUser> allAccs = db.getAccountRepository().GetAll();
 	
 	public Battlefield battleField;
 	

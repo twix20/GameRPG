@@ -2,14 +2,12 @@ package Pole_walki;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Random;
 
 import DataAccessLayer.AccountRepository;
 import DataAccessLayer.BattleFieldHistoryRepository;
 import DataAccessLayer.DataBase;
 import Models.BattlefieldActionsHistory;
 import Models.BattlefieldHistory;
-import Models.HealingPotion;
 import Models.Player;
 import Models.PlayerItem;
 import Models.UseableItem;

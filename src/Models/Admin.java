@@ -1,14 +1,6 @@
 package Models;
 
-import java.util.List;
-
 import javax.persistence.*;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
-import javax.persistence.metamodel.EntityType;
-
-import org.hibernate.Session;
 
 import DataAccessLayer.DataBase;
 import DataAccessLayer.ItemRepository;

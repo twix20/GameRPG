@@ -1,16 +1,7 @@
 package Pole_walki;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.util.ArrayList;
-
 import org.junit.jupiter.api.Test;
 
-import Models.HealingPotion;
-import Models.Player;
-import Models.PlayerItem;
-import Models.Spear;
-import Models.StatisticsBag;
 
 class BattlefieldTest {
 

@@ -1,14 +1,11 @@
 package Sklep;
 
-import static org.junit.Assert.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.awt.List;
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
-import Models.AttackItem;
 import Models.Item;
 import Models.Player;
 import Models.PlayerItem;

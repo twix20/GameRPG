@@ -27,9 +27,9 @@ public class Shop {
 		return item;
 	}
 	public Item sell(Player player, Item item){	
-			player.getEquipment().getPlayerItems().remove(item);
-			player.getEquipment().setGold(player.getEquipment().getGold() + (item.getPrice()/2));
-			return item;
+		player.getEquipment().getPlayerItems().remove(item);
+		player.getEquipment().setGold(player.getEquipment().getGold() + (item.getPrice()/2));
+		return item;
 	}
 
 	public void showDepod() {
