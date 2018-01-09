@@ -151,6 +151,18 @@ public class GameFacade {
 
 	public void ToggleEquipeItemInEQ(Player player, Item item) {
 		PlayerItem itemToToggleEquipe = player.getEquipment().getPlayerItemByItemId(item.getId());
+		
+		for(PlayerItem it : player.getEquipment().getPlayerItems()) {
+			if(it.isEquiped() == true)
+			if((item instanceof AttackItem && it.getItem() instanceof AttackItem)
+					|| (item instanceof DefensiveItem && it.getItem() instanceof DefensiveItem))
+		    {
+				it.setEquiped(false);
+				break;
+			}
+		
+		}
+			
 		itemToToggleEquipe.setEquiped(!itemToToggleEquipe.isEquiped());
 		
 		AccountRepository accRepo = db.getAccountRepository();
