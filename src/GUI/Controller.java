@@ -486,10 +486,14 @@ public class Controller implements Initializable {
 		//admin panel
 		public void ToModifyL() {
 			AdminPanelL.setVisible(false);
+			
+			TreeModifyL.setRoot(MakeTreeRootFromDataBase());
 			ModifyPanelL.setVisible(true);
 		}
 		public void ToModifyR() {
 			AdminPanelR.setVisible(false);
+			
+			TreeModifyR.setRoot(MakeTreeRootFromDataBase());
 			ModifyPanelR.setVisible(true);
 		}
 		
@@ -504,19 +508,27 @@ public class Controller implements Initializable {
 
 		public void ToRemoveL() {
 			AdminPanelL.setVisible(false);
+			
+			TreeRemoveL.setRoot(MakeTreeRootFromDataBase());
 			RemovePanelL.setVisible(true);
 		}
 		public void ToRemoveR() {
 			AdminPanelR.setVisible(false);
+			
+			TreeRemoveR.setRoot(MakeTreeRootFromDataBase());
 			RemovePanelR.setVisible(true);
 		}
 		
 		public void ToHistoryL() {
 			AdminPanelL.setVisible(false);
+			
+			HistoryTableViewL.setItems(ConvertHistoryToTable());
 			HistoryPanelL.setVisible(true);
 		}
 		public void ToHistoryR() {
 			AdminPanelR.setVisible(false);
+			
+			HistoryTableViewR.setItems(ConvertHistoryToTable());
 			HistoryPanelR.setVisible(true);
 		}
 
@@ -659,35 +671,42 @@ public class Controller implements Initializable {
 			AdminPanelR.setVisible(true);
 		}
 		
-		public void AddApplyL() {
+		public void AddApply(TextField valueOfSAAddTextField, ChoiceBox<String> specialAttributeAddChoiceBox, 
+				TextField nameAddTextField, 
+				TextField priceAddTextField, 
+				TextField basicAttributeAddTextField, 
+				ChoiceBox<String> itemTypeAddChoiceBox, 
+				TreeView<String> treeAdd
+			) {
+			
 			StatisticsBag sb = new StatisticsBag();
 			
-			String valueOfSAAddText = ValueOfSAAddTextFieldL.getText();
-			int valueOfSAAdd = 0;
+			String valueOfSAAddText = valueOfSAAddTextField.getText();
 			if(valueOfSAAddText != null && !valueOfSAAddText.isEmpty()){ 
-				valueOfSAAdd = new Integer(valueOfSAAddText);
+				int valueOfSAAdd = new Integer(valueOfSAAddText);
+
+				switch (specialAttributeAddChoiceBox.getSelectionModel().getSelectedItem()) {
+				case "Hp":
+					sb.addStatistic(new Statistic(new StatisticType(StatisticTypeEnum.Hp, "Hp"), valueOfSAAdd));
+					break;
+				case "Mp":
+					sb.addStatistic(new Statistic(new StatisticType(StatisticTypeEnum.Mp, "Mp"), valueOfSAAdd));
+					break;
+				case "DealDmg":
+					sb.addStatistic(new Statistic(new StatisticType(StatisticTypeEnum.DealDmg, "DealDmg"), valueOfSAAdd));
+					break;
+				case "Agi":
+					sb.addStatistic(new Statistic(new StatisticType(StatisticTypeEnum.Agi, "Agi"), valueOfSAAdd));
+					break;
+				}	
 			}
 
-			switch (SpecialAttributeAddChoiceBoxL.getSelectionModel().getSelectedItem()) {
-			case "Hp":
-				sb.addStatistic(new Statistic(new StatisticType(StatisticTypeEnum.Hp, "Hp"), valueOfSAAdd));
-				break;
-			case "Mp":
-				sb.addStatistic(new Statistic(new StatisticType(StatisticTypeEnum.Mp, "Mp"), valueOfSAAdd));
-				break;
-			case "DealDmg":
-				sb.addStatistic(new Statistic(new StatisticType(StatisticTypeEnum.DealDmg, "DealDmg"), valueOfSAAdd));
-				break;
-			case "Agi":
-				sb.addStatistic(new Statistic(new StatisticType(StatisticTypeEnum.Agi, "Agi"), valueOfSAAdd));
-				break;
-			}	
 			Item item = null;
 			
-			String name = NameAddTextFieldL.getText();
-			int price = new Integer(PriceAddTextFieldL.getText()).intValue();
-			int basicAttribute = new Integer(BasicAttributeAddTextFieldL.getText()).intValue();
-			String type = ItemTypeAddChoiceBoxL.getSelectionModel().getSelectedItem();
+			String name = nameAddTextField.getText();
+			int price = new Integer(priceAddTextField.getText()).intValue();
+			int basicAttribute = new Integer(basicAttributeAddTextField.getText()).intValue();
+			String type = itemTypeAddChoiceBox.getSelectionModel().getSelectedItem();
 			
 			switch (type) {
 			case "Sword":
@@ -707,57 +726,26 @@ public class Controller implements Initializable {
 				break;
 			}
 			gameFacade.AddItem(item);
-			TreeAddL.setRoot(MakeTreeRootFromDataBase());
+			treeAdd.setRoot(MakeTreeRootFromDataBase());
+		}
+		
+		public void AddApplyL() {
+			AddApply(ValueOfSAAddTextFieldL,
+					SpecialAttributeAddChoiceBoxL, 
+					NameAddTextFieldL, 
+					PriceAddTextFieldL, 
+					BasicAttributeAddTextFieldL, 
+					ItemTypeAddChoiceBoxL, 
+					TreeAddL);
 		}
 		public void AddApplyR() {
-			StatisticsBag sb = new StatisticsBag();
-			
-			String valueOfSAAddText = ValueOfSAAddTextFieldR.getText();
-			int valueOfSAAdd = 0;
-			if(valueOfSAAddText != null && !valueOfSAAddText.isEmpty()){ 
-				valueOfSAAdd = new Integer(valueOfSAAddText);
-			}
-
-			switch (SpecialAttributeAddChoiceBoxR.getSelectionModel().getSelectedItem()) {
-			case "Hp":
-				sb.addStatistic(new Statistic(new StatisticType(StatisticTypeEnum.Hp, "Hp"), valueOfSAAdd));
-				break;
-			case "Mp":
-				sb.addStatistic(new Statistic(new StatisticType(StatisticTypeEnum.Mp, "Mp"), valueOfSAAdd));
-				break;
-			case "DealDmg":
-				sb.addStatistic(new Statistic(new StatisticType(StatisticTypeEnum.DealDmg, "DealDmg"), valueOfSAAdd));
-				break;
-			case "Agi":
-				sb.addStatistic(new Statistic(new StatisticType(StatisticTypeEnum.Agi, "Agi"), valueOfSAAdd));
-				break;
-			}	
-			Item item = null;
-			
-			String name = NameAddTextFieldR.getText();
-			int price = new Integer(PriceAddTextFieldL.getText()).intValue();
-			int basicAttribute = new Integer(BasicAttributeAddTextFieldR.getText()).intValue();
-			String type = ItemTypeAddChoiceBoxR.getSelectionModel().getSelectedItem();
-			
-			switch (type) {
-			case "Sword":
-				item = new Sword(name, price, sb, basicAttribute);
-				break;
-			case "Spear":
-				item = new Spear(name, price, sb, basicAttribute);
-				break;
-			case "Armor":
-				item = new Armor(name, price, sb, basicAttribute);
-				break;
-			case "Shield":
-				item = new Shield(name, price, sb, basicAttribute);
-				break;
-			case "HealingPotion":
-				item = new HealingPotion(name, price, sb, basicAttribute);
-				break;
-			}
-			gameFacade.AddItem(item);
-			TreeAddR.setRoot(MakeTreeRootFromDataBase());
+			AddApply(ValueOfSAAddTextFieldR,
+					SpecialAttributeAddChoiceBoxR, 
+					NameAddTextFieldR, 
+					PriceAddTextFieldR, 
+					BasicAttributeAddTextFieldR, 
+					ItemTypeAddChoiceBoxR, 
+					TreeAddR);
 		}
 		//----------------------------------
 		//Remove panel
@@ -840,14 +828,23 @@ public class Controller implements Initializable {
 		}
 		
 		public void ToShopL() {
+			ShopTableViewL.setItems(ConvertShopBuyToTable(gameFacade.getDataBase().getItemRepository().GetAll()));
+			
 			MoneyShopLabelL.setText("Money " + new Integer(((Player)userL).getEquipment().getGold()).toString());
 			PlayerPanelL.setVisible(false);
 			ShopPanelL.setVisible(true);
 		}
 		public void ToShopR() {
+			ShopTableViewR.setItems(ConvertShopBuyToTable(gameFacade.getDataBase().getItemRepository().GetAll()));
+			
 			MoneyShopLabelR.setText("Money " + new Integer(((Player)userR).getEquipment().getGold()).toString());
 			PlayerPanelR.setVisible(false);
 			ShopPanelR.setVisible(true);
+		}
+		
+		public void BattielfieldUpdateNames() {
+			BattlefieldNameLabelL.setText("Gracz " + userL.getNickname() + " -> " + new Integer(((Player)userL).getCurrentHp()).toString() + "Hp\n");
+			BattlefieldNameLabelR.setText("Gracz " + userR.getNickname() + " -> " + new Integer(((Player)userR).getCurrentHp()).toString() + "Hp\n");
 		}
 		
 		public void ToBattlefield() {
@@ -864,8 +861,7 @@ public class Controller implements Initializable {
 				PlayerPanelR.setVisible(false);
 				BattlefieldPanelL.setVisible(true);
 				BattlefieldPanelR.setVisible(true);
-				BattlefieldNameLabelL.setText("Gracz " + userL.getNickname() + " -> " + new Integer(((Player)userL).getCurrentHp()).toString() + "Hp\n");
-				BattlefieldNameLabelR.setText("Gracz " + userR.getNickname() + " -> " + new Integer(((Player)userR).getCurrentHp()).toString() + "Hp\n");
+				BattielfieldUpdateNames();
 				
 				ArrayList<Player> players = new ArrayList<Player>();
 				players.add((Player)userL);
@@ -886,11 +882,19 @@ public class Controller implements Initializable {
 			PlayerPanelR.setVisible(true);
 		}
 		
+		public void UseItem(TableView<TableRow> EQTableView, Player player)
+		{
+			Item item = FindItemByName(EQTableView.selectionModelProperty().getValue().getSelectedItem().getA());
+			gameFacade.ToggleEquipeItemInEQ(player, item);
+			
+			EQTableView.setItems(ConvertEQToTable((player.getEquipment().getPlayerItems())));
+		}
+		
 		public void UseItemL() {
-			gameFacade.UseItemInEQ(FindItemByName(EQTableViewL.selectionModelProperty().getValue().getSelectedItem().getA()));
+			UseItem(EQTableViewL, (Player)userL);
 		}
 		public void UseItemR() {
-			gameFacade.UseItemInEQ(FindItemByName(EQTableViewR.selectionModelProperty().getValue().getSelectedItem().getA()));
+			UseItem(EQTableViewR, (Player)userR);
 		}
 		//----------------------------------
 		//Shop panel
@@ -1043,25 +1047,28 @@ public class Controller implements Initializable {
 			BattlefieldPanelR.setVisible(true);
 		}
 		
+		public void ConsumeItem(TableView<TableRow> PickItemTableView, Label BattlefieldNameLabel, AppUser user) {
+			HealingPotion item = (HealingPotion)FindItemByName(PickItemTableView.selectionModelProperty().getValue().getSelectedItem().getA());
+			gameFacade.ConsumeItem(item.getId());
+			
+			String actionText = "Gracz " + user.getNickname() + " uzyl " + item.getName() + " i uleczyl sie za "  + item.getHealing() + " Hp\n";
+			ChatTextArea.appendText(actionText);
+
+			BattielfieldUpdateNames();
+		}
+		
 		public void ConsumeItemL() {
-			Item item = FindItemByName(PickItemTableViewL.selectionModelProperty().getValue().getSelectedItem().getA());
-			gameFacade.ConsumeItem(item);
-			ChatTextArea.appendText("Gracz " + userL.getNickname() + " uzyl " + item.getName() + " i uleczyl sie za " 
-					+ new Integer(((HealingPotion)item).getHealing()).toString() + "Hp\n");
-			BattlefieldNameLabelL.setText("Gracz " + userL.getNickname() + " -> " + new Integer(((Player)userL).getCurrentHp()).toString() + "Hp\n");
+			ConsumeItem(PickItemTableViewL, BattlefieldNameLabelL, userL);
+			
 			PickItemBackToBattlefieldL();
 			BlockGUI(true);
 		}
 		public void ConsumeItemR() {
-			Item item = FindItemByName(PickItemTableViewR.selectionModelProperty().getValue().getSelectedItem().getA());
-			gameFacade.ConsumeItem(item);
-			ChatTextArea.appendText("Gracz " + userR.getNickname() + " uzyl " + item.getName() + " i uleczyl sie za " 
-					+ new Integer(((HealingPotion)item).getHealing()).toString() + "Hp\n");
-			BattlefieldNameLabelR.setText("Gracz " + userR.getNickname() + " -> " + new Integer(((Player)userR).getCurrentHp()).toString() + "Hp\n");
+			ConsumeItem(PickItemTableViewR, BattlefieldNameLabelR, userR);
+			
 			PickItemBackToBattlefieldR();
 			BlockGUI(false);
 		}
-		
 		
 		//----------------------------------
 		//----------------------------------
@@ -1296,11 +1303,9 @@ public class Controller implements Initializable {
 		//----------------------------------
 		@Override
 		public void initialize(URL arg0, ResourceBundle arg1) {			
-			TreeModifyL.setRoot(MakeTreeRootFromDataBase());
 			SpecialAttributeModifyChoiceBoxL.setItems(FXCollections.observableArrayList(
 					"Hp", "Mp", "DealDmg", "Agi", "NULL"));
 			
-			TreeModifyR.setRoot(MakeTreeRootFromDataBase());
 			SpecialAttributeModifyChoiceBoxR.setItems(FXCollections.observableArrayList(
 					"Hp", "Mp", "DealDmg", "Agi", "NULL"));
 			
@@ -1316,17 +1321,6 @@ public class Controller implements Initializable {
 					"Armor", "Shield", "Sword", "Spear", "HealingPotion"));
 			SpecialAttributeAddChoiceBoxR.setItems(FXCollections.observableArrayList(
 					"Hp", "Mp", "DealDmg", "Agi", "NULL"));
-			
-			
-			TreeRemoveL.setRoot(MakeTreeRootFromDataBase());
-			TreeRemoveR.setRoot(MakeTreeRootFromDataBase());
-			
-			
-			HistoryTableViewL.setItems(ConvertHistoryToTable());
-			HistoryTableViewR.setItems(ConvertHistoryToTable());
-			
-			ShopTableViewL.setItems(ConvertShopBuyToTable(gameFacade.getDataBase().getItemRepository().GetAll()));
-			ShopTableViewR.setItems(ConvertShopBuyToTable(gameFacade.getDataBase().getItemRepository().GetAll()));
 			
 			//-------------------------------------------------------------------------------------
 			IDHistoryColumnL.setCellValueFactory(new PropertyValueFactory<TableRow,String>("A"));

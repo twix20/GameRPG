@@ -28,7 +28,7 @@ public class Player extends AppUser {
 	}
 	
 	/// Returns damage to deal
-	public int Battle(Player target) {
+	public int CalculateDmgToDeal(Player target) {
 		int dmg = 2,  block = 0; 
 		
 		int dmgFromEquipment = this.getEquipment().GetSumEquipedStatistic(StatisticTypeEnum.DealDmg);
@@ -40,7 +40,7 @@ public class Player extends AppUser {
 		block = targetDefFromEquipment;
 		
  		int delta = dmg - block;
- 		return delta <= 0 ? 2 : 50;//TODO do testow 50 hit
+ 		return delta <= 0 ? 2 : delta;//TODO do testow 50 hit
 	}
 
 	public int getCurrentHp() {

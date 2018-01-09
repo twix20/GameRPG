@@ -40,6 +40,13 @@ public class Equipment {
 		return null;
 	}
 	
+	public void removePlayerItem(int itemId) {
+		PlayerItem itemToRemove = getPlayerItemByItemId(itemId);
+		
+		if(itemToRemove != null)
+			this.playerItems.remove(itemToRemove);
+	}
+	
 	public int GetSumEquipedStatistic(StatisticTypeEnum stat) {
 		int totalStatValue = 0;
 		

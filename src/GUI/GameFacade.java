@@ -151,24 +151,24 @@ public class GameFacade {
 		accRepo.SaveOrUpdate(player);
 	}
 
-	public void UseItemInEQ(Item item) {
-		// TODO Auto-generated method stub
+	public void ToggleEquipeItemInEQ(Player player, Item item) {
+		PlayerItem itemToToggleEquipe = player.getEquipment().getPlayerItemByItemId(item.getId());
+		itemToToggleEquipe.setEquiped(!itemToToggleEquipe.isEquiped());
 		
+		AccountRepository accRepo = db.getAccountRepository();
+		accRepo.SaveOrUpdate(player);
 	}
 
-	public void ConsumeItem(Item item) {
-		// TODO Auto-generated method stub
+	public void ConsumeItem(int playerItemId) {
 		
+		this.battleField.Use(playerItemId);
 	}
 
 	public void Rest(Player user) {
-		// TODO Auto-generated method stub
 		this.battleField.Rest();
 	}
 
 	public Statement Attack(Player attacker, Player target) {
-		// TODO Auto-generated method stub
-		
 		int dmgToDeal = this.battleField.GetCurrentPlayerDmg();
 		boolean survived = this.battleField.Attack();
 		

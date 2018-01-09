@@ -11,6 +11,7 @@ import Models.BattlefieldActionsHistory;
 import Models.BattlefieldHistory;
 import Models.HealingPotion;
 import Models.Player;
+import Models.PlayerItem;
 import Models.UseableItem;
 
 public class Battlefield {
@@ -45,15 +46,29 @@ public class Battlefield {
 	}
 	
 	public int GetCurrentPlayerDmg() {
-		return this.getWhoseTurn().Battle(getAnotherPlayer());
+		return this.getWhoseTurn().CalculateDmgToDeal(getAnotherPlayer());
 	}
 	
-	public void Use(HealingPotion item) {
+	public void Use(int itemId) {
+		Player playerToUseOn = this.getWhoseTurn();
+
+		PlayerItem playerItemToConsume = playerToUseOn.getEquipment().getPlayerItemByItemId(itemId);
 		
-		BattlefieldActionsHistory action = item.Use(this.getWhoseTurn());
+		//Assume we can only use useableitem
+		UseableItem itemToConsume = (UseableItem)playerItemToConsume.getItem();
+
+		//Use item
+		BattlefieldActionsHistory action = itemToConsume.Use(playerToUseOn);
+		
+		//Save log
 		this.AppendActionHistory(action);
 		
-		this.getWhoseTurn().getEquipment().getPlayerItems().remove(item);
+		//Remove item from player
+		playerToUseOn.getEquipment().removePlayerItem(itemToConsume.getId());
+		
+		AccountRepository accRepo = db.getAccountRepository();
+		accRepo.SaveOrUpdate(playerToUseOn);
+		
 		this.changeTurn();	
 		
 	}
