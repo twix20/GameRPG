@@ -33,6 +33,7 @@ public class DataBase {
 
 						.addAnnotatedClass(AttackItem.class)
 						.addAnnotatedClass(Sword.class)
+						.addAnnotatedClass(Spear.class)
 
 						.addAnnotatedClass(DefensiveItem.class)
 						.addAnnotatedClass(Shield.class)
