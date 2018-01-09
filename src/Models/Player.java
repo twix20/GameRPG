@@ -1,5 +1,7 @@
 package Models;
 
+import java.util.Random;
+
 import javax.persistence.*;
 
 @Entity
@@ -35,6 +37,7 @@ public class Player extends AppUser {
  		//Always deal at least 2 dmg
 		if(dmgFromEquipment > 2)
 			dmg = dmgFromEquipment;
+		dmg = (int) (new Random().nextInt((int)(dmg*0.4)) + (dmg*0.8));
 		
 		int targetDefFromEquipment = target.getEquipment().GetSumEquipedStatistic(StatisticTypeEnum.Def);
 		block = targetDefFromEquipment;
