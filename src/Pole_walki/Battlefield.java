@@ -24,8 +24,8 @@ public class Battlefield {
 		this.db = db;
 		
 		this.setPlayers(players);
-		players.get(0).setCurrentHpWithEquipment();
-		players.get(1).setCurrentHpWithEquipment();
+		players.get(0).setCurrentHp(players.get(0).getMaxHpWithEquipment());
+		players.get(1).setCurrentHp(players.get(1).getMaxHpWithEquipment());
 		
 		this.history = new BattlefieldHistory(players.get(0), players.get(1));
 	}
@@ -78,14 +78,21 @@ public class Battlefield {
 	}
 	
 	public void Rest() {
-		this.changeHP(this.getWhoseTurn(),20);
+		this.changeHP(this.getWhoseTurn(), 20);
 	
 	   	this.AppendActionHistory(new BattlefieldActionsHistory(this.getWhoseTurn(),"rest", 20));
 		this.changeTurn();	
 	}
 	
 	public void changeHP(Player player, int howMany) {
-		player.setCurrentHp(player.getCurrentHp() + howMany);
+		int maxHpWithEq = player.getMaxHpWithEquipment();
+		
+		int hpAfterRest = player.getCurrentHp() + howMany;
+		
+		if(hpAfterRest > maxHpWithEq)
+			player.setCurrentHp(maxHpWithEq);
+		else
+			player.setCurrentHp(hpAfterRest);
 	}
 	
 	public void endBattle() {
