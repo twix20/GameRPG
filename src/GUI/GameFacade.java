@@ -6,6 +6,7 @@ import DataAccessLayer.ItemRepository;
 import DataAccessLayer.RepositoryFactory;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -47,21 +48,19 @@ public class GameFacade {
 	}
 	
 	//DO POPRAWY
-	public void ModifyItem(Item itemDb, String name, int price, StatisticsBag statisticsBag, int basicAttribute) {
+	public void ModifyItem(int itemToModifyId, Item modifiedItem) {
 		ItemRepository itemRepo = getDataBase().getItemRepository();
 		
-		//Item itemDb = itemRepo.GetById(itemIdToChange);
+		Item itemDb = itemRepo.GetById(itemToModifyId);
 		
 		//Set properties to update
-		itemDb.setName(name);
-		itemDb.setPrice(price);
-		itemDb.setStatistics((Set<Statistic>) statisticsBag.values());
-		if (itemDb instanceof AttackItem)
-			((AttackItem)itemDb).setDamage(basicAttribute);
-		else if (itemDb instanceof DefensiveItem)
-			((DefensiveItem)itemDb).setDefDamage(basicAttribute);
+		itemDb.setName(modifiedItem.getName());
+		itemDb.setPrice(modifiedItem.getPrice());
+		itemDb.setStatistics(modifiedItem.getStatisticsSet());
 		
-		itemRepo.Update(itemDb);
+		itemDb.setBaisicAttribute(modifiedItem.getBaisicAttribute());
+		
+		itemRepo.SaveOrUpdate(itemDb);
 	}
 	
 	//PRAWDOPODOBNIE TEZ DO POPRAWY

@@ -10,7 +10,7 @@ public class TestApp {
 		
 
 		ItemRepository itemRepo = db.getItemRepository();
-		Item i = itemRepo.FindItemByName("Miecz Grabarza ksiezyca");
+		Item i = itemRepo.GetByName("Miecz Grabarza ksiezyca");
 		System.out.format("Id: %d Name: %s\n", i.getId(), i.getName());
 
 		AccountRepository accRepo = db.getAccountRepository();

@@ -22,12 +22,7 @@ public class ItemRepository extends Repository<Item, Integer>{
 		// TODO Auto-generated constructor stub
 	}
 
-	public ArrayList<Item> GetAllForPlayer(String playerId){
-		
-		throw new UnsupportedOperationException ("TODO");
-	}
-	
-	public Item FindItemByName(String itemName){
+	public Item GetByName(String itemName){
 		
 		runInSession(session -> {
 			CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
@@ -40,7 +35,11 @@ public class ItemRepository extends Repository<Item, Integer>{
 	        criteriaQuery.where(predicate1);
 	        
 			Query q = session.createQuery(criteriaQuery);
-			entity = (Item)q.getSingleResult();
+			
+			allFetched = q.getResultList();
+			
+        	if (allFetched.size() == 1) 
+        		entity = allFetched.get(0);
 		});
 		
 		return entity;

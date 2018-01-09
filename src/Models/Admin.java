@@ -29,7 +29,7 @@ public class Admin extends AppUser {
 	}
 	public Item editItem(Item it) {
 		ItemRepository r = dataBase.getItemRepository();
-		r.Update(it);
+		r.SaveOrUpdate(it);
 		
 		return it;
 	}
@@ -43,7 +43,7 @@ public class Admin extends AppUser {
 	public Item findItemByName(String name) {
 		ItemRepository r = dataBase.getItemRepository();
 		
-		Item item = r.FindItemByName(name);
+		Item item = r.GetByName(name);
 		
 		return item;
 	}

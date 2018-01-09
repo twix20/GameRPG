@@ -2,7 +2,9 @@ package Models;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 public class StatisticsBag {
 	private Map<StatisticTypeEnum, Statistic> allStatistics;
@@ -17,7 +19,6 @@ public class StatisticsBag {
 		for(Statistic s: statistics)
 			allStatistics.put(s.getStatisticType().getTypeEnum(), s);
 	}
-	
 	
 	public void addStatistic(Statistic stat) {
 		if(allStatistics.containsKey(stat.getStatisticType().getTypeEnum())) {
@@ -35,11 +36,6 @@ public class StatisticsBag {
 		return allStatistics.containsKey(statType) ? 
 				allStatistics.get(statType).getValue(): 0;
 	}
-	public void setStatisticValue(StatisticTypeEnum statType, int newValue) {
-		if(allStatistics.containsKey(statType)) {
-			allStatistics.get(statType).setValue(newValue);
-		}
-	}
 	
 	public void removeStatistic(StatisticTypeEnum statType, int valueToRemove) {
 		if(!allStatistics.containsKey(statType)) return;
@@ -56,5 +52,9 @@ public class StatisticsBag {
 	
 	public Collection<Statistic> values(){
 		return this.allStatistics.values();
+	}
+	
+	public Set<Statistic> getStatisticSet(){
+		return new HashSet<Statistic>(allStatistics.values());
 	}
 }

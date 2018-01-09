@@ -36,8 +36,6 @@ public abstract class Repository<T, ID extends Serializable> {
 		});
 	}
 	
-	
-	
 	public void Merge(T model) {
 		
 		runInSession(session -> {
@@ -52,10 +50,6 @@ public abstract class Repository<T, ID extends Serializable> {
 			session.delete(model);
 		});
 
-	}
-
-	public boolean Update(T model) {
-		throw new UnsupportedOperationException("TODO");
 	}
 
 	public T GetById(ID id) {

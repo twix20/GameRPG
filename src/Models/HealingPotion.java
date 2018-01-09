@@ -27,5 +27,15 @@ public class HealingPotion extends UseableItem {
 	public void setHealing(int healing) {
 		this.healing = healing;
 	}
+
+	@Override
+	public int getBaisicAttribute() {
+		return getHealing();
+	}
+
+	@Override
+	public void setBaisicAttribute(int newValue) {
+		this.setHealing(newValue);
+	}
 }
 

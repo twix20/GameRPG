@@ -24,4 +24,14 @@ public abstract class AttackItem extends Item {
 	public void setDamage(int damage) {
 		this.damage = damage;
 	}
+	
+	@Override
+	public int getBaisicAttribute() {
+		return getDamage();
+	}
+
+	@Override
+	public void setBaisicAttribute(int newValue) {
+		this.setDamage(newValue);
+	}
 }

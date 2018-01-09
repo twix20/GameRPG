@@ -23,4 +23,14 @@ public class DefensiveItem extends Item {
 	public void setDefDamage(int defDamage) {
 		this.defDamage = defDamage;
 	}
+
+	@Override
+	public int getBaisicAttribute() {
+		return getDefDamage();
+	}
+
+	@Override
+	public void setBaisicAttribute(int newValue) {
+		this.setDefDamage(newValue);
+	}
 }
