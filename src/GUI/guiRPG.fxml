@@ -78,7 +78,7 @@
                   <Label layoutX="37.0" layoutY="639.0" text="Value of SA" />
                   <TextField fx:id="ValueOfSAModifyTextFieldL" layoutX="144.0" layoutY="634.0" />
                   <Label layoutX="20.0" layoutY="586.0" text="Special Attribute" />
-                  <ChoiceBox fx:id="SpecialAttributeModifyChoiceBoxL" layoutX="150.0" layoutY="581.0" prefHeight="31.0" prefWidth="187.0" />
+                  <ChoiceBox fx:id="SpecialAttributeModifyChoiceBoxL" layoutX="150.0" layoutY="581.0" prefHeight="31.0" prefWidth="187.0" onAction="#ModifySetStatisticValueL"/>
                   <Button layoutX="54.0" layoutY="371.0" mnemonicParsing="false" onAction="#ModifyTreeSourceL" text="Show parameters of the choosen item" />
                </children>
             </AnchorPane>
@@ -439,7 +439,7 @@
                   <Label layoutX="37.0" layoutY="639.0" text="Value of SA" />
                   <TextField fx:id="ValueOfSAModifyTextFieldR" layoutX="144.0" layoutY="634.0" />
                   <Label layoutX="20.0" layoutY="586.0" text="Special Attribute" />
-                  <ChoiceBox fx:id="SpecialAttributeModifyChoiceBoxR" layoutX="144.0" layoutY="581.0" prefHeight="31.0" prefWidth="187.0" />
+                  <ChoiceBox fx:id="SpecialAttributeModifyChoiceBoxR" layoutX="144.0" layoutY="581.0" prefHeight="31.0" onAction="#ModifySetStatisticValueR" prefWidth="187.0" />
                   <Button layoutX="54.0" layoutY="371.0" mnemonicParsing="false" onAction="#ModifyTreeSourceR" text="Show parameters of the choosen item" />
                </children>
             </AnchorPane>

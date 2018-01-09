@@ -19,12 +19,12 @@ public class StatisticsBag {
 		for(Statistic s: statistics)
 			allStatistics.put(s.getStatisticType().getTypeEnum(), s);
 	}
-	
-	public void addStatistic(Statistic stat) {
+
+	public void setStatistic(Statistic stat) {
 		if(allStatistics.containsKey(stat.getStatisticType().getTypeEnum())) {
 			
 			Statistic existingStat = allStatistics.get(stat.getStatisticType().getTypeEnum());
-			int newValue = existingStat.getValue() + stat.getValue();
+			int newValue = stat.getValue();
 			
 			existingStat.setValue(newValue);
 			return;
@@ -35,6 +35,10 @@ public class StatisticsBag {
 	public int getStatisticValue(StatisticTypeEnum statType) {
 		return allStatistics.containsKey(statType) ? 
 				allStatistics.get(statType).getValue(): 0;
+	}
+	
+	public Statistic getStatistic(StatisticTypeEnum type) {
+		return allStatistics.getOrDefault(type, null);
 	}
 	
 	public void removeStatistic(StatisticTypeEnum statType, int valueToRemove) {

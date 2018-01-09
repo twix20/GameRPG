@@ -551,6 +551,72 @@ public class Controller implements Initializable {
 			AdminPanelR.setVisible(true);
 		}
 		
+		public void ModifySetStatisticValueL() {
+			
+			String statisticSelectedString = SpecialAttributeModifyChoiceBoxL.getSelectionModel().getSelectedItem();
+			//If stat to show specified show it, else show first
+			
+			Item i = FindLastSelectedItem(TreeModifyL);
+			
+			Statistic stat = null;
+			
+			if(statisticSelectedString == null) {
+				//If not selected show first
+				Set<Statistic> stats = i.getStatisticsSet();
+				if(i.getStatisticsSet().size() > 0) {
+					stat = (Statistic)stats.toArray()[0];
+
+					SpecialAttributeModifyChoiceBoxL.getSelectionModel().select((stat.getStatisticType().getName()));
+					ValueOfSAModifyTextFieldL.setText(Integer.toString(stat.getValue()));
+				}
+			} else if(statisticSelectedString.equals("NULL")) {
+				ValueOfSAModifyTextFieldL.setText("---");
+				SpecialAttributeModifyChoiceBoxL.setValue("NULL");
+			}
+			else {
+				stat = i.getStatistics().getStatistic(StatisticTypeEnum.valueOf(statisticSelectedString));
+				if(stat != null) {
+					SpecialAttributeModifyChoiceBoxL.getSelectionModel().select((stat.getStatisticType().getName()));
+					ValueOfSAModifyTextFieldL.setText(Integer.toString(stat.getValue()));
+				}else {
+					ValueOfSAModifyTextFieldL.setText(Integer.toString(0));
+				}
+			}
+		}
+		
+		public void ModifySetStatisticValueR() {
+			
+			String statisticSelectedString = SpecialAttributeModifyChoiceBoxR.getSelectionModel().getSelectedItem();
+			//If stat to show specified show it, else show first
+			
+			Item i = FindLastSelectedItem(TreeModifyR);
+			
+			Statistic stat = null;
+			
+			if(statisticSelectedString == null) {
+				//If not selected show first
+				Set<Statistic> stats = i.getStatisticsSet();
+				if(i.getStatisticsSet().size() > 0) {
+					stat = (Statistic)stats.toArray()[0];
+
+					SpecialAttributeModifyChoiceBoxR.getSelectionModel().select((stat.getStatisticType().getName()));
+					ValueOfSAModifyTextFieldL.setText(Integer.toString(stat.getValue()));
+				}
+			} else if(statisticSelectedString.equals("NULL")) {
+				ValueOfSAModifyTextFieldL.setText("---");
+				SpecialAttributeModifyChoiceBoxR.setValue("NULL");
+			}
+			else {
+				stat = i.getStatistics().getStatistic(StatisticTypeEnum.valueOf(statisticSelectedString));
+				if(stat != null) {
+					SpecialAttributeModifyChoiceBoxR.getSelectionModel().select((stat.getStatisticType().getName()));
+					ValueOfSAModifyTextFieldR.setText(Integer.toString(stat.getValue()));
+				}else {
+					ValueOfSAModifyTextFieldR.setText(Integer.toString(0));
+				}
+			}
+		}
+		
 		public void ModifyTreeSourceL() {
 			Item i = FindLastSelectedItem(TreeModifyL);
 			if (i == null) {
@@ -567,19 +633,13 @@ public class Controller implements Initializable {
 					BasicAttributeModifyTextFieldL.setText(new Integer(((HealingPotion) i).getHealing()).toString());
 					ValueOfSAModifyTextFieldL.setText("---");
 				} else {
-					Collection<Statistic> stats = i.getStatistics().values();
 					if (i instanceof AttackItem) {
 						BasicAttributeModifyTextFieldL.setText(new Integer(((AttackItem)i).getDamage()).toString());
 					} else {
 						BasicAttributeModifyTextFieldL.setText(new Integer(((DefensiveItem)i).getDefDamage()).toString());
 					}
-					if (stats.size() > 0) {
-						SpecialAttributeModifyChoiceBoxL.getSelectionModel().select(((Statistic) stats.toArray()[0]).getStatisticType().getName());
-						ValueOfSAModifyTextFieldL.setText(new Integer(((Statistic) stats.toArray()[0]).getValue()).toString());
-					} else {
-						ValueOfSAModifyTextFieldL.setText("---");
-						SpecialAttributeModifyChoiceBoxL.setValue("NULL");
-					}
+					
+					ModifySetStatisticValueL();
 				}
 			}
 		}
@@ -599,48 +659,43 @@ public class Controller implements Initializable {
 					BasicAttributeModifyTextFieldR.setText(new Integer(((HealingPotion) i).getHealing()).toString());
 					ValueOfSAModifyTextFieldR.setText("---");
 				} else {
-					Collection<Statistic> stats = i.getStatistics().values();
+					
 					if (i instanceof AttackItem) {
 						BasicAttributeModifyTextFieldR.setText(new Integer(((AttackItem)i).getDamage()).toString());
 					} else {
 						BasicAttributeModifyTextFieldR.setText(new Integer(((DefensiveItem)i).getDefDamage()).toString());
 					}
-					if (stats.size() > 0) {
-						SpecialAttributeModifyChoiceBoxR.getSelectionModel().select(((Statistic) stats.toArray()[0]).getStatisticType().getName());
-						ValueOfSAModifyTextFieldR.setText(new Integer(((Statistic) stats.toArray()[0]).getValue()).toString());
-					} else {
-						ValueOfSAModifyTextFieldR.setText("---");
-						SpecialAttributeModifyChoiceBoxR.setValue("NULL");
-					}
+					
+					ModifySetStatisticValueR();
 				}
 			}
 		}
 		
 		public void ModifyApply(TextField nameModifyTextField, TextField priceModifyTextField, TextField basicAttributeModifyTextField, ChoiceBox<String> specialAttributeModifyChoiceBox, TextField valueOfSAModifyTextField, TreeView<String> treeModify) {
-			StatisticsBag sb = new StatisticsBag();
 			Item itemToModify = FindLastSelectedItem(treeModify);
+			StatisticsBag sb = itemToModify.getStatistics();
 
 			String name = nameModifyTextField.getText();
 			int price = new Integer(priceModifyTextField.getText());
 			int basicValue = new Integer(basicAttributeModifyTextField.getText()).intValue();
 			String typeOfSA = specialAttributeModifyChoiceBox.getSelectionModel().getSelectedItem();
 			
-			if(typeOfSA != null && !typeOfSA.isEmpty())
+			if(typeOfSA != null && !typeOfSA.isEmpty() && !typeOfSA.equals("NULL"))
 			{ 
 				int valueOfSA = new Integer(valueOfSAModifyTextField.getText());
 				
 				switch (typeOfSA) {
 				case "Hp":
-					sb.addStatistic(new Statistic(new StatisticType(StatisticTypeEnum.Hp, "Hp"), valueOfSA));
+					sb.setStatistic(new Statistic(new StatisticType(StatisticTypeEnum.Hp, "Hp"), valueOfSA));
 					break;
 				case "Mp":
-					sb.addStatistic(new Statistic(new StatisticType(StatisticTypeEnum.Mp, "Mp"), valueOfSA));
+					sb.setStatistic(new Statistic(new StatisticType(StatisticTypeEnum.Mp, "Mp"), valueOfSA));
 					break;
 				case "DealDmg":
-					sb.addStatistic(new Statistic(new StatisticType(StatisticTypeEnum.DealDmg, "DealDmg"), valueOfSA));
+					sb.setStatistic(new Statistic(new StatisticType(StatisticTypeEnum.DealDmg, "DealDmg"), valueOfSA));
 					break;
 				case "Agi":
-					sb.addStatistic(new Statistic(new StatisticType(StatisticTypeEnum.Agi, "Agi"), valueOfSA));
+					sb.setStatistic(new Statistic(new StatisticType(StatisticTypeEnum.Agi, "Agi"), valueOfSA));
 					break;
 				}				
 			}
@@ -656,9 +711,11 @@ public class Controller implements Initializable {
 		
 		public void ModifyApplyL() {
 			ModifyApply(NameModifyTextFieldL, PriceModifyTextFieldL, BasicAttributeModifyTextFieldL, SpecialAttributeModifyChoiceBoxL,ValueOfSAModifyTextFieldL, TreeModifyL);
+			ModifyTreeSourceL();
 		}
 		public void ModifyApplyR() {
 			ModifyApply(NameModifyTextFieldR, PriceModifyTextFieldR, BasicAttributeModifyTextFieldR, SpecialAttributeModifyChoiceBoxR,ValueOfSAModifyTextFieldR, TreeModifyR);
+			ModifyTreeSourceR();
 		}
 		//----------------------------------
 		//Add panel
@@ -687,16 +744,16 @@ public class Controller implements Initializable {
 
 				switch (specialAttributeAddChoiceBox.getSelectionModel().getSelectedItem()) {
 				case "Hp":
-					sb.addStatistic(new Statistic(new StatisticType(StatisticTypeEnum.Hp, "Hp"), valueOfSAAdd));
+					sb.setStatistic(new Statistic(new StatisticType(StatisticTypeEnum.Hp, "Hp"), valueOfSAAdd));
 					break;
 				case "Mp":
-					sb.addStatistic(new Statistic(new StatisticType(StatisticTypeEnum.Mp, "Mp"), valueOfSAAdd));
+					sb.setStatistic(new Statistic(new StatisticType(StatisticTypeEnum.Mp, "Mp"), valueOfSAAdd));
 					break;
 				case "DealDmg":
-					sb.addStatistic(new Statistic(new StatisticType(StatisticTypeEnum.DealDmg, "DealDmg"), valueOfSAAdd));
+					sb.setStatistic(new Statistic(new StatisticType(StatisticTypeEnum.DealDmg, "DealDmg"), valueOfSAAdd));
 					break;
 				case "Agi":
-					sb.addStatistic(new Statistic(new StatisticType(StatisticTypeEnum.Agi, "Agi"), valueOfSAAdd));
+					sb.setStatistic(new Statistic(new StatisticType(StatisticTypeEnum.Agi, "Agi"), valueOfSAAdd));
 					break;
 				}	
 			}
@@ -1138,12 +1195,19 @@ public class Controller implements Initializable {
 			return rootItem;
 		}
 		
+		private Item lastSelectedItem = null;
 		private Item FindLastSelectedItem(TreeView<String> treeView) {
-			String name = treeView.getSelectionModel().getSelectedItem().getValue();
+			
+			TreeItem<String> currentSelectedItem = treeView.getSelectionModel().getSelectedItem();
+			if(currentSelectedItem == null)
+				return lastSelectedItem;
+			
+			String name = currentSelectedItem.getValue();
 			
 			DataBase db = gameFacade.getDataBase();
 			Item itemDb = db.getItemRepository().GetByName(name);
 			
+			lastSelectedItem = itemDb;
 			return itemDb;
 		}
 		

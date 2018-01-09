@@ -47,7 +47,6 @@ public class GameFacade {
 		return new Statement(ACCOUNT_CREATION_SUCCESS);
 	}
 	
-	//DO POPRAWY
 	public void ModifyItem(int itemToModifyId, Item modifiedItem) {
 		ItemRepository itemRepo = getDataBase().getItemRepository();
 		
@@ -56,9 +55,8 @@ public class GameFacade {
 		//Set properties to update
 		itemDb.setName(modifiedItem.getName());
 		itemDb.setPrice(modifiedItem.getPrice());
-		itemDb.setStatistics(modifiedItem.getStatisticsSet());
-		
 		itemDb.setBaisicAttribute(modifiedItem.getBaisicAttribute());
+		itemDb.setStatistics(modifiedItem.getStatistics().getStatisticSet());
 		
 		itemRepo.SaveOrUpdate(itemDb);
 	}
