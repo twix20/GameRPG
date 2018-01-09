@@ -11,8 +11,10 @@ public class HealingPotion extends UseableItem {
     
     public HealingPotion() {}
     
-	public HealingPotion(String name, int price, StatisticsBag statistics) {
+	public HealingPotion(String name, int price, StatisticsBag statistics, int healingValue) {
 		super(name, price, statistics);
+		
+		this.setHealing(healingValue);
 	}
 	@Override
 	public BattlefieldActionsHistory Use(Player player) {

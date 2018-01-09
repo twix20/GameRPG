@@ -5,9 +5,6 @@ import javax.persistence.*;
 @Entity
 public abstract class AttackItem extends Item {
 
-    @Column(name = "MaxDurability")
-	private int maxDurability;
-
     @Column(name = "Damage")
     private int damage;
 
@@ -17,7 +14,6 @@ public abstract class AttackItem extends Item {
 		super(name, price, statistics);
 		 
 		this.setDamage(damage);
-		//this.setMaxDurability(maxDurability);
 	}
 	 
 	 public abstract int DealDamage();
@@ -27,11 +23,5 @@ public abstract class AttackItem extends Item {
 	}
 	public void setDamage(int damage) {
 		this.damage = damage;
-	}
-	public int getMaxDurability() {
-		return maxDurability;
-	}
-	public void setMaxDurability(int durability) {
-		this.maxDurability = durability;
 	}
 }

@@ -671,18 +671,25 @@ public class Controller implements Initializable {
 		
 		public void AddApplyL() {
 			StatisticsBag sb = new StatisticsBag();
+			
+			String valueOfSAAddText = ValueOfSAAddTextFieldL.getText();
+			int valueOfSAAdd = 0;
+			if(valueOfSAAddText != null && !valueOfSAAddText.isEmpty()){ 
+				valueOfSAAdd = new Integer(valueOfSAAddText);
+			}
+
 			switch (SpecialAttributeAddChoiceBoxL.getSelectionModel().getSelectedItem()) {
 			case "Hp":
-				sb.addStatistic(new Statistic(new StatisticType(StatisticTypeEnum.Hp, "Hp"), new Integer(ValueOfSAAddTextFieldL.getText())));
+				sb.addStatistic(new Statistic(new StatisticType(StatisticTypeEnum.Hp, "Hp"), valueOfSAAdd));
 				break;
 			case "Mp":
-				sb.addStatistic(new Statistic(new StatisticType(StatisticTypeEnum.Mp, "Mp"), new Integer(ValueOfSAAddTextFieldL.getText())));
+				sb.addStatistic(new Statistic(new StatisticType(StatisticTypeEnum.Mp, "Mp"), valueOfSAAdd));
 				break;
 			case "Str":
-				sb.addStatistic(new Statistic(new StatisticType(StatisticTypeEnum.Str, "Str"), new Integer(ValueOfSAAddTextFieldL.getText())));
+				sb.addStatistic(new Statistic(new StatisticType(StatisticTypeEnum.Str, "Str"), valueOfSAAdd));
 				break;
 			case "Agi":
-				sb.addStatistic(new Statistic(new StatisticType(StatisticTypeEnum.Agi, "Agi"), new Integer(ValueOfSAAddTextFieldL.getText())));
+				sb.addStatistic(new Statistic(new StatisticType(StatisticTypeEnum.Agi, "Agi"), valueOfSAAdd));
 				break;
 			}	
 			Item item = null;
@@ -705,34 +712,40 @@ public class Controller implements Initializable {
 			case "Shield":
 				item = new Shield(name, price, sb, basicAttribute);
 				break;
-			/*case "HealingPotion":
-				item = new Sword(id, NameAddTextFieldL.getText(), new Integer(PriceAddTextFieldL.getText()).intValue(),
-						sb, new Integer(BasicAttributeModifyTextFieldL.getText()).intValue());
-				break;*/
+			case "HealingPotion":
+				item = new HealingPotion(name, price, sb, basicAttribute);
+				break;
 			}
 			gameFacade.AddItem(item);
 			TreeAddL.setRoot(MakeTreeRootFromDataBase());
 		}
 		public void AddApplyR() {
 			StatisticsBag sb = new StatisticsBag();
+			
+			String valueOfSAAddText = ValueOfSAAddTextFieldR.getText();
+			int valueOfSAAdd = 0;
+			if(valueOfSAAddText != null && !valueOfSAAddText.isEmpty()){ 
+				valueOfSAAdd = new Integer(valueOfSAAddText);
+			}
+
 			switch (SpecialAttributeAddChoiceBoxR.getSelectionModel().getSelectedItem()) {
 			case "Hp":
-				sb.addStatistic(new Statistic(new StatisticType(StatisticTypeEnum.Hp, "Hp"), new Integer(ValueOfSAAddTextFieldR.getText())));
+				sb.addStatistic(new Statistic(new StatisticType(StatisticTypeEnum.Hp, "Hp"), valueOfSAAdd));
 				break;
 			case "Mp":
-				sb.addStatistic(new Statistic(new StatisticType(StatisticTypeEnum.Mp, "Mp"), new Integer(ValueOfSAAddTextFieldR.getText())));
+				sb.addStatistic(new Statistic(new StatisticType(StatisticTypeEnum.Mp, "Mp"), valueOfSAAdd));
 				break;
 			case "Str":
-				sb.addStatistic(new Statistic(new StatisticType(StatisticTypeEnum.Str, "Str"), new Integer(ValueOfSAAddTextFieldR.getText())));
+				sb.addStatistic(new Statistic(new StatisticType(StatisticTypeEnum.Str, "Str"), valueOfSAAdd));
 				break;
 			case "Agi":
-				sb.addStatistic(new Statistic(new StatisticType(StatisticTypeEnum.Agi, "Agi"), new Integer(ValueOfSAAddTextFieldR.getText())));
+				sb.addStatistic(new Statistic(new StatisticType(StatisticTypeEnum.Agi, "Agi"), valueOfSAAdd));
 				break;
 			}	
 			Item item = null;
 			
 			String name = NameAddTextFieldR.getText();
-			int price = new Integer(PriceAddTextFieldR.getText()).intValue();
+			int price = new Integer(PriceAddTextFieldL.getText()).intValue();
 			int basicAttribute = new Integer(BasicAttributeAddTextFieldR.getText()).intValue();
 			String type = ItemTypeAddChoiceBoxR.getSelectionModel().getSelectedItem();
 			
@@ -749,10 +762,9 @@ public class Controller implements Initializable {
 			case "Shield":
 				item = new Shield(name, price, sb, basicAttribute);
 				break;
-			/*case "HealingPotion":
-				item = new Sword(id, NameAddTextFieldL.getText(), new Integer(PriceAddTextFieldL.getText()).intValue(),
-						sb, new Integer(BasicAttributeModifyTextFieldL.getText()).intValue());
-				break;*/
+			case "HealingPotion":
+				item = new HealingPotion(name, price, sb, basicAttribute);
+				break;
 			}
 			gameFacade.AddItem(item);
 			TreeAddR.setRoot(MakeTreeRootFromDataBase());
@@ -1308,13 +1320,13 @@ public class Controller implements Initializable {
 			
 			TreeAddL.setRoot(MakeTreeRootFromDataBase());
 			ItemTypeAddChoiceBoxL.setItems(FXCollections.observableArrayList(
-					"Armor", "Shield", "Sword", "Spear"));
+					"Armor", "Shield", "Sword", "Spear", "HealingPotion"));
 			SpecialAttributeAddChoiceBoxL.setItems(FXCollections.observableArrayList(
 					"Hp", "Mp", "Str", "Agi", "NULL"));
 			
 			TreeAddR.setRoot(MakeTreeRootFromDataBase());
 			ItemTypeAddChoiceBoxR.setItems(FXCollections.observableArrayList(
-					"Armor", "Shield", "Sword", "Spear"));
+					"Armor", "Shield", "Sword", "Spear", "HealingPotion"));
 			SpecialAttributeAddChoiceBoxR.setItems(FXCollections.observableArrayList(
 					"Hp", "Mp", "Str", "Agi", "NULL"));
 			
