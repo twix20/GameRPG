@@ -498,10 +498,14 @@ public class Controller implements Initializable {
 		}
 		
 		public void ToAddL() {
+			TreeAddL.setRoot(MakeTreeRootFromDataBase());
+			
 			AdminPanelL.setVisible(false);
 			AddPanelL.setVisible(true);
 		}
 		public void ToAddR() {
+			TreeAddR.setRoot(MakeTreeRootFromDataBase());
+			
 			AdminPanelR.setVisible(false);
 			AddPanelR.setVisible(true);
 		}
@@ -972,7 +976,7 @@ public class Controller implements Initializable {
 			BuyRadioButtonL.setDisable(true);
 		}
 		public void RadioButtonsSelectSellL() {
-			ShopTableViewL.setItems(ConvertShopBuyToTable(((Player)userL).getEquipment().getPlayerItems()));
+			ShopTableViewL.setItems(ConvertShopBuyToTable(new ArrayList(((Player)userL).getEquipment().getPlayerItems())));
 			BuyRadioButtonL.setSelected(false);	
 			BuyRadioButtonL.setDisable(false);
 			SellRadioButtonL.setDisable(true);
@@ -984,7 +988,7 @@ public class Controller implements Initializable {
 			BuyRadioButtonR.setDisable(true);
 		}
 		public void RadioButtonsSelectSellR() {
-			ShopTableViewR.setItems(ConvertShopBuyToTable(((Player)userR).getEquipment().getPlayerItems()));
+			ShopTableViewR.setItems(ConvertShopBuyToTable(new ArrayList(((Player)userR).getEquipment().getPlayerItems())));
 			BuyRadioButtonR.setSelected(false);
 			BuyRadioButtonR.setDisable(false);
 			SellRadioButtonR.setDisable(true);
@@ -997,7 +1001,7 @@ public class Controller implements Initializable {
 				komunikat = gameFacade.ItemBuy(userL, item);
 			else {
 				gameFacade.ItemSell(userL, item);
-				ShopTableViewL.setItems(ConvertShopBuyToTable(((Player)userL).getEquipment().getPlayerItems()));
+				ShopTableViewL.setItems(ConvertShopBuyToTable(new ArrayList(((Player)userL).getEquipment().getPlayerItems())));
 			}
 			
 			if (komunikat.getInformation().equals("error"))
@@ -1015,7 +1019,7 @@ public class Controller implements Initializable {
 				komunikat = gameFacade.ItemBuy(userR, item);
 			else {
 				gameFacade.ItemSell(userR, item);
-				ShopTableViewR.setItems(ConvertShopBuyToTable(((Player)userR).getEquipment().getPlayerItems()));
+				ShopTableViewR.setItems(ConvertShopBuyToTable(new ArrayList(((Player)userR).getEquipment().getPlayerItems())));
 			}
 			
 			if (komunikat.getInformation().equals("error"))
@@ -1283,40 +1287,17 @@ public class Controller implements Initializable {
 		private ObservableList<TableRow> ConvertShopBuyToTable(List<Item> items) {		
 			ObservableList<TableRow> data = FXCollections.observableArrayList();
 			for (Item i : items) {
-				if (i instanceof AttackItem)
-					data.add(new TableRow(i.getName(), new Integer(((AttackItem)i).DealDamage()).toString(),
-							((Statistic) i.getStatistics().values().toArray()[0]).getStatisticType().getName() + " " +
-									new Integer(((Statistic) i.getStatistics().values().toArray()[0]).getValue()).toString(), 
-							new Integer(i.getPrice()).toString()));
-				else if (i instanceof DefensiveItem)
-					data.add(new TableRow(i.getName(), new Integer(((DefensiveItem)i).getDefDamage()).toString(),
-							((Statistic) i.getStatistics().values().toArray()[0]).getStatisticType().getName() + " " +
-									new Integer(((Statistic) i.getStatistics().values().toArray()[0]).getValue()).toString(), 
-							new Integer(i.getPrice()).toString()));
-				else if (i instanceof HealingPotion)
-					data.add(new TableRow(i.getName(), new Integer(((HealingPotion)i).getHealing()).toString(),
-							"---", 
-							new Integer(i.getPrice()).toString()));
-			}
-			return data;
-		}
-		private ObservableList<TableRow> ConvertShopBuyToTable(Set<PlayerItem> items) {		
-			ObservableList<TableRow> data = FXCollections.observableArrayList();
-			for (PlayerItem i : items) {
-				if (i.getItem() instanceof AttackItem)
-					data.add(new TableRow(i.getItem().getName(), new Integer(((AttackItem)i.getItem()).DealDamage()).toString(),
-							((Statistic) i.getItem().getStatistics().values().toArray()[0]).getStatisticType().getName() + " " +
-									new Integer(((Statistic) i.getItem().getStatistics().values().toArray()[0]).getValue()).toString(), 
-							new Integer(i.getItem().getPrice()).toString()));
-				else if (i.getItem() instanceof DefensiveItem)
-					data.add(new TableRow(i.getItem().getName(), new Integer(((DefensiveItem)i.getItem()).getDefDamage()).toString(),
-							((Statistic) i.getItem().getStatistics().values().toArray()[0]).getStatisticType().getName() + " " +
-									new Integer(((Statistic) i.getItem().getStatistics().values().toArray()[0]).getValue()).toString(), 
-							new Integer(i.getItem().getPrice()).toString()));
-				else if (i.getItem() instanceof HealingPotion)
-					data.add(new TableRow(i.getItem().getName(), new Integer(((HealingPotion)i.getItem()).getHealing()).toString(),
-							"---", 
-							new Integer(i.getItem().getPrice()).toString()));
+				String name = i.getName();
+				int BA = i.getBaisicAttribute();
+				int price = i.getPrice();
+				
+				String statisticAttributes = "";
+				for(Statistic s : i.getStatisticsSet()) {
+					if(s.getValue() != 0)
+						statisticAttributes += String.format("%s %d ", s.getStatisticType().getName(), s.getValue());
+				}
+				
+				data.add(new TableRow(name, Integer.toString(BA), statisticAttributes, Integer.toString(price)));
 			}
 			return data;
 		}
@@ -1374,13 +1355,11 @@ public class Controller implements Initializable {
 					"Hp", "Mp", "DealDmg", "Agi", "NULL"));
 			
 			
-			TreeAddL.setRoot(MakeTreeRootFromDataBase());
 			ItemTypeAddChoiceBoxL.setItems(FXCollections.observableArrayList(
 					"Armor", "Shield", "Sword", "Spear", "HealingPotion"));
 			SpecialAttributeAddChoiceBoxL.setItems(FXCollections.observableArrayList(
 					"Hp", "Mp", "DealDmg", "Agi", "NULL"));
 			
-			TreeAddR.setRoot(MakeTreeRootFromDataBase());
 			ItemTypeAddChoiceBoxR.setItems(FXCollections.observableArrayList(
 					"Armor", "Shield", "Sword", "Spear", "HealingPotion"));
 			SpecialAttributeAddChoiceBoxR.setItems(FXCollections.observableArrayList(
