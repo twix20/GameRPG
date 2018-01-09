@@ -918,7 +918,6 @@ public class Controller implements Initializable {
 				PlayerPanelR.setVisible(false);
 				BattlefieldPanelL.setVisible(true);
 				BattlefieldPanelR.setVisible(true);
-				BattielfieldUpdateNames();
 				
 				ArrayList<Player> players = new ArrayList<Player>();
 				players.add((Player)userL);
@@ -926,6 +925,8 @@ public class Controller implements Initializable {
 				
 				this.gameFacade.battleField = new Battlefield(this.gameFacade.getDataBase(), players);
 				this.gameFacade.battleField.setWhoseTurn(players.get(whoseTurn));
+				
+				BattielfieldUpdateNames();
 			}
 		}
 		//----------------------------------
