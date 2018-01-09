@@ -149,21 +149,34 @@ public class GameFacade {
 		accRepo.SaveOrUpdate(player);
 	}
 
-	public void ToggleEquipeItemInEQ(Player player, Item item) {
-		PlayerItem itemToToggleEquipe = player.getEquipment().getPlayerItemByItemId(item.getId());
+	public void ToggleEquipeItemInEQ(Player player, Item itemToToggle) {
+		PlayerItem itemToToggleEquipe = player.getEquipment().getPlayerItemByItemId(itemToToggle.getId());
 		
-		for(PlayerItem it : player.getEquipment().getPlayerItems()) {
-			if(it.isEquiped() == true)
-			if((item instanceof AttackItem && it.getItem() instanceof AttackItem)
-					|| (item instanceof DefensiveItem && it.getItem() instanceof DefensiveItem))
-		    {
-				it.setEquiped(false);
-				break;
-			}
+		//Cant toggle healingPotion
+		if(itemToToggleEquipe.getItem() instanceof UseableItem)
+			return;
 		
-		}
+		boolean shouldToggle = true;
+		Set<PlayerItem> playerItems = player.getEquipment().getPlayerItems();
+		for(PlayerItem it : playerItems) {
+			//Its not the same item
+			if(it.getItem().getId() == itemToToggleEquipe.getPk().getItem().getId()) continue;
 			
-		itemToToggleEquipe.setEquiped(!itemToToggleEquipe.isEquiped());
+			//If item is toggleabble
+			if((itemToToggle instanceof AttackItem && it.getItem() instanceof AttackItem)
+					|| (itemToToggle instanceof DefensiveItem && it.getItem() instanceof DefensiveItem))
+		    {
+				//if item int EQ is already equiped abort toggle
+				if(it.isEquiped() == true) {
+					shouldToggle = false;
+					
+					break;
+				}
+			}
+		}
+		
+		if(shouldToggle)
+			itemToToggleEquipe.setEquiped(!itemToToggleEquipe.isEquiped());
 		
 		AccountRepository accRepo = db.getAccountRepository();
 		accRepo.SaveOrUpdate(player);
