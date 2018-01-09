@@ -29,13 +29,11 @@ CREATE TABLE BattlefieldHistory (
 CREATE TABLE Item (
     Id serial  NOT NULL,
     Name varchar(200)  NOT NULL,
-    MaxDurability int  NOT NULL,
     Price int  NOT NULL,
     Type varchar(200)  NOT NULL,
     DefDamage int  NULL,
     Damage int  NULL,
     HealValue int  NULL,
-    CONSTRAINT CHECK_0 CHECK (( ( MaxDurability >= 0 ) )) NOT DEFERRABLE INITIALLY IMMEDIATE,
     CONSTRAINT Item_pk PRIMARY KEY (Id)
 );
 
@@ -66,8 +64,7 @@ CREATE TABLE Player_Item_XREF (
     Player_Id int  NOT NULL,
     Item_Id int  NOT NULL,
     CustomItemName varchar(200)  NULL,
-    IsEquiped boolean  NOT NULL,
-    CurrentDurability int  NULL
+    IsEquiped boolean  NOT NULL
 );
 
 -- Table: Statistic
