@@ -21,12 +21,7 @@ public class AccountRepository extends Repository<AppUser, String> {
 
 	public AppUser GetByLoginPassword(String login, String password) {
 		
-		Session session = this.sessionFactory.openSession();
-		Transaction tx = null;
-		
-		try {
-			tx = session.beginTransaction();
-			
+		runInSession(session -> {
 			CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
 			CriteriaQuery<AppUser> criteriaQuery = criteriaBuilder.createQuery(AppUser.class);
 			Root<AppUser> userRoot = criteriaQuery.from(AppUser.class);
@@ -38,22 +33,9 @@ public class AccountRepository extends Repository<AppUser, String> {
 	        
 			Query q = session.createQuery(criteriaQuery);
 			
-			allFetched = q.getResultList();
-			
-        	if (allFetched.size() == 1) 
-        		entity = allFetched.get(0);
-
-			tx.commit();
-		} catch (RuntimeException e) {
-			tx.rollback();
-			e.printStackTrace();
-			throw e;
-		} finally {
-			session.close();
-		}	
+			getSingleWithoutNullException(q);
+		});
 		
 		return entity;
-		
-		
 	}
 }

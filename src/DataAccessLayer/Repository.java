@@ -96,4 +96,14 @@ public abstract class Repository<T, ID extends Serializable> {
 			session.close();
 		}		
 	}
+	
+	protected void getSingleWithoutNullException(Query q) {
+		
+		allFetched = q.getResultList();
+		
+    	if (allFetched.size() == 1) 
+    		entity = allFetched.get(0);
+    	else
+    		entity = null;
+	}
 }

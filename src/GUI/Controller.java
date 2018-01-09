@@ -772,9 +772,11 @@ public class Controller implements Initializable {
 		
 		public void RemoveApplyL() {
 			gameFacade.RemoveItem(FindLastSelectedItem(TreeRemoveL));
+			TreeRemoveL.setRoot(MakeTreeRootFromDataBase());
 		}
 		public void RemoveApplyR() {
 			gameFacade.RemoveItem(FindLastSelectedItem(TreeRemoveR));
+			TreeRemoveR.setRoot(MakeTreeRootFromDataBase());
 		}
 		//----------------------------------
 		//History panel

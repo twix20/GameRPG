@@ -36,10 +36,7 @@ public class ItemRepository extends Repository<Item, Integer>{
 	        
 			Query q = session.createQuery(criteriaQuery);
 			
-			allFetched = q.getResultList();
-			
-        	if (allFetched.size() == 1) 
-        		entity = allFetched.get(0);
+			getSingleWithoutNullException(q);
 		});
 		
 		return entity;

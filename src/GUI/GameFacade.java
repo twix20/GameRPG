@@ -86,7 +86,8 @@ public class GameFacade {
 		
 		if(user instanceof Player)
 			return new Statement("player", user) ;
-		else return new Statement("admin", user) ;
+		else 
+			return new Statement("admin", user) ;
 	}
 	
 	public DataBase getDataBase() {
