@@ -32,13 +32,6 @@ public class Shop {
 		return item;
 	}
 
-	public void showDepod() {
-		//gui
-		
-	}
-	public void leaveShop() {
-		//TODO zapisac zmiany depot do bazy
-	}
 	public ArrayList<Item> getDepot() {
 		return depot;
 	}

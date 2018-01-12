@@ -129,7 +129,8 @@ public class Battlefield {
 		else return "T0";
 	}
 	public Player getAnotherPlayer() {
-		return this.getPlayers().get(0).equals(this.getWhoseTurn()) ? this.getPlayers().get(1) : this.getPlayers().get(0);	
+		Player r = this.getPlayers().get(0).equals(this.getWhoseTurn()) ? this.getPlayers().get(1) : this.getPlayers().get(0);
+		return r;
 	}
 	
 	public ArrayList<Player> getPlayers() {

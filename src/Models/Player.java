@@ -37,13 +37,18 @@ public class Player extends AppUser {
  		//Always deal at least 2 dmg
 		if(dmgFromEquipment > 2)
 			dmg = dmgFromEquipment;
-		dmg = (int) (new Random().nextInt((int)(dmg*0.4)) + (dmg*0.8));
+		
+		int bound = (int)((dmg*0.4)) + 1;
+		int minDmg = (int)(dmg*0.8);
+		int additionalDmg = new Random().nextInt(bound);
+		
+		dmg = minDmg + additionalDmg;
 		
 		int targetDefFromEquipment = target.getEquipment().GetSumEquipedStatistic(StatisticTypeEnum.Def);
 		block = targetDefFromEquipment;
 		
  		int delta = dmg - block;
- 		return delta <= 0 ? 2 : delta;//TODO do testow 50 hit
+ 		return delta <= 0 ? 2 : delta;
 	}
 
 	public int getCurrentHp() {
