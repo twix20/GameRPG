@@ -69,7 +69,7 @@ public class Battlefield {
 		playerToUseOn.getEquipment().removePlayerItem(itemToConsume.getId());
 		
 		AccountRepository accRepo = db.getAccountRepository();
-		accRepo.SaveOrUpdate(playerToUseOn);
+		//accRepo.SaveOrUpdate(playerToUseOn);
 		
 		this.changeTurn();	
 		
