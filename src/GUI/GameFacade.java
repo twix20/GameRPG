@@ -13,17 +13,22 @@ import Models.*;
 import Pole_walki.Battlefield;
 
 public class GameFacade {
-	final String ACCOUNT_DOESNT_EXIST = "error"; 
-	final String ACCOUNT_CREATION_SUCCESS = "success";
+	public static final String ACCOUNT_DOESNT_EXIST = "error"; 
+	public static final String ACCOUNT_CREATION_SUCCESS = "success";
 	
-	private DataBase db = new DataBase(new RepositoryFactory());
+	private DataBase db;
+	
+	public GameFacade() {
+		this.db = new DataBase(new RepositoryFactory());
+	}
+	public GameFacade(DataBase db) {
+		this.db = db;
+	}
 	
 	public Battlefield battleField;
 	
 	public Statement RegisterUser(String accountName, String accountPassword) {
-		if (accountName.equals("") || accountPassword.equals(""))
-			return new Statement(ACCOUNT_DOESNT_EXIST);
-		
+	
 		String accountStatus = VerifyAccount(accountName, accountPassword).getInformation();
 		
 		if(accountStatus != ACCOUNT_DOESNT_EXIST)
@@ -74,6 +79,9 @@ public class GameFacade {
 	}
 	
 	public Statement VerifyAccount(String accountName, String accountPassword) {
+		if (accountName.equals("") || accountPassword.equals(""))
+			return new Statement(ACCOUNT_DOESNT_EXIST);
+		
 		AccountRepository accRepo = getDataBase().getAccountRepository();
 		AppUser user = accRepo.GetByLoginPassword(accountName, accountPassword);
 		
