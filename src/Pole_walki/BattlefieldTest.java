@@ -52,7 +52,7 @@ class BattlefieldTest {
 		
 		Player player1 = new Player();
 		player1.setMaxHp(100);
-		player1.setCurrentHp(80);
+		
 		
 		Player player2 = new Player();
 		
@@ -64,8 +64,10 @@ class BattlefieldTest {
 		Battlefield battlefield = new Battlefield(db, players);
 		battlefield.setWhoseTurn(player1);
 		
+		player1.setCurrentHp(20);
+		
 		battlefield.Rest();
-		assertEquals(100, player1.getCurrentHp());	
+		assertEquals(40, player1.getCurrentHp());	
 		
 		
 		}
@@ -76,7 +78,7 @@ class BattlefieldTest {
 		
 		Player player1 = new Player();
 		player1.setMaxHp(100);
-		player1.setCurrentHp(10);
+
 		
 		Player player2 = new Player();
 		
@@ -93,6 +95,10 @@ class BattlefieldTest {
 		Battlefield battlefield = new Battlefield(db, players);
 		battlefield.setWhoseTurn(player1);
 		
+		player1.setCurrentHp(10);
+		
+
+
 		battlefield.Use(potion.getId());
 		assertEquals(60, player1.getCurrentHp());	
 		
