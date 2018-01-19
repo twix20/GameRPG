@@ -75,22 +75,27 @@ public class Battlefield {
 		
 	}
 	
-	public void Rest() {
-		this.changeHP(this.getWhoseTurn(), 20);
+	public int Rest() {
+		int heal = this.changeHP(this.getWhoseTurn(), 20);
 	
 	   	this.AppendActionHistory(new BattlefieldActionsHistory(this.getWhoseTurn(),"rest", 20));
 		this.changeTurn();	
+		return heal;
 	}
 	
-	public void changeHP(Player player, int howMany) {
+	public int changeHP(Player player, int howMany) {
 		int maxHpWithEq = player.getMaxHpWithEquipment();
 		
 		int hpAfterRest = player.getCurrentHp() + howMany;
 		
-		if(hpAfterRest > maxHpWithEq)
+		if(hpAfterRest > maxHpWithEq) {
 			player.setCurrentHp(maxHpWithEq);
-		else
+			return maxHpWithEq;
+		}
+		else {
 			player.setCurrentHp(hpAfterRest);
+		    return hpAfterRest;
+		}
 	}
 	
 	public void endBattle() {
