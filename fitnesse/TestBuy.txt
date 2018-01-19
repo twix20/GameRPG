@@ -1,0 +1,16 @@
+!define TEST_SYSTEM {slim}
+!path ../target/classes
+!path mockito-all-1.9.5.jar
+
+|Import                  |
+|Test.Fitnesse           |
+
+
+!|BuyTestFitnesse                                                               |
+|PlayersGold|ItemsPrice|BuyHasEnoughGoldTest?|MoneyLeft?|Bought?|
+|20                            |10                      |ok            	|10		|true|
+|20                            |20                      |ok            	|0		|true|
+|20                            |30                           |error         	|20		|false|
+|50                            |100                           |error         	|50		|false|
+|100                           |70                      |ok            	|30		|true|
+
