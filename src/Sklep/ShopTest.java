@@ -1,69 +1,74 @@
 package Sklep;
+//import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.util.ArrayList;
-
-import org.junit.jupiter.api.Test;
-
-import Models.Item;
+import DataAccessLayer.DataBase;
+import DataAccessLayer.RepositoryFactory;
 import Models.Player;
 import Models.PlayerItem;
 import Models.Spear;
 import Models.StatisticsBag;
+//import static org.mockito.Mockito.*;
 
 class ShopTest {
 
+	/*@Test
+	void BuyHasEnoughGoldTest() {
+		Shop shop = mock(Shop.class);
+		
+		Player player = mock(Player.class);
+		player.getEquipment().setGold(100);
+		
+		Spear spear = new Spear("spear", 20, new StatisticsBag(), 30);
+		shop.ItemBuy(player, spear);
+		assertEquals(80, player.getEquipment().getGold());
+		
+		for(PlayerItem item : player.getEquipment().getPlayerItems())
+			assertEquals(item.getItem(), spear);
+	}*/
+
+	/*
 	@Test
 	void BuyHasEnoughGoldTest() {
-		Spear spear1 = new Spear("spear1", 10, new StatisticsBag(), 20);
-		Spear spear2 = new Spear("spear2", 20, new StatisticsBag(), 30);
-		ArrayList<Item> depot = new ArrayList<>();
-		depot.add(spear1);
-		depot.add(spear2);
-		Shop shop = new Shop(depot);
+		Shop shop = new Shop();
 		
 		Player player = new Player();
 		player.getEquipment().setGold(100);
 		
-		shop.buy(player, spear1);
-		assertEquals(spear2, shop.getDepot().get(0));
+		Spear spear = new Spear("spear", 20, new StatisticsBag(), 30);
+		shop.ItemBuy(player, spear);
+		assertEquals(80, player.getEquipment().getGold());
 		
 		for(PlayerItem item : player.getEquipment().getPlayerItems())
-			assertEquals(item.getItem(), spear1);		
+			assertEquals(item.getItem(), spear);
 	}
 	
 	@Test
 	void BuyHasNotEnoughGoldTest() {
-		Spear spear1 = new Spear("spear1", 10, new StatisticsBag(), 20);
-		Spear spear2 = new Spear("spear2", 20, new StatisticsBag(), 30);
-		ArrayList<Item> depot = new ArrayList<>();
-		depot.add(spear1);
-		depot.add(spear2);
-		Shop shop = new Shop(depot);
+		Shop shop = new Shop();
 		
 		Player player = new Player();
-		player.getEquipment().setGold(5);
+		player.getEquipment().setGold(10);
 		
-		shop.buy(player, spear1);
-		assertEquals(spear1, shop.getDepot().get(0));
-		assertEquals(0, player.getEquipment().getPlayerItems().size());		
+		Spear spear = new Spear("spear", 20, new StatisticsBag(), 30);
+		shop.ItemBuy(player, spear);
+		assertEquals(10, player.getEquipment().getGold());
+		
+		for(PlayerItem item : player.getEquipment().getPlayerItems())
+			assertNotEquals(item.getItem(), spear);
 	}
 	
 	@Test
 	void SellTest() {
-		Spear spear1 = new Spear("spear1", 10, new StatisticsBag(), 20);
-		ArrayList<Item> depot = new ArrayList<>();
-			
-		Shop shop = new Shop(depot);
+		Shop shop = new Shop();
 		
 		Player player = new Player();
-		player.getEquipment().setGold(0);
-		player.getEquipment().getPlayerItems().add(new PlayerItem(spear1, player));
+		player.getEquipment().setGold(100);
 		
-		shop.sell(player, spear1);
-		assertEquals(5, player.getEquipment().getGold());
-
-	}
-
+		Spear spear = new Spear("spear", 20, new StatisticsBag(), 30);
+		shop.ItemSell(player, spear);
+		assertEquals(130, player.getEquipment().getGold());
+		
+		for(PlayerItem item : player.getEquipment().getPlayerItems())
+			assertNotEquals(item.getItem(), spear);
+	}*/
 }

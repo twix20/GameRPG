@@ -11,24 +11,21 @@ import java.util.Set;
 
 import Models.*;
 import Pole_walki.Battlefield;
+import Sklep.Shop;
 
 public class GameFacade {
-	public static final String ACCOUNT_DOESNT_EXIST = "error"; 
-	public static final String ACCOUNT_CREATION_SUCCESS = "success";
+	final String ACCOUNT_DOESNT_EXIST = "error"; 
+	final String ACCOUNT_CREATION_SUCCESS = "success";
 	
-	private DataBase db;
-	
-	public GameFacade() {
-		this.db = new DataBase(new RepositoryFactory());
-	}
-	public GameFacade(DataBase db) {
-		this.db = db;
-	}
+	private DataBase db = new DataBase(new RepositoryFactory());
+	private Shop shop = new Shop(db);
 	
 	public Battlefield battleField;
 	
 	public Statement RegisterUser(String accountName, String accountPassword) {
-	
+		if (accountName.equals("") || accountPassword.equals(""))
+			return new Statement(ACCOUNT_DOESNT_EXIST);
+		
 		String accountStatus = VerifyAccount(accountName, accountPassword).getInformation();
 		
 		if(accountStatus != ACCOUNT_DOESNT_EXIST)
@@ -64,7 +61,6 @@ public class GameFacade {
 		itemRepo.SaveOrUpdate(itemDb);
 	}
 	
-	//PRAWDOPODOBNIE TEZ DO POPRAWY
 	public void AddItem(Item itemToAdd) {
 		ItemRepository itemRepo = getDataBase().getItemRepository();
 		itemRepo.SaveOrUpdate(itemToAdd);
@@ -79,9 +75,6 @@ public class GameFacade {
 	}
 	
 	public Statement VerifyAccount(String accountName, String accountPassword) {
-		if (accountName.equals("") || accountPassword.equals(""))
-			return new Statement(ACCOUNT_DOESNT_EXIST);
-		
 		AccountRepository accRepo = getDataBase().getAccountRepository();
 		AppUser user = accRepo.GetByLoginPassword(accountName, accountPassword);
 		
@@ -99,62 +92,13 @@ public class GameFacade {
 	}
 
 	public Statement ItemBuy(AppUser user, Item item) {
-		if(!(user instanceof Player))
-			return new Statement("error");
-		
-		Player player = (Player)user;
-		int currentGold = player.getEquipment().getGold();
-		
-		int balanceAfterPurchase = currentGold - item.getPrice();
-		if(balanceAfterPurchase < 0)//Za malo pieniedzy
-			return new Statement("error");
-		
-		
-		//Sprawdzenie czy juz nie posiada przedmiotu
-		PlayerItem pi = player.getEquipment().getPlayerItemByItemId(item.getId());
-		if(pi != null)
-			return new Statement("error");
-		
-		PlayerItemId pk = new PlayerItemId();
-		pk.setItem(item);
-		pk.setPlayer(player);
-		
-		PlayerItem newItem = new PlayerItem();
-		newItem.setPk(pk);
-		newItem.setEquiped(false);
-		newItem.setCustomItemName(null);
-		
-		player.getEquipment().setGold(balanceAfterPurchase);
-		player.getEquipment().getPlayerItems().add(newItem);
-		
-		AccountRepository accRepo = db.getAccountRepository();
-		accRepo.SaveOrUpdate(player);
-		
-		// TODO Auto-generated method stub
-		return new Statement("ok"); // analogiczne zwracane wartosci co przy przy rejestracji
-		
+		return shop.ItemBuy(user, item);
 	}
 
 	public void ItemSell(AppUser user, Item item) {
-		if(!(user instanceof Player))
-			return;
-		
-		Player player = (Player)user;
-		PlayerItem playerItem = player.getEquipment().getPlayerItemByItemId(item.getId());
-		
-		if(playerItem == null) //Player nie ma tego przedmiotu
-			return;
-		
-		int currentGold = player.getEquipment().getGold();
-		int goldAfterSell = currentGold + item.getPrice();
-		
-		player.getEquipment().setGold(goldAfterSell);
-		player.getEquipment().getPlayerItems().remove(playerItem);
-		
-		AccountRepository accRepo = db.getAccountRepository();
-		accRepo.SaveOrUpdate(player);
+		shop.ItemSell(user, item);
 	}
-
+	
 	public void ToggleEquipeItemInEQ(Player player, Item itemToToggle) {
 		PlayerItem itemToToggleEquipe = player.getEquipment().getPlayerItemByItemId(itemToToggle.getId());
 		
@@ -188,8 +132,7 @@ public class GameFacade {
 		accRepo.SaveOrUpdate(player);
 	}
 
-	public void ConsumeItem(int playerItemId) {
-		
+	public void ConsumeItem(int playerItemId) {		
 		this.battleField.Use(playerItemId);
 	}
 
